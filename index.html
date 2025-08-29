@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ajay's Nutrition - Fuel Your Ambition</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <!-- Razorpay Checkout Script -->
+    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            scroll-behavior: smooth;
+        }
+        .hero-bg {
+            background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?q=80&w=2070&auto=format&fit=crop');
+            background-size: cover;
+            background-position: center;
+        }
+        /* Hide scrollbar for cleaner look */
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+        
+        /* Cart transition */
+        #cart-sidebar {
+            transition: transform 0.3s ease-in-out;
+        }
+    </style>
+</head>
+<body class="bg-gray-900 text-white">
+
+    <!-- Main Shop View -->
+    <div id="shop-view">
+        <!-- Header -->
+        <header id="home" class="bg-gray-900/80 backdrop-blur-sm sticky top-0 z-50">
+            <div class="container mx-auto px-6 py-4">
+                <div class="flex items-center justify-between">
+                    <a href="#home" class="text-2xl font-bold text-cyan-400 flex items-center">
+                        <i data-lucide="dumbbell" class="mr-2"></i>
+                        Ajay's Nutrition
+                    </a>
+                    <div class="flex items-center">
+                        <nav class="hidden md:flex items-center space-x-8 mr-8">
+                            <a href="#products" class="text-gray-300 hover:text-cyan-400 transition duration-300">Products</a>
+                            <a href="#about" class="text-gray-300 hover:text-cyan-400 transition duration-300">About Us</a>
+                            <a href="#contact" class="text-gray-300 hover:text-cyan-400 transition duration-300">Contact</a>
+                            <a href="#" class="text-gray-300 hover:text-cyan-400 transition duration-300">My Orders</a>
+                        </nav>
+                        <button id="cart-button" class="relative text-gray-300 hover:text-cyan-400 transition duration-300">
+                            <i data-lucide="shopping-cart"></i>
+                            <span id="cart-count" class="absolute -top-2 -right-2 bg-cyan-500 text-white text-xs font-bold rounded-full h-5 w-5 flex items-center justify-center">0</span>
+                        </button>
+                        <button id="mobile-menu-button" class="md:hidden text-gray-300 hover:text-cyan-400 ml-4">
+                           <i data-lucide="menu"></i>
+                        </button>
+                    </div>
+                </div>
+                 <!-- Mobile Menu -->
+                <div id="mobile-menu" class="hidden md:hidden mt-4">
+                    <a href="#products" class="mobile-menu-link block py-2 px-4 text-sm text-gray-300 hover:bg-gray-800 rounded">Products</a>
+                    <a href="#about" class="mobile-menu-link block py-2 px-4 text-sm text-gray-300 hover:bg-gray-800 rounded">About Us</a>
+                    <a href="#contact" class="mobile-menu-link block py-2 px-4 text-sm text-gray-300 hover:bg-gray-800 rounded">Contact</a>
+                    <a href="#" class="mobile-menu-link block py-2 px-4 text-sm text-gray-300 hover:bg-gray-800 rounded">My Orders</a>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main>
+            <section class="hero-bg h-[calc(100vh-72px)] flex items-center justify-center">
+                <div class="text-center px-6">
+                    <h1 class="text-4xl md:text-6xl lg:text-7xl font-extrabold text-white leading-tight mb-4">
+                        <span class="text-cyan-400">Fuel</span> Your Ambition
+                    </h1>
+                    <p class="text-lg md:text-xl text-gray-300 max-w-2xl mx-auto mb-8">
+                        Authentic, high-quality supplements to help you achieve your peak performance. Your fitness journey starts here.
+                    </p>
+                    <a href="#products" class="bg-cyan-500 hover:bg-cyan-600 text-white font-bold py-4 px-10 rounded-lg shadow-xl transition duration-300 transform hover:scale-105 text-lg">
+                        Explore Products
+                    </a>
+                </div>
+            </section>
+
+            <section id="products" class="py-20 bg-gray-900">
+                <div class="container mx-auto px-6">
+                    <div class="text-center mb-12">
+                        <h2 class="text-3xl md:text-4xl font-bold text-white">Featured Products</h2>
+                        <p class="text-gray-400 mt-2">Top picks from our curated selection.</p>
+                        <div class="w-24 h-1 bg-cyan-500 mx-auto mt-4 rounded"></div>
+                    </div>
+                    <div id="product-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                        <!-- Skeletons will be shown while products load -->
+                    </div>
+                </div>
+            </section>
+
+            <section id="about" class="py-20 bg-gray-800">
+                <div class="container mx-auto px-6">
+                    <div class="flex flex-col md:flex-row items-center gap-12">
+                        <div class="md:w-1/2"><img src="owner.jpg" alt="Ajay - Owner of Ajay's Nutrition" class="rounded-lg shadow-2xl w-full"></div>
+                        <div class="md:w-1/2">
+                            <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">About Ajay's Nutrition</h2>
+                            <div class="w-24 h-1 bg-cyan-500 mb-6 rounded"></div>
+                            <p class="text-gray-300 mb-4 leading-relaxed">Welcome to Ajay's Nutrition! My name is Ajay Thakur, and my passion for fitness led me to open this store. I was tired of seeing overpriced, fake supplements flood the market. My mission is simple: to provide 100% genuine, lab-tested supplements at a fair price.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+             <section id="contact" class="py-20 bg-gray-900">
+                 <div class="container mx-auto px-6">
+                    <div class="text-center mb-12"><h2 class="text-3xl md:text-4xl font-bold text-white">Get In Touch</h2><p class="text-gray-400 mt-2">Visit us or drop us a line. We're here to help!</p><div class="w-24 h-1 bg-cyan-500 mx-auto mt-4 rounded"></div></div>
+                    <div class="flex flex-col lg:flex-row gap-8">
+                        <div class="lg:w-1/2 bg-gray-800 p-8 rounded-lg">
+                            <h3 class="text-2xl font-bold text-white mb-6">Contact Information</h3>
+                            <div class="space-y-6">
+                                <div class="flex items-start space-x-4"><i data-lucide="map-pin" class="text-cyan-400 mt-1 flex-shrink-0"></i><div><h4 class="font-semibold text-white">Our Location</h4><p class="text-gray-400">VIP Rd, Kaurin Bhatha, Basantpur, Rajnandgaon, Chhattisgarh 491441</p></div></div>
+                                <div class="flex items-start space-x-4"><i data-lucide="phone" class="text-cyan-400 mt-1 flex-shrink-0"></i><div><h4 class="font-semibold text-white">Call Us</h4><p class="text-gray-400">+919827405400</p></div></div>
+                                <div class="flex items-start space-x-4"><i data-lucide="mail" class="text-cyan-400 mt-1 flex-shrink-0"></i><div><h4 class="font-semibold text-white">Email Us</h4><p class="text-gray-400">contact@ajaysnutrition.com</p></div></div>
+                            </div>
+                        </div>
+                        <div class="lg:w-1/2 h-96 lg:h-auto rounded-lg overflow-hidden"><<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3368.8357688760875!2d81.01828997471587!3d21.085251485836864!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a294591ded720ef%3A0xdd8ec695a1c18c5c!2sAjay&#39;s%20Nutrition!5e1!3m2!1sen!2sin!4v1756488665662!5m2!1sen!2sin" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe> width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe></div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <footer class="bg-gray-800 border-t border-gray-700">
+            <div class="container mx-auto px-6 py-8">
+                <div class="flex flex-col md:flex-row items-center justify-between">
+                    <div class="text-center md:text-left mb-4 md:mb-0">
+                        <a href="#home" class="text-xl font-bold text-cyan-400">Ajay's Nutrition</a>
+                        <p class="text-gray-400 mt-2">© 2024 Ajay's Nutrition. All Rights Reserved.</p>
+                        <div class="mt-4 text-sm">
+                            <a href="#" class="text-gray-400 hover:text-cyan-400 mr-4">Terms of Service</a>
+                            <a href="#" class="text-gray-400 hover:text-cyan-400">Privacy Policy</a>
+                        </div>
+                    </div>
+                    <div class="flex items-center space-x-6">
+                        <a href="#" id="admin-login-link" class="text-gray-400 hover:text-cyan-400 transition duration-300">Admin</a>
+                        <a href="https://instagram.com" target="_blank" class="text-gray-400 hover:text-cyan-400 transition duration-300"><i data-lucide="instagram"></i></a>
+                        <a href="https://facebook.com" target="_blank" class="text-gray-400 hover:text-cyan-400 transition duration-300"><i data-lucide="facebook"></i></a>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Admin Panel View -->
+    <div id="admin-view" class="hidden min-h-screen bg-gray-900 text-white p-4 sm:p-6 lg:p-8">
+        <div id="login-screen" class="max-w-md mx-auto mt-20">
+            <div class="bg-gray-800 p-8 rounded-lg shadow-xl"><h2 class="text-2xl font-bold text-center text-cyan-400 mb-6">Admin Login</h2><form id="login-form"><div class="mb-4"><label for="password" class="block text-gray-300 mb-2">Password</label><input type="password" id="password" class="w-full bg-gray-700 border border-gray-600 rounded-lg px-4 py-2 text-white focus:outline-none focus:ring-2 focus:ring-cyan-500" required></div><p id="login-error" class="text-red-500 text-sm mb-4 hidden">Incorrect password.</p><button type="submit" class="w-full bg-cyan-500 hover:bg-cyan-600 text-white font-bold py-2 px-4 rounded-lg transition duration-300">Login</button></form><button id="back-to-shop-1" class="w-full mt-4 bg-gray-600 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded-lg transition duration-300">Back to Shop</button></div>
+        </div>
+        <div id="admin-dashboard" class="hidden">
+            <div class="flex flex-wrap justify-between items-center gap-4 mb-8"><h1 class="text-3xl font-bold text-cyan-400">Admin Dashboard</h1><div><button id="back-to-shop-2" class="bg-gray-600 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded-lg transition duration-300 mr-2">Back to Shop</button><button id="logout-button" class="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded-lg transition duration-300">Logout</button></div></div>
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8"><div class="lg:col-span-1 bg-gray-800 p-6 rounded-lg shadow-lg"><h2 class="text-xl font-semibold mb-4">Add New Product</h2><form id="add-product-form" class="space-y-4"><div><label for="productName" class="block text-sm font-medium text-gray-300">Product Name</label><input type="text" id="productName" class="mt-1 w-full bg-gray-700 border-gray-600 rounded-md shadow-sm text-white px-3 py-2" required></div><div><label for="productDescription" class="block text-sm font-medium text-gray-300">Description</label><input type="text" id="productDescription" class="mt-1 w-full bg-gray-700 border-gray-600 rounded-md shadow-sm text-white px-3 py-2" required></div><div><label for="productPrice" class="block text-sm font-medium text-gray-300">Price (₹)</label><input type="number" id="productPrice" class="mt-1 w-full bg-gray-700 border-gray-600 rounded-md shadow-sm text-white px-3 py-2" required></div><div><label for="productImage" class="block text-sm font-medium text-gray-300">Image URL</label><input type="url" id="productImage" placeholder="https://placehold.co/400x400/..." class="mt-1 w-full bg-gray-700 border-gray-600 rounded-md shadow-sm text-white px-3 py-2" required></div><button type="submit" class="w-full bg-cyan-500 hover:bg-cyan-600 text-white font-bold py-2 px-4 rounded-lg transition duration-300">Add Product</button></form></div><div class="lg:col-span-2 bg-gray-800 p-6 rounded-lg shadow-lg"><h2 class="text-xl font-semibold mb-4">Existing Products</h2><div id="admin-product-list" class="space-y-4 max-h-[60vh] overflow-y-auto no-scrollbar"><p class="text-gray-400">Loading products...</p></div></div></div>
+        </div>
+    </div>
+    
+    <!-- Shopping Cart Sidebar -->
+    <div id="cart-overlay" class="fixed inset-0 bg-black bg-opacity-50 z-50 hidden"></div>
+    <div id="cart-sidebar" class="fixed top-0 right-0 h-full w-full max-w-md bg-gray-800 text-white shadow-lg z-50 transform translate-x-full"><div class="flex flex-col h-full"><div class="flex justify-between items-center p-6 border-b border-gray-700"><h2 class="text-2xl font-bold text-cyan-400">Your Cart</h2><button id="close-cart-button" class="text-gray-400 hover:text-white"><i data-lucide="x"></i></button></div><div id="cart-items" class="flex-grow p-6 overflow-y-auto no-scrollbar"></div><div class="p-6 border-t border-gray-700 bg-gray-800"><div class="flex justify-between items-center mb-4"><span class="text-lg font-semibold">Subtotal</span><span id="cart-subtotal" class="text-xl font-bold text-cyan-400">₹0</span></div><button id="checkout-button" class="w-full bg-cyan-500 hover:bg-cyan-600 text-white font-bold py-3 rounded-lg transition duration-300 disabled:bg-gray-600 disabled:cursor-not-allowed">Proceed to Checkout</button></div></div></div>
+
+    <!-- Checkout Modal -->
+    <div id="checkout-modal" class="fixed inset-0 bg-black bg-opacity-75 z-50 hidden items-center justify-center p-4"><div class="bg-gray-800 rounded-lg shadow-xl w-full max-w-lg p-8 relative"><button id="close-checkout-button" class="absolute top-4 right-4 text-gray-400 hover:text-white"><i data-lucide="x"></i></button><h2 class="text-2xl font-bold text-cyan-400 mb-6">Checkout</h2><form id="checkout-form" class="space-y-4"><div><label for="customerName" class="block text-sm font-medium text-gray-300">Full Name</label><input type="text" id="customerName" class="mt-1 w-full bg-gray-700 border-gray-600 rounded-md shadow-sm text-white px-3 py-2" required></div><div><label for="customerEmail" class="block text-sm font-medium text-gray-300">Email</label><input type="email" id="customerEmail" class="mt-1 w-full bg-gray-700 border-gray-600 rounded-md shadow-sm text-white px-3 py-2" required></div><div><label for="customerPhone" class="block text-sm font-medium text-gray-300">Phone Number</label><input type="tel" id="customerPhone" class="mt-1 w-full bg-gray-700 border-gray-600 rounded-md shadow-sm text-white px-3 py-2" required></div><div class="pt-4"><div class="flex justify-between items-center text-lg"><span>Total Amount:</span><span id="checkout-total" class="font-bold text-cyan-400 text-xl">₹0</span></div></div><button type="submit" id="pay-button" class="w-full mt-6 bg-green-500 hover:bg-green-600 text-white font-bold py-3 rounded-lg transition duration-300">Pay Securely</button></form></div></div>
+    
+    <!-- Custom Confirmation Modal -->
+    <div id="confirm-modal" class="fixed inset-0 bg-black bg-opacity-75 z-50 hidden items-center justify-center p-4">
+        <div class="bg-gray-800 rounded-lg shadow-xl w-full max-w-sm p-6 text-center">
+            <h3 id="confirm-title" class="text-lg font-bold text-white mb-4">Are you sure?</h3>
+            <p id="confirm-text" class="text-gray-300 mb-6">This action cannot be undone.</p>
+            <div class="flex justify-center gap-4">
+                <button id="confirm-cancel" class="bg-gray-600 hover:bg-gray-700 text-white font-bold py-2 px-6 rounded-lg">Cancel</button>
+                <button id="confirm-ok" class="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-6 rounded-lg">Delete</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Notification -->
+    <div id="toast" class="fixed bottom-5 right-5 bg-green-500 text-white py-2 px-5 rounded-lg shadow-lg transform translate-y-20 opacity-0 transition-all duration-300"></div>
+
+    <!-- Main Application Script -->
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
+        import { getAuth, signInAnonymously, signInWithCustomToken } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
+        import { getFirestore, collection, addDoc, onSnapshot, doc, deleteDoc, setLogLevel } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
+
+        // --- CONFIGURATION ---
+        const firebaseConfig = typeof __firebase_config !== 'undefined' ? JSON.parse(__firebase_config) : { apiKey: "DEMO_KEY", authDomain: "DEMO", projectId: "DEMO" };
+        const appId = typeof __app_id !== 'undefined' ? __app_id : 'ajay-nutrition-app';
+        
+        // --- INITIALIZATION ---
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+        const db = getFirestore(app);
+        // setLogLevel('debug');
+
+        // --- DOM ELEMENTS ---
+        const shopView = document.getElementById('shop-view');
+        const adminView = document.getElementById('admin-view');
+        const loginScreen = document.getElementById('login-screen');
+        const adminDashboard = document.getElementById('admin-dashboard');
+        const productGrid = document.getElementById('product-grid');
+        const adminProductList = document.getElementById('admin-product-list');
+        const toast = document.getElementById('toast');
+        const cartButton = document.getElementById('cart-button');
+        const closeCartButton = document.getElementById('close-cart-button');
+        const cartSidebar = document.getElementById('cart-sidebar');
+        const cartOverlay = document.getElementById('cart-overlay');
+        const cartCount = document.getElementById('cart-count');
+        const cartItemsContainer = document.getElementById('cart-items');
+        const cartSubtotal = document.getElementById('cart-subtotal');
+        const checkoutButton = document.getElementById('checkout-button');
+        const checkoutModal = document.getElementById('checkout-modal');
+        const closeCheckoutButton = document.getElementById('close-checkout-button');
+        const checkoutTotal = document.getElementById('checkout-total');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        // --- APP STATE ---
+        let productsCollection;
+        let cart = [];
+        let allProducts = [];
+
+        // --- UI & UTILITY FUNCTIONS ---
+        const showShopView = () => { shopView.classList.remove('hidden'); adminView.classList.add('hidden'); };
+        const showAdminView = () => { shopView.classList.add('hidden'); adminView.classList.remove('hidden'); };
+        const showLoginScreen = () => { loginScreen.classList.remove('hidden'); adminDashboard.classList.add('hidden'); };
+        const showDashboard = () => { loginScreen.classList.add('hidden'); adminDashboard.classList.remove('hidden'); };
+        const openCart = () => { cartOverlay.classList.remove('hidden'); cartSidebar.classList.remove('translate-x-full'); };
+        const closeCart = () => { cartOverlay.classList.add('hidden'); cartSidebar.classList.add('translate-x-full'); };
+        const openCheckout = () => { if (cart.length === 0) return; const subtotal = calculateSubtotal(); checkoutTotal.textContent = `₹${subtotal.toLocaleString('en-IN')}`; checkoutModal.classList.remove('hidden'); checkoutModal.classList.add('flex'); };
+        const closeCheckout = () => { checkoutModal.classList.add('hidden'); checkoutModal.classList.remove('flex'); };
+        
+        const showToast = (message, isError = false) => {
+            toast.textContent = message;
+            toast.className = `fixed bottom-5 right-5 text-white py-2 px-5 rounded-lg shadow-lg transform transition-all duration-300 ${isError ? 'bg-red-500' : 'bg-green-500'}`;
+            toast.classList.remove('opacity-0', 'translate-y-20');
+            setTimeout(() => { toast.classList.add('opacity-0', 'translate-y-20'); }, 3000);
+        };
+
+        const confirmAction = ({ title, text }) => {
+            return new Promise((resolve) => {
+                const modal = document.getElementById('confirm-modal');
+                document.getElementById('confirm-title').textContent = title;
+                document.getElementById('confirm-text').textContent = text;
+                modal.classList.remove('hidden');
+                modal.classList.add('flex');
+
+                const okBtn = document.getElementById('confirm-ok');
+                const cancelBtn = document.getElementById('confirm-cancel');
+
+                const cleanup = () => {
+                    modal.classList.add('hidden');
+                    modal.classList.remove('flex');
+                    okBtn.replaceWith(okBtn.cloneNode(true));
+                    cancelBtn.replaceWith(cancelBtn.cloneNode(true));
+                };
+
+                okBtn.addEventListener('click', () => { cleanup(); resolve(true); });
+                cancelBtn.addEventListener('click', () => { cleanup(); resolve(false); });
+            });
+        };
+
+        // --- CART LOGIC ---
+        const calculateSubtotal = () => cart.reduce((acc, item) => { const product = allProducts.find(p => p.id === item.id); return acc + (product ? product.price * item.quantity : 0); }, 0);
+        
+        const updateCart = () => {
+            cartItemsContainer.innerHTML = '';
+            let totalItems = 0;
+            if (cart.length === 0) { cartItemsContainer.innerHTML = `<p class="text-gray-400 text-center">Your cart is empty.</p>`; } 
+            else {
+                cart.forEach(item => {
+                    const product = allProducts.find(p => p.id === item.id);
+                    if (!product) return;
+                    totalItems += item.quantity;
+                    const el = document.createElement('div');
+                    el.className = 'flex items-center justify-between gap-4 py-3 border-b border-gray-700';
+                    el.innerHTML = `<img src="${product.imageUrl}" alt="${product.name}" class="w-20 h-20 object-cover rounded-md"><div class="flex-grow"><p class="font-semibold text-white">${product.name}</p><p class="text-sm text-gray-400">₹${product.price.toLocaleString('en-IN')}</p></div><div class="flex items-center gap-2"><button class="quantity-change text-cyan-400" data-id="${item.id}" data-change="-1">-</button><span>${item.quantity}</span><button class="quantity-change text-cyan-400" data-id="${item.id}" data-change="1">+</button></div><button class="remove-item text-red-400 hover:text-red-500" data-id="${item.id}"><i data-lucide="trash-2" class="w-5 h-5"></i></button>`;
+                    cartItemsContainer.appendChild(el);
+                });
+            }
+            cartSubtotal.textContent = `₹${calculateSubtotal().toLocaleString('en-IN')}`;
+            cartCount.textContent = totalItems;
+            checkoutButton.disabled = cart.length === 0;
+            lucide.createIcons();
+        };
+
+        const addToCart = (productId) => { const existingItem = cart.find(item => item.id === productId); if (existingItem) { existingItem.quantity++; } else { cart.push({ id: productId, quantity: 1 }); } showToast('Item added to cart!'); updateCart(); };
+        const changeQuantity = (productId, change) => { const item = cart.find(i => i.id === productId); if (item) { item.quantity += change; if (item.quantity <= 0) { cart = cart.filter(i => i.id !== productId); } updateCart(); } };
+        const removeFromCart = (productId) => { cart = cart.filter(i => i.id !== productId); updateCart(); };
+
+        // --- PRODUCT RENDERING ---
+        const renderShopProducts = (products) => {
+            productGrid.innerHTML = '';
+            if (products.length === 0) { productGrid.innerHTML = `<p class="text-gray-400 col-span-full text-center">No products have been added yet. Check back soon!</p>`; return; }
+            products.forEach(product => {
+                const card = document.createElement('div');
+                card.className = "bg-gray-800 rounded-lg overflow-hidden shadow-lg transform hover:-translate-y-2 transition duration-300";
+                card.innerHTML = `<img src="${product.imageUrl}" alt="${product.name}" class="w-full h-56 object-cover" onerror="this.onerror=null;this.src='https://placehold.co/400x400/1f2937/FFFFFF?text=Image+Error';"><div class="p-6"><h3 class="text-xl font-semibold text-white mb-2">${product.name}</h3><p class="text-gray-400 mb-4">${product.description}</p><div class="flex items-center justify-between"><span class="text-2xl font-bold text-cyan-400">₹${product.price.toLocaleString('en-IN')}</span><button data-id="${product.id}" class="add-to-cart-btn bg-cyan-500 text-white px-4 py-2 rounded-lg font-semibold hover:bg-cyan-600 transition duration-300">Add to Cart</button></div></div>`;
+                productGrid.appendChild(card);
+            });
+        };
+        
+        const renderAdminProducts = (products) => {
+            adminProductList.innerHTML = '';
+            if (products.length === 0) { adminProductList.innerHTML = `<p class="text-gray-400 text-center">No products found. Add one using the form.</p>`; return; }
+            products.forEach(product => {
+                const item = document.createElement('div');
+                item.className = "bg-gray-700 p-4 rounded-lg flex items-center justify-between";
+                item.innerHTML = `<div class="flex items-center gap-4"><img src="${product.imageUrl}" alt="${product.name}" class="w-16 h-16 object-cover rounded-md" onerror="this.onerror=null;this.src='https://placehold.co/64x64/1f2937/FFFFFF?text=Img';"><div><p class="font-semibold text-white">${product.name}</p><p class="text-sm text-gray-400">₹${product.price.toLocaleString('en-IN')}</p></div></div><button data-id="${product.id}" class="delete-product-btn text-red-400 hover:text-red-500"><i data-lucide="trash-2"></i></button>`;
+                adminProductList.appendChild(item);
+            });
+            lucide.createIcons();
+        };
+
+        const renderSkeletons = () => { productGrid.innerHTML = Array(4).fill('').map(() => `<div class="bg-gray-800 rounded-lg p-6 animate-pulse"><div class="h-48 bg-gray-700 rounded"></div><div class="h-6 bg-gray-700 rounded mt-4 w-3/4"></div><div class="h-4 bg-gray-700 rounded mt-2 w-1/2"></div><div class="h-8 bg-gray-700 rounded mt-4 w-1/4"></div></div>`).join(''); };
+
+        // --- FIRESTORE & PAYMENT ---
+        const addProduct = async (name, description, price, imageUrl) => { try { await addDoc(productsCollection, { name, description, price: Number(price), imageUrl }); showToast('Product added successfully!'); } catch (e) { console.error(e); showToast('Failed to add product.', true); } };
+        const deleteProduct = async (id) => { try { await deleteDoc(doc(db, productsCollection.path, id)); showToast('Product deleted successfully!'); } catch (e) { console.error(e); showToast('Failed to delete product.', true); } };
+        
+        const handlePayment = (e) => {
+            e.preventDefault();
+            const options = {
+                "key": "YOUR_RAZORPAY_KEY_ID", // <-- IMPORTANT: Replace this with your actual Razorpay Key ID!
+                "amount": calculateSubtotal() * 100,
+                "currency": "INR",
+                "name": "Ajay's Nutrition",
+                "description": "Order Payment",
+                "image": "https://placehold.co/100x100/111827/FFFFFF?text=AN",
+                "handler": (response) => { showToast(`Payment successful! ID: ${response.razorpay_payment_id}`); cart = []; updateCart(); closeCheckout(); },
+                "prefill": { "name": document.getElementById('customerName').value, "email": document.getElementById('customerEmail').value, "contact": document.getElementById('customerPhone').value },
+                "theme": { "color": "#22d3ee" }
+            };
+            const rzp1 = new Razorpay(options);
+            rzp1.on('payment.failed', (response) => { showToast(`Payment failed: ${response.error.description}`, true); });
+            rzp1.open();
+        };
+
+        // --- EVENT LISTENERS ---
+        document.getElementById('admin-login-link').addEventListener('click', (e) => { e.preventDefault(); showAdminView(); });
+        document.getElementById('back-to-shop-1').addEventListener('click', showShopView);
+        document.getElementById('back-to-shop-2').addEventListener('click', showShopView);
+        document.getElementById('login-form').addEventListener('submit', (e) => { e.preventDefault(); if (document.getElementById('password').value === 'admin123') { sessionStorage.setItem('isAdminLoggedIn', 'true'); showDashboard(); document.getElementById('login-error').classList.add('hidden'); } else { document.getElementById('login-error').classList.remove('hidden'); } });
+        document.getElementById('logout-button').addEventListener('click', () => { sessionStorage.removeItem('isAdminLoggedIn'); document.getElementById('password').value = ''; showLoginScreen(); });
+        document.getElementById('add-product-form').addEventListener('submit', (e) => { e.preventDefault(); addProduct(productName.value, productDescription.value, productPrice.value, productImage.value); e.target.reset(); });
+        adminProductList.addEventListener('click', async (e) => { const btn = e.target.closest('.delete-product-btn'); if (btn) { const confirmed = await confirmAction({ title: 'Delete Product?', text: 'Are you sure you want to delete this product permanently?' }); if (confirmed) { deleteProduct(btn.dataset.id); } } });
+        cartButton.addEventListener('click', openCart);
+        closeCartButton.addEventListener('click', closeCart);
+        cartOverlay.addEventListener('click', closeCart);
+        checkoutButton.addEventListener('click', () => { closeCart(); openCheckout(); });
+        closeCheckoutButton.addEventListener('click', closeCheckout);
+        document.getElementById('checkout-form').addEventListener('submit', handlePayment);
+        cartItemsContainer.addEventListener('click', (e) => { const qBtn = e.target.closest('.quantity-change'); const rBtn = e.target.closest('.remove-item'); if (qBtn) { changeQuantity(qBtn.dataset.id, parseInt(qBtn.dataset.change)); } if (rBtn) { removeFromCart(rBtn.dataset.id); } });
+        productGrid.addEventListener('click', (e) => { const btn = e.target.closest('.add-to-cart-btn'); if (btn) { addToCart(btn.dataset.id); } });
+        document.getElementById('mobile-menu-button').addEventListener('click', () => mobileMenu.classList.toggle('hidden'));
+        document.querySelectorAll('.mobile-menu-link').forEach(link => link.addEventListener('click', () => mobileMenu.classList.add('hidden')));
+
+        // --- INITIALIZATION LOGIC ---
+        document.addEventListener('DOMContentLoaded', async () => {
+            lucide.createIcons();
+            renderSkeletons();
+            updateCart();
+            
+            try {
+                if (typeof __initial_auth_token !== 'undefined' && __initial_auth_token) { await signInWithCustomToken(auth, __initial_auth_token); } else { await signInAnonymously(auth); }
+                console.log("Authenticated:", auth.currentUser?.uid);
+                
+                const collectionPath = `/artifacts/${appId}/public/data/products`;
+                productsCollection = collection(db, collectionPath);
+
+                onSnapshot(productsCollection, (snapshot) => {
+                    allProducts = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+                    renderShopProducts(allProducts);
+                    renderAdminProducts(allProducts);
+                    updateCart(); // Recalculate cart totals if prices changed
+                }, (error) => {
+                    console.error("Error fetching products:", error);
+                    productGrid.innerHTML = `<p class="text-red-500 col-span-full text-center">Error loading products.</p>`;
+                });
+
+            } catch (error) {
+                console.error("Authentication failed:", error);
+                productGrid.innerHTML = `<p class="text-red-500 col-span-full text-center">Could not connect to the database.</p>`;
+            }
+
+            if (sessionStorage.getItem('isAdminLoggedIn') === 'true') { showDashboard(); } else { showLoginScreen(); }
+        });
+    </script>
+</body>
+</html>
