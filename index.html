@@ -37,53 +37,25 @@
         #cart-sidebar {
             transition: transform 0.3s ease-in-out;
         }
-        .category-btn.active {
+        .category-btn.active, .size-btn.active {
             background-color: #06b6d4;
             color: white;
+            border-color: #06b6d4;
         }
     </style>
 </head>
 <body class="bg-gray-900 text-white">
 
-    <!-- Main Shop View -->
+    <!-- Main Shop View (Grid) -->
     <div id="shop-view">
         <!-- Header -->
         <header id="home" class="bg-gray-900/80 backdrop-blur-sm sticky top-0 z-50">
             <div class="container mx-auto px-6 py-4">
                 <div class="flex items-center justify-between gap-4">
-<a href="#home" class="flex-shrink-0">
-  
-  <svg width="200" height="95" viewBox="0 0 423 200" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-    <defs>
-      <style>
-        .ajays-text { font-family: 'Brush Script MT', cursive; font-size: 130px; fill: url(#ajaysGradient); filter: url(#dropShadow); }
-        .nutrition-text { font-family: 'Arial', sans-serif; font-size: 40px; fill: #E0E0E0; letter-spacing: 12px; font-weight: bold; }
-        .nutrition-bg { fill: #2E7D32; }
-        .swoosh { fill: #4CAF50; stroke: #388E3C; stroke-width: 2; }
-      </style>
-      <linearGradient id="ajaysGradient" x1="0%" y1="0%" x2="0%" y2="100%">
-        <stop offset="0%" style="stop-color:#F44336;"/>
-        <stop offset="100%" style="stop-color:#B71C1C;"/>
-      </linearGradient>
-      <filter id="dropShadow" x="-10%" y="-10%" width="120%" height="120%">
-        <feGaussianBlur in="SourceAlpha" stdDeviation="2"/>
-        <feOffset dx="2" dy="3" result="offsetblur"/>
-        <feFlood flood-color="rgba(0,0,0,0.5)"/>
-        <feComposite in2="offsetblur" operator="in"/>
-        <feMerge>
-          <feMergeNode/>
-          <feMergeNode in="SourceGraphic"/>
-        </feMerge>
-      </filter>
-    </defs>
-    <text x="10" y="110" class="ajays-text">Ajay's</text>
-    <path d="M 230 55 C 280 50, 330 60, 380 65" class="swoosh" fill="none" stroke-width="8"/>
-    <path d="M 240 100 C 290 95, 340 105, 390 110" class="swoosh" fill="none" stroke-width="8"/>
-    <rect x="0" y="140" width="423" height="50" class="nutrition-bg" rx="5"/>
-    <text x="211.5" y="175" text-anchor="middle" class="nutrition-text">NUTRITION</text>
-  </svg>
-
-</a>
+                    <a href="#home" class="flex items-center flex-shrink-0">
+                      <img src="logo.png" alt="Ajay's Nutrition Logo" class="h-12 w-auto mr-2">
+                      <span class="text-3xl font-bold text-cyan-400">Ajay's Nutrition</span>
+                    </a>
                     <div class="relative w-full max-w-xs hidden md:block">
                         <input type="text" id="search-bar" placeholder="Search products..." class="w-full bg-gray-800 border border-gray-700 rounded-lg px-4 py-2 text-white focus:outline-none focus:ring-2 focus:ring-cyan-500">
                         <i data-lucide="search" class="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 w-5 h-5"></i>
@@ -93,7 +65,9 @@
                             <a href="#products" class="text-gray-300 hover:text-cyan-400 transition duration-300">Products</a>
                             <a href="#about" class="text-gray-300 hover:text-cyan-400 transition duration-300">About Us</a>
                             <a href="#contact" class="text-gray-300 hover:text-cyan-400 transition duration-300">Contact</a>
+                            <a href="#authenticity" class="text-gray-300 hover:text-cyan-400 transition duration-300">Authenticity</a>
                             <a href="#return-policy" class="text-gray-300 hover:text-cyan-400 transition duration-300">Return Policy</a>
+                            <a href="#" id="my-orders-link" class="text-gray-300 hover:text-cyan-400 transition duration-300">My Orders</a>
                         </nav>
                         <button id="cart-button" class="relative text-gray-300 hover:text-cyan-400 transition duration-300">
                             <i data-lucide="shopping-cart"></i>
@@ -104,7 +78,7 @@
                         </button>
                     </div>
                 </div>
-                 <!-- Mobile Menu -->
+                  <!-- Mobile Menu -->
                 <div id="mobile-menu" class="hidden lg:hidden mt-4">
                     <div class="relative w-full my-4 md:hidden">
                         <input type="text" id="mobile-search-bar" placeholder="Search products..." class="w-full bg-gray-800 border border-gray-700 rounded-lg px-4 py-2 text-white focus:outline-none focus:ring-2 focus:ring-cyan-500">
@@ -113,7 +87,9 @@
                     <a href="#products" class="mobile-menu-link block py-2 px-4 text-sm text-gray-300 hover:bg-gray-800 rounded">Products</a>
                     <a href="#about" class="mobile-menu-link block py-2 px-4 text-sm text-gray-300 hover:bg-gray-800 rounded">About Us</a>
                     <a href="#contact" class="mobile-menu-link block py-2 px-4 text-sm text-gray-300 hover:bg-gray-800 rounded">Contact</a>
+                    <a href="#authenticity" class="mobile-menu-link block py-2 px-4 text-sm text-gray-300 hover:bg-gray-800 rounded">Authenticity</a>
                     <a href="#return-policy" class="mobile-menu-link block py-2 px-4 text-sm text-gray-300 hover:bg-gray-800 rounded">Return Policy</a>
+                    <a href="#" id="mobile-my-orders-link" class="mobile-menu-link block py-2 px-4 text-sm text-gray-300 hover:bg-gray-800 rounded">My Orders</a>
                 </div>
             </div>
         </header>
@@ -142,7 +118,7 @@
                         <div class="w-24 h-1 bg-cyan-500 mx-auto mt-4 rounded"></div>
                     </div>
                     <div id="category-filters" class="flex flex-wrap justify-center gap-2 md:gap-4 mb-12">
-                         <!-- Category buttons will be inserted here -->
+                          <!-- Category buttons will be inserted here -->
                     </div>
                     <div id="product-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
                         <!-- Skeletons will be shown while products load -->
@@ -162,22 +138,41 @@
 
              <section id="contact" class="py-20 bg-gray-900">
                  <div class="container mx-auto px-6">
-                    <div class="text-center mb-12"><h2 class="text-3xl md:text-4xl font-bold text-white">Get In Touch</h2><p class="text-gray-400 mt-2">Visit us or drop us a line. We're here to help!</p><div class="w-24 h-1 bg-cyan-500 mx-auto mt-4 rounded"></div></div>
-                    <div class="flex flex-col lg:flex-row gap-8">
-                        <div class="lg:w-1/2 bg-gray-800 p-8 rounded-lg">
-                            <h3 class="text-2xl font-bold text-white mb-6">Contact Information</h3>
-                            <div class="space-y-6">
-                                <div class="flex items-start space-x-4"><i data-lucide="map-pin" class="text-cyan-400 mt-1 flex-shrink-0"></i><div><h4 class="font-semibold text-white">Our Location</h4><p class="text-gray-400">VIP Rd, Kaurin Bhatha, Basantpur, Rajnandgaon, Chhattisgarh 491441</p></div></div>
-                                <div class="flex items-start space-x-4"><i data-lucide="phone" class="text-cyan-400 mt-1 flex-shrink-0"></i><div><h4 class="font-semibold text-white">Call Us</h4><p class="text-gray-400">+9198274 05400</p></div></div>
-                                <div class="flex items-start space-x-4"><i data-lucide="mail" class="text-cyan-400 mt-1 flex-shrink-0"></i><div><h4 class="font-semibold text-white">Email Us</h4><p class="text-gray-400">contact@ajaysnutrition.com</p></div></div>
-                            </div>
+                     <div class="text-center mb-12"><h2 class="text-3xl md:text-4xl font-bold text-white">Get In Touch</h2><p class="text-gray-400 mt-2">Visit us or drop us a line. We're here to help!</p><div class="w-24 h-1 bg-cyan-500 mx-auto mt-4 rounded"></div></div>
+                     <div class="flex flex-col lg:flex-row gap-8">
+                         <div class="lg:w-1/2 bg-gray-800 p-8 rounded-lg">
+                             <h3 class="text-2xl font-bold text-white mb-6">Contact Information</h3>
+                             <div class="space-y-6">
+                                 <div class="flex items-start space-x-4"><i data-lucide="map-pin" class="text-cyan-400 mt-1 flex-shrink-0"></i><div><h4 class="font-semibold text-white">Our Location</h4><p class="text-gray-400">VIP Rd, Kaurin Bhatha, Basantpur, Rajnandgaon, Chhattisgarh 491441</p></div></div>
+                                 <div class="flex items-start space-x-4"><i data-lucide="phone" class="text-cyan-400 mt-1 flex-shrink-0"></i><div><h4 class="font-semibold text-white">Call Us</h4><p class="text-gray-400">+9198274 05400</p></div></div>
+                                 <div class="flex items-start space-x-4"><i data-lucide="mail" class="text-cyan-400 mt-1 flex-shrink-0"></i><div><h4 class="font-semibold text-white">Email Us</h4><p class="text-gray-400">contact@ajaysnutrition.com</p></div></div>
+                             </div>
+                         </div>
+                         <div class="lg:w-1/2 h-96 lg:h-auto rounded-lg overflow-hidden"><iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3368.835768876093!2d81.01828997471591!3d21.085251485836864!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a294591ded720ef%3A0xdd8ec695a1c18c5c!2sAjay&#39;s%20Nutrition!5e1!3m2!1sen!2sin!4v1756532635873!5m2!1sen!2sin" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe></div>
+                     </div>
+                 </div>
+             </section>
+
+            <section id="authenticity" class="py-20 bg-gray-800">
+                <div class="container mx-auto px-6">
+                    <div class="max-w-3xl mx-auto">
+                        <h2 class="text-3xl md:text-4xl font-bold text-white mb-4 text-center">Verify Your Product</h2>
+                        <div class="w-24 h-1 bg-cyan-500 mx-auto mb-8 rounded"></div>
+                        <div class="text-gray-300 space-y-4 leading-relaxed bg-gray-800 p-8 rounded-lg">
+                            <p>At Ajay's Nutrition, we guarantee 100% authenticity. Every product you buy from us is sourced directly from the brands or their official importers. We encourage you to verify your purchase to ensure your peace of mind.</p>
+                            <h4 class="text-xl font-semibold text-white pt-4">How to Verify:</h4>
+                            <ul class="list-disc list-inside space-y-2">
+                                <li><strong>Check the Seal:</strong> Every genuine product comes with a factory-sealed cap and an inner seal. Do not accept the product if the seal is broken.</li>
+                                <li><strong>Scratch & Verify Code:</strong> Most major brands include a unique scratch code on the product packaging. You can visit the brand's official website and enter this code to verify authenticity instantly.</li>
+                                <li><strong>Importer's Sticker:</strong> Look for the official importer's sticker on the product. This sticker contains crucial information, including the import date and FSSAI license number.</li>
+                                <li><strong>Contact Us:</strong> If you have any doubts about your product, please do not hesitate to contact our customer support with your order details and product images. We are here to help you.</li>
+                            </ul>
                         </div>
-                        <div class="lg:w-1/2 h-96 lg:h-auto rounded-lg overflow-hidden"><iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3368.835768876093!2d81.01828997471591!3d21.085251485836864!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a294591ded720ef%3A0xdd8ec695a1c18c5c!2sAjay&#39;s%20Nutrition!5e1!3m2!1sen!2sin!4v1756532635873!5m2!1sen!2sin" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe></div>
                     </div>
                 </div>
             </section>
 
-            <section id="return-policy" class="py-20 bg-gray-800">
+            <section id="return-policy" class="py-20 bg-gray-900">
                 <div class="container mx-auto px-6">
                     <div class="max-w-3xl mx-auto">
                         <h2 class="text-3xl md:text-4xl font-bold text-white mb-4 text-center">Return Policy</h2>
@@ -205,6 +200,7 @@
                         <div class="mt-4 text-sm space-x-4">
                             <a href="#" class="text-gray-400 hover:text-cyan-400">Terms of Service</a>
                             <a href="#" class="text-gray-400 hover:text-cyan-400">Privacy Policy</a>
+                            <a href="#authenticity" class="text-gray-400 hover:text-cyan-400">Authenticity</a>
                             <a href="#return-policy" class="text-gray-400 hover:text-cyan-400">Return Policy</a>
                         </div>
                     </div>
@@ -216,6 +212,50 @@
                 </div>
             </div>
         </footer>
+    </div>
+
+    <!-- Product Detail View -->
+    <div id="product-detail-view" class="hidden min-h-screen bg-gray-900 text-white p-4 sm:p-6 lg:p-8">
+        <div class="container mx-auto">
+            <button id="back-to-products-grid" class="flex items-center gap-2 text-cyan-400 font-semibold mb-8"><i data-lucide="arrow-left"></i> Back to Products</button>
+            <div id="product-detail-content" class="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12">
+                 <!-- Product details will be dynamically injected here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Customer Panel View -->
+    <div id="customer-view" class="hidden min-h-screen bg-gray-900 text-white p-4 sm:p-6 lg:p-8">
+        <div class="container mx-auto">
+            <div id="customer-lookup-screen">
+                <div class="max-w-md mx-auto mt-20">
+                    <div class="bg-gray-800 p-8 rounded-lg shadow-xl">
+                        <h2 class="text-2xl font-bold text-center text-cyan-400 mb-6">Track Your Orders</h2>
+                        <form id="customer-lookup-form">
+                            <div class="mb-4">
+                                <label for="customerLookupEmail" class="block text-gray-300 mb-2">Enter your email to find your orders</label>
+                                <input type="email" id="customerLookupEmail" class="w-full bg-gray-700 border border-gray-600 rounded-lg px-4 py-2 text-white focus:outline-none focus:ring-2 focus:ring-cyan-500" required>
+                            </div>
+                            <p id="customer-lookup-error" class="text-red-500 text-sm mb-4 hidden">No orders found for this email.</p>
+                            <button type="submit" class="w-full bg-cyan-500 hover:bg-cyan-600 text-white font-bold py-2 px-4 rounded-lg transition duration-300">Find Orders</button>
+                        </form>
+                        <button id="back-to-shop-3" class="w-full mt-4 bg-gray-600 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded-lg transition duration-300">Back to Shop</button>
+                    </div>
+                </div>
+            </div>
+            <div id="customer-orders-screen" class="hidden">
+                 <div class="flex flex-col sm:flex-row justify-between items-center gap-4 mb-8">
+                     <h1 class="text-3xl font-bold text-cyan-400">Your Orders</h1>
+                     <div>
+                        <button id="lookup-another-email-btn" class="bg-cyan-600 hover:bg-cyan-700 text-white font-bold py-2 px-4 rounded-lg transition duration-300 mr-2">Check Another Email</button>
+                        <button id="back-to-shop-4" class="bg-gray-600 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded-lg transition duration-300">Back to Shop</button>
+                     </div>
+                 </div>
+                 <div id="customer-order-list" class="space-y-4 max-h-[70vh] overflow-y-auto no-scrollbar">
+                     <!-- Orders will be rendered here -->
+                 </div>
+            </div>
+        </div>
     </div>
 
     <!-- Admin Panel View -->
@@ -241,23 +281,12 @@
 
             <!-- Products Tab Content -->
             <div id="content-products">
-                <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
-                    <div class="lg:col-span-1 bg-gray-800 p-6 rounded-lg shadow-lg">
-                        <h2 class="text-xl font-semibold mb-4">Add New Product</h2>
-                        <form id="add-product-form" class="space-y-4">
-                            <div><label for="productName" class="block text-sm font-medium text-gray-300">Product Name</label><input type="text" id="productName" class="mt-1 w-full bg-gray-700 border-gray-600 rounded-md shadow-sm text-white px-3 py-2" required></div>
-                            <div><label for="productDescription" class="block text-sm font-medium text-gray-300">Description</label><input type="text" id="productDescription" class="mt-1 w-full bg-gray-700 border-gray-600 rounded-md shadow-sm text-white px-3 py-2" required></div>
-                            <div><label for="productPrice" class="block text-sm font-medium text-gray-300">Price (₹)</label><input type="number" id="productPrice" class="mt-1 w-full bg-gray-700 border-gray-600 rounded-md shadow-sm text-white px-3 py-2" required></div>
-                            <div><label for="productImage" class="block text-sm font-medium text-gray-300">Image URL</label><input type="text" id="productImage" placeholder="https://placehold.co/400x400/..." class="mt-1 w-full bg-gray-700 border-gray-600 rounded-md shadow-sm text-white px-3 py-2" required></div>
-                            <div><label for="productCategory" class="block text-sm font-medium text-gray-300">Category</label><select id="productCategory" class="mt-1 w-full bg-gray-700 border-gray-600 rounded-md shadow-sm text-white px-3 py-2" required><option>Protein</option><option>Creatine</option><option>Pre-Workout</option><option>Vitamins</option><option>Other</option></select></div>
-                            <div class="flex items-center"><input type="checkbox" id="productInStock" class="h-4 w-4 bg-gray-700 border-gray-600 rounded text-cyan-500" checked><label for="productInStock" class="ml-2 block text-sm text-gray-300">In Stock</label></div>
-                            <button type="submit" class="w-full bg-cyan-500 hover:bg-cyan-600 text-white font-bold py-2 px-4 rounded-lg transition duration-300">Add Product</button>
-                        </form>
+                 <div class="bg-gray-800 p-6 rounded-lg shadow-lg">
+                    <div class="flex flex-col sm:flex-row justify-between items-center gap-4 mb-4">
+                        <h2 class="text-xl font-semibold">Manage Products</h2>
+                        <button id="add-new-product-btn" class="w-full sm:w-auto bg-cyan-500 hover:bg-cyan-600 text-white font-bold py-2 px-4 rounded-lg transition duration-300">Add New Product</button>
                     </div>
-                    <div class="lg:col-span-2 bg-gray-800 p-6 rounded-lg shadow-lg">
-                        <h2 class="text-xl font-semibold mb-4">Manage Products</h2>
-                        <div id="admin-product-list" class="space-y-4 max-h-[60vh] overflow-y-auto no-scrollbar"><p class="text-gray-400">Loading products...</p></div>
-                    </div>
+                    <div id="admin-product-list" class="space-y-4 max-h-[60vh] overflow-y-auto no-scrollbar"><p class="text-gray-400">Loading products...</p></div>
                 </div>
             </div>
 
@@ -271,6 +300,15 @@
         </div>
     </div>
     
+    <!-- Modals -->
+    <div id="admin-product-modal" class="fixed inset-0 bg-black bg-opacity-75 z-50 hidden items-center justify-center p-4">
+         <!-- Add/Edit Product Form will be injected here -->
+    </div>
+    <div id="admin-variant-modal" class="fixed inset-0 bg-black bg-opacity-75 z-50 hidden items-center justify-center p-4">
+         <!-- Add/Edit Variant Form will be injected here -->
+    </div>
+
+
     <!-- Shopping Cart Sidebar -->
     <div id="cart-overlay" class="fixed inset-0 bg-black bg-opacity-50 z-50 hidden"></div>
     <div id="cart-sidebar" class="fixed top-0 right-0 h-full w-full max-w-md bg-gray-800 text-white shadow-lg z-50 transform translate-x-full"><div class="flex flex-col h-full"><div class="flex justify-between items-center p-6 border-b border-gray-700"><h2 class="text-2xl font-bold text-cyan-400">Your Cart</h2><button id="close-cart-button" class="text-gray-400 hover:text-white"><i data-lucide="x"></i></button></div><div id="cart-items" class="flex-grow p-6 overflow-y-auto no-scrollbar"></div><div class="p-6 border-t border-gray-700 bg-gray-800"><div class="flex justify-between items-center mb-4"><span class="text-lg font-semibold">Subtotal</span><span id="cart-subtotal" class="text-xl font-bold text-cyan-400">₹0</span></div><button id="checkout-button" class="w-full bg-cyan-500 hover:bg-cyan-600 text-white font-bold py-3 rounded-lg transition duration-300 disabled:bg-gray-600 disabled:cursor-not-allowed">Proceed to Checkout</button></div></div></div>
@@ -297,7 +335,7 @@
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
         import { getAuth, signInAnonymously } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
-        import { getFirestore, collection, addDoc, onSnapshot, doc, deleteDoc, updateDoc, serverTimestamp, query, orderBy } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
+        import { getFirestore, collection, addDoc, onSnapshot, doc, deleteDoc, updateDoc, serverTimestamp, query, orderBy, where, getDocs, getDoc, setDoc, writeBatch } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
 
         // --- IMPORTANT: FIREBASE CONFIGURATION ---
         const firebaseConfig = {
@@ -330,6 +368,10 @@
         const tabOrders = document.getElementById('tab-orders');
         const contentProducts = document.getElementById('content-products');
         const contentOrders = document.getElementById('content-orders');
+        const customerLookupScreen = document.getElementById('customer-lookup-screen');
+        const customerOrdersScreen = document.getElementById('customer-orders-screen');
+        const customerOrderList = document.getElementById('customer-order-list');
+        const productDetailContent = document.getElementById('product-detail-content');
 
         // --- APP STATE ---
         let productsCollection, ordersCollection;
@@ -337,10 +379,22 @@
         let allProducts = [];
         let currentCategory = 'All';
         let currentSearchTerm = '';
+        let currentProductVariants = [];
 
-        // --- UI FUNCTIONS ---
-        const showShopView = () => { document.getElementById('shop-view').classList.remove('hidden'); document.getElementById('admin-view').classList.add('hidden'); };
-        const showAdminView = () => { document.getElementById('shop-view').classList.add('hidden'); document.getElementById('admin-view').classList.remove('hidden'); };
+        // --- UI & VIEW MANAGEMENT ---
+        const switchView = (viewName, data = null) => {
+            ['shop-view', 'admin-view', 'customer-view', 'product-detail-view'].forEach(id => {
+                document.getElementById(id).classList.add('hidden');
+            });
+             window.scrollTo(0, 0);
+
+            if (viewName === 'product-detail-view' && data && data.productId) {
+                renderProductDetail(data.productId);
+            }
+            
+            document.getElementById(viewName).classList.remove('hidden');
+        };
+
         const showLoginScreen = () => { document.getElementById('login-screen').classList.remove('hidden'); document.getElementById('admin-dashboard').classList.add('hidden'); };
         const showDashboard = () => { document.getElementById('login-screen').classList.add('hidden'); document.getElementById('admin-dashboard').classList.remove('hidden'); };
         const openCart = () => { document.getElementById('cart-overlay').classList.remove('hidden'); document.getElementById('cart-sidebar').classList.remove('translate-x-full'); };
@@ -375,11 +429,7 @@
         };
 
         // --- CART LOGIC ---
-        const calculateSubtotal = () => cart.reduce((acc, item) => { 
-            const product = allProducts.find(p => p.id === item.id); 
-            const price = (product && typeof product.price === 'number') ? product.price : 0;
-            return acc + (price * item.quantity); 
-        }, 0);
+        const calculateSubtotal = () => cart.reduce((acc, item) => acc + (item.price * item.quantity), 0);
         
         const updateCart = () => {
             cartItemsContainer.innerHTML = '';
@@ -387,13 +437,22 @@
             if (cart.length === 0) { cartItemsContainer.innerHTML = `<p class="text-gray-400 text-center">Your cart is empty.</p>`; } 
             else {
                 cart.forEach(item => {
-                    const product = allProducts.find(p => p.id === item.id);
-                    if (!product) return;
                     totalItems += item.quantity;
                     const el = document.createElement('div');
                     el.className = 'flex items-center justify-between gap-4 py-3 border-b border-gray-700';
-                    const priceString = (product.price && typeof product.price === 'number') ? `₹${product.price.toLocaleString('en-IN')}` : 'N/A';
-                    el.innerHTML = `<img src="${product.imageUrl}" alt="${product.name}" class="w-20 h-20 object-cover rounded-md"><div class="flex-grow"><p class="font-semibold text-white">${product.name}</p><p class="text-sm text-gray-400">${priceString}</p></div><div class="flex items-center gap-2"><button class="quantity-change text-cyan-400" data-id="${item.id}" data-change="-1">-</button><span>${item.quantity}</span><button class="quantity-change text-cyan-400" data-id="${item.id}" data-change="1">+</button></div><button class="remove-item text-red-400 hover:text-red-500" data-id="${item.id}"><i data-lucide="trash-2" class="w-5 h-5"></i></button>`;
+                    el.innerHTML = `
+                        <img src="${item.imageUrl}" alt="${item.name}" class="w-20 h-20 object-cover rounded-md">
+                        <div class="flex-grow">
+                            <p class="font-semibold text-white">${item.name}</p>
+                            <p class="text-xs text-gray-300">${item.flavour} / ${item.size}</p>
+                            <p class="text-sm text-gray-400 mt-1">₹${item.price.toLocaleString('en-IN')}</p>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <button class="quantity-change text-cyan-400" data-id="${item.variantId}" data-change="-1">-</button>
+                            <span>${item.quantity}</span>
+                            <button class="quantity-change text-cyan-400" data-id="${item.variantId}" data-change="1">+</button>
+                        </div>
+                        <button class="remove-item text-red-400 hover:text-red-500" data-id="${item.variantId}"><i data-lucide="trash-2" class="w-5 h-5"></i></button>`;
                     cartItemsContainer.appendChild(el);
                 });
             }
@@ -403,19 +462,28 @@
             lucide.createIcons();
         };
 
-        const addToCart = (productId) => { 
-            const product = allProducts.find(p => p.id === productId);
-            if (!product || !product.inStock) {
+        const addToCart = (variant) => { 
+            if (!variant.inStock) {
                 showToast('This item is out of stock.', true);
                 return;
             }
-            const existingItem = cart.find(item => item.id === productId); 
-            if (existingItem) { existingItem.quantity++; } else { cart.push({ id: productId, quantity: 1 }); } 
+            const existingItem = cart.find(item => item.variantId === variant.id); 
+            if (existingItem) { existingItem.quantity++; } 
+            else { cart.push({ 
+                variantId: variant.id, 
+                productId: variant.productId,
+                name: variant.productName,
+                imageUrl: variant.productImageUrl,
+                size: variant.size,
+                flavour: variant.flavour,
+                price: variant.price,
+                quantity: 1 
+            }); } 
             showToast('Item added to cart!'); 
             updateCart(); 
         };
-        const changeQuantity = (productId, change) => { const item = cart.find(i => i.id === productId); if (item) { item.quantity += change; if (item.quantity <= 0) { cart = cart.filter(i => i.id !== productId); } updateCart(); } };
-        const removeFromCart = (productId) => { cart = cart.filter(i => i.id !== productId); updateCart(); };
+        const changeQuantity = (variantId, change) => { const item = cart.find(i => i.variantId === variantId); if (item) { item.quantity += change; if (item.quantity <= 0) { cart = cart.filter(i => i.variantId !== variantId); } updateCart(); } };
+        const removeFromCart = (variantId) => { cart = cart.filter(i => i.variantId !== variantId); updateCart(); };
 
         // --- PRODUCT RENDERING & FILTERING ---
         const renderShopProducts = (products) => {
@@ -423,31 +491,120 @@
             if (products.length === 0) { productGrid.innerHTML = `<p class="text-gray-400 col-span-full text-center">No products match your search.</p>`; return; }
             products.forEach(product => {
                 const card = document.createElement('div');
-                card.className = "bg-gray-800 rounded-lg overflow-hidden shadow-lg flex flex-col";
-                const priceString = (product.price && typeof product.price === 'number') ? `₹${product.price.toLocaleString('en-IN')}` : 'Price Unavailable';
-                const stockLabel = !product.inStock ? `<span class="absolute top-2 right-2 bg-red-500 text-white text-xs font-semibold px-2 py-1 rounded-full">Out of Stock</span>` : '';
-                const addToCartButton = `<button data-id="${product.id}" class="add-to-cart-btn mt-4 w-full bg-cyan-500 text-white px-4 py-2 rounded-lg font-semibold hover:bg-cyan-600 transition duration-300 disabled:bg-gray-600 disabled:cursor-not-allowed" ${!product.inStock ? 'disabled' : ''}>Add to Cart</button>`;
+                card.className = "bg-gray-800 rounded-lg overflow-hidden shadow-lg flex flex-col cursor-pointer hover:ring-2 hover:ring-cyan-500 transition-all duration-300";
+                card.dataset.id = product.id;
+                const priceString = product.minPrice ? `From ₹${product.minPrice.toLocaleString('en-IN')}` : 'View Options';
+                
                 card.innerHTML = `
                     <div class="relative">
                         <img src="${product.imageUrl}" alt="${product.name}" class="w-full h-56 object-cover" onerror="this.onerror=null;this.src='https://placehold.co/400x400/1f2937/FFFFFF?text=Image+Error';">
-                        ${stockLabel}
                     </div>
                     <div class="p-6 flex flex-col flex-grow">
                         <h3 class="text-xl font-semibold text-white mb-2">${product.name}</h3>
-                        <p class="text-gray-400 mb-2 text-sm">${product.category}</p>
-                        <p class="text-gray-400 mb-4 flex-grow">${product.description}</p>
-                        <div class="flex items-center text-yellow-400 mb-4">
-                            ${Array(5).fill(0).map((_, i) => `<i data-lucide="star" class="w-5 h-5 fill-current"></i>`).join('')}
-                            <span class="text-gray-400 text-sm ml-2">(No reviews)</span>
+                        <p class="text-gray-400 text-sm flex-grow">${product.category}</p>
+                        <div class="mt-4">
+                            <span class="text-xl font-bold text-cyan-400">${priceString}</span>
                         </div>
-                        <div class="flex items-center justify-between">
-                            <span class="text-2xl font-bold text-cyan-400">${priceString}</span>
-                        </div>
-                        ${addToCartButton}
                     </div>`;
+                card.addEventListener('click', () => switchView('product-detail-view', { productId: product.id }));
                 productGrid.appendChild(card);
             });
             lucide.createIcons();
+        };
+
+        const renderProductDetail = async (productId) => {
+            productDetailContent.innerHTML = `<div class="col-span-full text-center text-gray-400">Loading product...</div>`;
+            const product = allProducts.find(p => p.id === productId);
+            if(!product) {
+                productDetailContent.innerHTML = `<div class="col-span-full text-center text-red-400">Product not found.</div>`;
+                return;
+            }
+
+            // Fetch variants for this product
+            const variantsRef = collection(db, `products/${productId}/variants`);
+            const variantSnapshot = await getDocs(variantsRef);
+            currentProductVariants = variantSnapshot.docs.map(doc => ({ id: doc.id, ...doc.data(), productId, productName: product.name, productImageUrl: product.imageUrl }));
+            
+            if (currentProductVariants.length === 0) {
+                 productDetailContent.innerHTML = `<div class="col-span-full text-center text-gray-400">No options available for this product yet.</div>`;
+                 return;
+            }
+
+            const sizes = [...new Set(currentProductVariants.map(v => v.size))];
+            let selectedSize = sizes[0];
+            
+            const renderDetails = () => {
+                const variantsForSize = currentProductVariants.filter(v => v.size === selectedSize);
+                const flavours = variantsForSize.map(v => v.flavour);
+                let selectedFlavour = flavours[0];
+
+                const updateSelection = () => {
+                    const selectedVariant = currentProductVariants.find(v => v.size === selectedSize && v.flavour === selectedFlavour);
+                    
+                    document.getElementById('product-price').textContent = `₹${selectedVariant.price.toLocaleString('en-IN')}`;
+                    const stockIndicator = document.getElementById('stock-indicator');
+                    const addToCartBtn = document.getElementById('detail-add-to-cart-btn');
+
+                    if(selectedVariant.inStock) {
+                        stockIndicator.innerHTML = `<span class="text-green-400 font-semibold">In Stock</span>`;
+                        addToCartBtn.disabled = false;
+                        addToCartBtn.textContent = 'Add to Cart';
+                    } else {
+                        stockIndicator.innerHTML = `<span class="text-red-400 font-semibold">Out of Stock</span>`;
+                        addToCartBtn.disabled = true;
+                        addToCartBtn.textContent = 'Out of Stock';
+                    }
+                    addToCartBtn.onclick = () => addToCart(selectedVariant);
+                };
+
+                const sizeButtonsHtml = sizes.map(s => `<button class="size-btn border-2 border-gray-600 rounded-lg px-4 py-2 transition-colors duration-300 ${s === selectedSize ? 'active' : ''}" data-size="${s}">${s}</button>`).join('');
+                
+                const flavourOptionsHtml = flavours.map(f => `<option value="${f}">${f}</option>`).join('');
+
+                productDetailContent.innerHTML = `
+                    <div>
+                        <img id="main-product-image" src="${product.imageUrl}" alt="${product.name}" class="w-full rounded-lg shadow-lg">
+                    </div>
+                    <div>
+                        <h1 class="text-3xl lg:text-4xl font-bold text-white mb-2">${product.name}</h1>
+                        <p class="text-gray-400 mb-4">${product.category}</p>
+                        <p class="text-gray-300 leading-relaxed mb-6">${product.description}</p>
+                        
+                        <div class="mb-6">
+                            <h3 class="text-lg font-semibold text-gray-300 mb-3">Pack Size</h3>
+                            <div id="size-selector" class="flex flex-wrap gap-3">${sizeButtonsHtml}</div>
+                        </div>
+
+                        <div class="mb-6">
+                            <h3 class="text-lg font-semibold text-gray-300 mb-3">Flavour</h3>
+                            <select id="flavour-selector" class="w-full bg-gray-800 border border-gray-700 rounded-lg px-4 py-3 text-white focus:outline-none focus:ring-2 focus:ring-cyan-500">${flavourOptionsHtml}</select>
+                        </div>
+                        
+                        <div class="flex items-center justify-between my-8">
+                            <span id="product-price" class="text-4xl font-bold text-cyan-400"></span>
+                            <div id="stock-indicator"></div>
+                        </div>
+
+                        <button id="detail-add-to-cart-btn" class="w-full bg-cyan-500 hover:bg-cyan-600 text-white font-bold py-4 px-4 rounded-lg transition duration-300 disabled:bg-gray-600 disabled:cursor-not-allowed">Add to Cart</button>
+                    </div>
+                `;
+
+                document.getElementById('size-selector').addEventListener('click', e => {
+                    const btn = e.target.closest('.size-btn');
+                    if(btn) {
+                        selectedSize = btn.dataset.size;
+                        renderDetails();
+                    }
+                });
+
+                 document.getElementById('flavour-selector').addEventListener('change', e => {
+                    selectedFlavour = e.target.value;
+                    updateSelection();
+                });
+                updateSelection();
+            };
+
+            renderDetails();
         };
 
         const filterAndRenderProducts = () => {
@@ -474,21 +631,17 @@
             products.forEach(product => {
                 const item = document.createElement('div');
                 item.className = "bg-gray-700 p-4 rounded-lg flex items-center justify-between gap-4";
-                const priceString = (product.price && typeof product.price === 'number') ? `₹${product.price.toLocaleString('en-IN')}` : 'N/A';
                 item.innerHTML = `
                     <div class="flex items-center gap-4 flex-grow">
                         <img src="${product.imageUrl}" alt="${product.name}" class="w-16 h-16 object-cover rounded-md" onerror="this.onerror=null;this.src='https://placehold.co/64x64/1f2937/FFFFFF?text=Img';">
                         <div class="flex-grow">
                             <p class="font-semibold text-white">${product.name}</p>
-                            <p class="text-sm text-gray-400">${priceString} - ${product.category}</p>
+                            <p class="text-sm text-gray-400">${product.category}</p>
                         </div>
                     </div>
                     <div class="flex items-center gap-4">
-                         <label class="inline-flex items-center cursor-pointer">
-                            <input type="checkbox" class="sr-only peer stock-toggle" data-id="${product.id}" ${product.inStock ? 'checked' : ''}>
-                            <div class="relative w-11 h-6 bg-gray-600 rounded-full peer peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-cyan-500"></div>
-                            <span class="ms-3 text-sm font-medium text-gray-300">In Stock</span>
-                        </label>
+                        <button data-id="${product.id}" class="manage-variants-btn bg-cyan-600 hover:bg-cyan-700 text-white font-semibold py-2 px-4 rounded-lg">Manage Variants</button>
+                        <button data-id="${product.id}" class="edit-product-btn text-gray-300 hover:text-white"><i data-lucide="edit"></i></button>
                         <button data-id="${product.id}" class="delete-product-btn text-red-400 hover:text-red-500"><i data-lucide="trash-2"></i></button>
                     </div>`;
                 adminProductList.appendChild(item);
@@ -499,10 +652,160 @@
         const renderSkeletons = () => { productGrid.innerHTML = Array(4).fill('').map(() => `<div class="bg-gray-800 rounded-lg p-6 animate-pulse"><div class="h-48 bg-gray-700 rounded"></div><div class="h-6 bg-gray-700 rounded mt-4 w-3/4"></div><div class="h-4 bg-gray-700 rounded mt-2 w-1/2"></div><div class="h-8 bg-gray-700 rounded mt-4 w-1/4"></div></div>`).join(''); };
 
         // --- DATABASE INTERACTIONS ---
-        const addProduct = async (name, description, price, imageUrl, category, inStock) => { try { await addDoc(productsCollection, { name, description, price: Number(price), imageUrl, category, inStock }); showToast('Product added successfully!'); } catch (e) { console.error(e); showToast('Failed to add product.', true); } };
-        const deleteProduct = async (id) => { try { await deleteDoc(doc(db, productsCollection.path, id)); showToast('Product deleted successfully!'); } catch (e) { console.error(e); showToast('Failed to delete product.', true); } };
-        const updateStockStatus = async (id, inStock) => { try { const productRef = doc(db, productsCollection.path, id); await updateDoc(productRef, { inStock }); showToast('Stock status updated!'); } catch (e) { console.error(e); showToast('Failed to update stock.', true); }};
+        const saveProduct = async (productData, id) => {
+            try {
+                const docRef = id ? doc(db, 'products', id) : doc(collection(db, 'products'));
+                await setDoc(docRef, productData);
+                showToast(`Product ${id ? 'updated' : 'added'} successfully!`);
+                closeAdminProductModal();
+            } catch(e) {
+                console.error(e);
+                showToast('Failed to save product.', true);
+            }
+        };
+
+        const deleteProduct = async (productId) => {
+            try {
+                // Also delete subcollection of variants
+                const variantsRef = collection(db, `products/${productId}/variants`);
+                const variantSnapshot = await getDocs(variantsRef);
+                const batch = writeBatch(db);
+                variantSnapshot.docs.forEach(doc => batch.delete(doc.ref));
+                await batch.commit();
+
+                await deleteDoc(doc(db, 'products', productId));
+                showToast('Product and its variants deleted successfully!');
+            } catch (e) {
+                console.error(e);
+                showToast('Failed to delete product.', true);
+            }
+        };
+        
+        const saveVariant = async (productId, variantData, id) => {
+            try {
+                const docRef = id ? doc(db, `products/${productId}/variants`, id) : doc(collection(db, `products/${productId}/variants`));
+                await setDoc(docRef, { ...variantData, price: Number(variantData.price) });
+                showToast(`Variant ${id ? 'updated' : 'added'} successfully!`);
+                openAdminVariantModal(productId); // Refresh the variant modal
+            } catch(e) {
+                console.error(e);
+                showToast('Failed to save variant.', true);
+            }
+        };
+
+        const deleteVariant = async (productId, variantId) => {
+             try {
+                await deleteDoc(doc(db, `products/${productId}/variants`, variantId));
+                showToast('Variant deleted successfully!');
+                openAdminVariantModal(productId); // Refresh
+            } catch (e) {
+                console.error(e);
+                showToast('Failed to delete variant.', true);
+            }
+        };
+
         const updateOrderStatus = async (id, status) => { try { const orderRef = doc(db, ordersCollection.path, id); await updateDoc(orderRef, { status }); showToast('Order status updated!'); } catch (e) { console.error(e); showToast('Failed to update status.', true); }};
+
+        // --- ADMIN MODALS ---
+        const openAdminProductModal = (product = null) => {
+            const modal = document.getElementById('admin-product-modal');
+            modal.innerHTML = `
+                <div class="bg-gray-800 rounded-lg shadow-xl w-full max-w-lg p-8 relative no-scrollbar overflow-y-auto max-h-screen">
+                    <button id="close-product-modal" class="absolute top-4 right-4 text-gray-400 hover:text-white"><i data-lucide="x"></i></button>
+                    <h2 class="text-2xl font-bold text-cyan-400 mb-6">${product ? 'Edit Product' : 'Add New Product'}</h2>
+                    <form id="add-product-form" class="space-y-4">
+                        <input type="hidden" id="productId" value="${product?.id || ''}">
+                        <div><label for="productName" class="block text-sm font-medium text-gray-300">Product Name</label><input type="text" id="productName" class="mt-1 w-full bg-gray-700 border-gray-600 rounded-md shadow-sm text-white px-3 py-2" value="${product?.name || ''}" required></div>
+                        <div><label for="productDescription" class="block text-sm font-medium text-gray-300">Description</label><textarea id="productDescription" class="mt-1 w-full bg-gray-700 border-gray-600 rounded-md shadow-sm text-white px-3 py-2" required>${product?.description || ''}</textarea></div>
+                        <div><label for="productImage" class="block text-sm font-medium text-gray-300">Image URL</label><input type="text" id="productImage" placeholder="https://placehold.co/400x400/..." class="mt-1 w-full bg-gray-700 border-gray-600 rounded-md shadow-sm text-white px-3 py-2" value="${product?.imageUrl || ''}" required></div>
+                        <div><label for="productCategory" class="block text-sm font-medium text-gray-300">Category</label><select id="productCategory" class="mt-1 w-full bg-gray-700 border-gray-600 rounded-md shadow-sm text-white px-3 py-2" required><option>Protein</option><option>Mass Gainer</option><option>Creatine</option><option>Pre-Workout</option><option>Vitamins</option><option>Other</option></select></div>
+                        <button type="submit" class="w-full bg-cyan-500 hover:bg-cyan-600 text-white font-bold py-3 rounded-lg transition duration-300">${product ? 'Save Changes' : 'Add Product'}</button>
+                    </form>
+                </div>
+            `;
+            if (product) document.getElementById('productCategory').value = product.category;
+            modal.classList.remove('hidden'); modal.classList.add('flex');
+            lucide.createIcons();
+            document.getElementById('close-product-modal').addEventListener('click', closeAdminProductModal);
+            document.getElementById('add-product-form').addEventListener('submit', (e) => {
+                e.preventDefault();
+                const productData = {
+                    name: document.getElementById('productName').value,
+                    description: document.getElementById('productDescription').value,
+                    imageUrl: document.getElementById('productImage').value,
+                    category: document.getElementById('productCategory').value
+                };
+                saveProduct(productData, document.getElementById('productId').value);
+            });
+        };
+        const closeAdminProductModal = () => document.getElementById('admin-product-modal').classList.add('hidden');
+
+        const openAdminVariantModal = async (productId) => {
+            const product = allProducts.find(p => p.id === productId);
+            const modal = document.getElementById('admin-variant-modal');
+            modal.classList.remove('hidden'); modal.classList.add('flex');
+            modal.innerHTML = `<div class="bg-gray-800 rounded-lg shadow-xl w-full max-w-3xl p-8 relative no-scrollbar overflow-y-auto max-h-screen"><p>Loading variants...</p></div>`;
+            
+            const variantsRef = collection(db, `products/${productId}/variants`);
+            const variantSnapshot = await getDocs(variantsRef);
+            const variants = variantSnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+
+            modal.innerHTML = `
+                <div class="bg-gray-800 rounded-lg shadow-xl w-full max-w-3xl p-8 relative no-scrollbar overflow-y-auto max-h-screen">
+                    <button id="close-variant-modal" class="absolute top-4 right-4 text-gray-400 hover:text-white"><i data-lucide="x"></i></button>
+                    <h2 class="text-2xl font-bold text-cyan-400 mb-2">Manage Variants for ${product.name}</h2>
+                    <p class="text-gray-400 mb-6">Add available sizes, flavors, and prices for this product.</p>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                        <div>
+                            <h3 class="text-xl font-semibold mb-4 border-b border-gray-700 pb-2">Add New Variant</h3>
+                            <form id="add-variant-form" class="space-y-4">
+                                <div><label class="block text-sm font-medium text-gray-300">Size</label><input type="text" id="variantSize" placeholder="e.g., 1kg" class="mt-1 w-full bg-gray-700 rounded-md text-white px-3 py-2" required></div>
+                                <div><label class="block text-sm font-medium text-gray-300">Flavour</label><input type="text" id="variantFlavour" placeholder="e.g., Chocolate" class="mt-1 w-full bg-gray-700 rounded-md text-white px-3 py-2" required></div>
+                                <div><label class="block text-sm font-medium text-gray-300">Price (₹)</label><input type="number" id="variantPrice" class="mt-1 w-full bg-gray-700 rounded-md text-white px-3 py-2" required></div>
+                                <div class="flex items-center"><input type="checkbox" id="variantInStock" class="h-4 w-4 rounded" checked><label class="ml-2 text-sm text-gray-300">In Stock</label></div>
+                                <button type="submit" class="w-full bg-cyan-500 hover:bg-cyan-600 font-bold py-2 px-4 rounded-lg">Add Variant</button>
+                            </form>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-semibold mb-4 border-b border-gray-700 pb-2">Existing Variants</h3>
+                            <div id="variant-list" class="space-y-3 max-h-96 overflow-y-auto no-scrollbar">
+                                ${variants.length > 0 ? variants.map(v => `
+                                    <div class="bg-gray-700 p-3 rounded-lg flex justify-between items-center">
+                                        <div>
+                                            <p class="font-semibold">${v.size} - ${v.flavour}</p>
+                                            <p class="text-sm text-gray-300">₹${v.price} - <span class="${v.inStock ? 'text-green-400' : 'text-red-400'}">${v.inStock ? 'In Stock' : 'Out of Stock'}</span></p>
+                                        </div>
+                                        <button data-id="${v.id}" class="delete-variant-btn text-red-400 hover:text-red-500"><i data-lucide="trash-2" class="w-5 h-5"></i></button>
+                                    </div>
+                                `).join('') : '<p class="text-gray-400">No variants added yet.</p>'}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+            lucide.createIcons();
+            document.getElementById('close-variant-modal').addEventListener('click', closeAdminVariantModal);
+            document.getElementById('add-variant-form').addEventListener('submit', (e) => {
+                e.preventDefault();
+                const variantData = {
+                    size: document.getElementById('variantSize').value,
+                    flavour: document.getElementById('variantFlavour').value,
+                    price: document.getElementById('variantPrice').value,
+                    inStock: document.getElementById('variantInStock').checked
+                };
+                saveVariant(productId, variantData);
+            });
+            document.getElementById('variant-list').addEventListener('click', async e => {
+                const btn = e.target.closest('.delete-variant-btn');
+                if (btn) {
+                    const confirmed = await confirmAction({title: 'Delete Variant?', text: 'This variant will be permanently deleted.'});
+                    if(confirmed) deleteVariant(productId, btn.dataset.id);
+                }
+            });
+        };
+        const closeAdminVariantModal = () => document.getElementById('admin-variant-modal').classList.add('hidden');
+
 
         // --- ORDER MANAGEMENT ---
         const renderAdminOrders = (orders) => {
@@ -512,7 +815,7 @@
                 const item = document.createElement('div');
                 item.className = "bg-gray-700 p-4 rounded-lg";
                 const orderDate = order.timestamp?.toDate().toLocaleString() || 'N/A';
-                const itemsHtml = order.items.map(p => `<li>${p.name} (x${p.quantity})</li>`).join('');
+                const itemsHtml = order.items.map(p => `<li>${p.name} (${p.size}, ${p.flavour}) x${p.quantity}</li>`).join('');
                 item.innerHTML = `
                     <div class="flex justify-between items-start">
                         <div>
@@ -537,6 +840,42 @@
                 adminOrderList.appendChild(item);
             });
         };
+
+        const renderCustomerOrders = (orders) => {
+            customerOrderList.innerHTML = '';
+            if(orders.length === 0) { 
+                customerOrderList.innerHTML = `<p class="text-gray-400 text-center">No orders found for this email.</p>`; 
+                return; 
+            }
+            orders.forEach(order => {
+                const item = document.createElement('div');
+                item.className = "bg-gray-800 p-6 rounded-lg";
+                const orderDate = order.timestamp?.toDate().toLocaleString() || 'N/A';
+                const itemsHtml = order.items.map(p => `<li>${p.name} (${p.size}, ${p.flavour}) x${p.quantity} - ₹${(p.price || 0).toLocaleString('en-IN')}</li>`).join('');
+                
+                let statusColor = 'text-yellow-400';
+                if (order.status === 'Delivered') statusColor = 'text-green-400';
+                if (order.status === 'Shipped') statusColor = 'text-blue-400';
+                if (order.status === 'Cancelled') statusColor = 'text-red-400';
+
+                item.innerHTML = `
+                    <div class="flex flex-col sm:flex-row justify-between sm:items-start gap-4">
+                        <div>
+                            <p class="font-bold text-white text-lg">Order ID: <span class="font-normal text-gray-300">${order.id.substring(0, 8)}</span></p>
+                            <p class="text-sm text-gray-400">${orderDate}</p>
+                        </div>
+                         <div class="text-left sm:text-right">
+                            <p class="text-xl font-bold text-cyan-400">₹${order.total.toLocaleString('en-IN')}</p>
+                            <p class="font-semibold mt-1 ${statusColor}">Status: ${order.status}</p>
+                         </div>
+                    </div>
+                    <div class="mt-4 pt-4 border-t border-gray-700">
+                        <p class="font-semibold text-white mb-2">Items:</p>
+                        <ul class="list-disc list-inside text-gray-300 space-y-1">${itemsHtml}</ul>
+                    </div>`;
+                customerOrderList.appendChild(item);
+            });
+        };
         
         // --- PAYMENT LOGIC ---
         const handlePayment = async (e) => {
@@ -556,10 +895,13 @@
                 "description": "Order Payment",
                 "image": "https://placehold.co/100x100/111827/FFFFFF?text=AN",
                 "handler": async (response) => { 
-                    const orderItems = cart.map(item => {
-                        const product = allProducts.find(p => p.id === item.id);
-                        return { name: product.name, quantity: item.quantity, price: product.price };
-                    });
+                    const orderItems = cart.map(item => ({ 
+                        name: item.name, 
+                        quantity: item.quantity, 
+                        price: item.price,
+                        size: item.size,
+                        flavour: item.flavour
+                    }));
                     try {
                         await addDoc(ordersCollection, {
                             razorpayPaymentId: response.razorpay_payment_id,
@@ -586,18 +928,68 @@
             rzp1.open();
         };
 
+        const handleCustomerLookup = async (e) => {
+            e.preventDefault();
+            const lookupError = document.getElementById('customer-lookup-error');
+            lookupError.classList.add('hidden');
+            const email = document.getElementById('customerLookupEmail').value.trim();
+            if (!email) return;
+
+            try {
+                const q = query(ordersCollection, where("customer.email", "==", email));
+                const querySnapshot = await getDocs(q);
+                let orders = querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+
+                // Sort orders by timestamp client-side
+                orders.sort((a, b) => {
+                    const timeA = a.timestamp ? a.timestamp.toMillis() : 0;
+                    const timeB = b.timestamp ? b.timestamp.toMillis() : 0;
+                    return timeB - timeA;
+                });
+
+                if (orders.length > 0) {
+                    renderCustomerOrders(orders);
+                    customerLookupScreen.classList.add('hidden');
+                    customerOrdersScreen.classList.remove('hidden');
+                } else {
+                    lookupError.classList.remove('hidden');
+                }
+            } catch (error) {
+                console.error("Error looking up orders:", error);
+                showToast('Could not fetch orders. Please try again later.', true);
+            }
+        };
+
         // --- EVENT LISTENERS ---
-        document.getElementById('admin-login-link').addEventListener('click', (e) => { e.preventDefault(); showAdminView(); });
-        document.getElementById('back-to-shop-1').addEventListener('click', showShopView);
-        document.getElementById('back-to-shop-2').addEventListener('click', showShopView);
+        document.getElementById('admin-login-link').addEventListener('click', (e) => { e.preventDefault(); switchView('admin-view'); });
+        [...document.querySelectorAll('[id^="back-to-shop-"]')].forEach(btn => btn.addEventListener('click', () => switchView('shop-view')));
+        document.getElementById('my-orders-link').addEventListener('click', (e) => { e.preventDefault(); switchView('customer-view'); });
+        document.getElementById('mobile-my-orders-link').addEventListener('click', (e) => { e.preventDefault(); switchView('customer-view'); mobileMenu.classList.add('hidden'); });
+        document.getElementById('customer-lookup-form').addEventListener('submit', handleCustomerLookup);
+        document.getElementById('back-to-products-grid').addEventListener('click', () => switchView('shop-view'));
+        document.getElementById('lookup-another-email-btn').addEventListener('click', () => {
+            customerOrdersScreen.classList.add('hidden');
+            customerLookupScreen.classList.remove('hidden');
+            document.getElementById('customerLookupEmail').value = '';
+            document.getElementById('customer-lookup-error').classList.add('hidden');
+        });
+
         document.getElementById('login-form').addEventListener('submit', (e) => { e.preventDefault(); if (document.getElementById('password').value === 'admin123') { sessionStorage.setItem('isAdminLoggedIn', 'true'); showDashboard(); } else { document.getElementById('login-error').classList.remove('hidden'); } });
         document.getElementById('logout-button').addEventListener('click', () => { sessionStorage.removeItem('isAdminLoggedIn'); document.getElementById('password').value = ''; showLoginScreen(); });
-        document.getElementById('add-product-form').addEventListener('submit', (e) => { e.preventDefault(); addProduct(productName.value, productDescription.value, productPrice.value, productImage.value, productCategory.value, productInStock.checked); e.target.reset(); });
+        
+        document.getElementById('add-new-product-btn').addEventListener('click', () => openAdminProductModal());
+        
         adminProductList.addEventListener('click', async (e) => { 
             const deleteBtn = e.target.closest('.delete-product-btn'); 
-            const stockToggle = e.target.closest('.stock-toggle');
-            if (deleteBtn) { const confirmed = await confirmAction({ title: 'Delete Product?', text: 'Are you sure you want to delete this product permanently?' }); if (confirmed) { deleteProduct(deleteBtn.dataset.id); } } 
-            if (stockToggle) { updateStockStatus(stockToggle.dataset.id, stockToggle.checked); }
+            const editBtn = e.target.closest('.edit-product-btn');
+            const variantsBtn = e.target.closest('.manage-variants-btn');
+
+            if (deleteBtn) { const confirmed = await confirmAction({ title: 'Delete Product?', text: 'This will delete the product and ALL its variants permanently.' }); if (confirmed) { deleteProduct(deleteBtn.dataset.id); } } 
+            if (editBtn) { 
+                const product = allProducts.find(p => p.id === editBtn.dataset.id);
+                openAdminProductModal(product);
+            }
+            if (variantsBtn) { openAdminVariantModal(variantsBtn.dataset.id); }
         });
         document.getElementById('cart-button').addEventListener('click', openCart);
         document.getElementById('close-cart-button').addEventListener('click', closeCart);
@@ -606,7 +998,7 @@
         document.getElementById('close-checkout-button').addEventListener('click', closeCheckout);
         document.getElementById('checkout-form').addEventListener('submit', handlePayment);
         cartItemsContainer.addEventListener('click', (e) => { const qBtn = e.target.closest('.quantity-change'); const rBtn = e.target.closest('.remove-item'); if (qBtn) { changeQuantity(qBtn.dataset.id, parseInt(qBtn.dataset.change)); } if (rBtn) { removeFromCart(rBtn.dataset.id); } });
-        productGrid.addEventListener('click', (e) => { const btn = e.target.closest('.add-to-cart-btn'); if (btn) { addToCart(btn.dataset.id); } });
+        
         document.getElementById('mobile-menu-button').addEventListener('click', () => mobileMenu.classList.toggle('hidden'));
         document.querySelectorAll('.mobile-menu-link').forEach(link => link.addEventListener('click', () => mobileMenu.classList.add('hidden')));
         categoryFilters.addEventListener('click', (e) => { 
@@ -623,21 +1015,25 @@
         mobileSearchBar.addEventListener('keyup', handleSearch);
 
         // Admin Tabs Listener
-        const switchTab = (tab) => {
+        const switchAdminTab = (tab) => {
             if(tab === 'orders') {
                 tabOrders.classList.add('text-cyan-400', 'border-cyan-400');
+                tabOrders.classList.remove('text-gray-400', 'hover:text-white');
                 tabProducts.classList.remove('text-cyan-400', 'border-cyan-400');
+                tabProducts.classList.add('text-gray-400', 'hover:text-white');
                 contentOrders.classList.remove('hidden');
                 contentProducts.classList.add('hidden');
             } else {
                 tabProducts.classList.add('text-cyan-400', 'border-cyan-400');
+                tabProducts.classList.remove('text-gray-400', 'hover:text-white');
                 tabOrders.classList.remove('text-cyan-400', 'border-cyan-400');
+                tabOrders.classList.add('text-gray-400', 'hover:text-white');
                 contentProducts.classList.remove('hidden');
                 contentOrders.classList.add('hidden');
             }
         };
-        tabProducts.addEventListener('click', () => switchTab('products'));
-        tabOrders.addEventListener('click', () => switchTab('orders'));
+        tabProducts.addEventListener('click', () => switchAdminTab('products'));
+        tabOrders.addEventListener('click', () => switchAdminTab('orders'));
         adminOrderList.addEventListener('change', e => {
             const select = e.target.closest('.order-status-select');
             if (select) { updateOrderStatus(select.dataset.id, select.value); }
@@ -648,6 +1044,7 @@
             lucide.createIcons();
             renderSkeletons();
             updateCart();
+            switchView('shop-view');
             
             try {
                 app = initializeApp(firebaseConfig);
@@ -658,12 +1055,26 @@
                 productsCollection = collection(db, "products");
                 ordersCollection = collection(db, "orders");
 
-                onSnapshot(productsCollection, (snapshot) => {
-                    allProducts = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+                onSnapshot(query(productsCollection, orderBy("name")), async (snapshot) => {
+                    const productPromises = snapshot.docs.map(async (doc) => {
+                        const productData = { id: doc.id, ...doc.data() };
+                        
+                        // Find the minimum price among variants for display
+                        const variantsRef = collection(db, `products/${doc.id}/variants`);
+                        const variantSnapshot = await getDocs(query(variantsRef, orderBy("price", "asc")));
+                        if (!variantSnapshot.empty) {
+                            productData.minPrice = variantSnapshot.docs[0].data().price;
+                        } else {
+                            productData.minPrice = null;
+                        }
+                        return productData;
+                    });
+
+                    allProducts = await Promise.all(productPromises);
+                    
                     filterAndRenderProducts();
                     renderAdminProducts(allProducts);
                     renderCategoryFilters();
-                    updateCart();
                 });
 
                 const ordersQuery = query(ordersCollection, orderBy("timestamp", "desc"));
@@ -682,6 +1093,5 @@
     </script>
 </body>
 </html>
-
 
 
