@@ -65,6 +65,11 @@
     </style>
 </head>
 <body class="bg-gray-900 text-white">
+    
+    <!-- NEW: Promotional Banner -->
+    <div id="promotional-banner" class="hidden bg-cyan-500 text-white text-center p-3 font-semibold">
+        <p id="banner-text"></p>
+    </div>
 
     <!-- Main Shop View (Grid) -->
     <div id="shop-view">
@@ -163,7 +168,6 @@
                         <div id="category-filters" class="flex flex-wrap justify-center gap-2 md:gap-4">
                               <!-- Category buttons will be inserted here -->
                         </div>
-                        <!-- NEW: Sorting Dropdown -->
                         <div class="flex-shrink-0">
                              <select id="sort-by-select" class="bg-gray-800 border border-gray-700 rounded-lg px-4 py-2 text-white focus:outline-none focus:ring-2 focus:ring-cyan-500">
                                 <option value="default">Default Sorting</option>
@@ -176,6 +180,8 @@
                     <div id="product-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
                         <!-- Skeletons will be shown while products load -->
                     </div>
+                    <!-- NEW: Pagination Controls -->
+                    <div id="pagination-controls" class="flex justify-center items-center gap-2 mt-12"></div>
                 </div>
             </section>
 
@@ -236,7 +242,8 @@
                             <p>To start a return, you can contact us at contact@ajaysnutrition.com. If your return is accepted, we’ll send you instructions on how and where to send your package. Items sent back to us without first requesting a return will not be accepted.</p>
                             <h4 class="text-xl font-semibold text-white pt-4">Damages and issues</h4>
                             <p>Please inspect your order upon reception and contact us immediately if the item is defective, damaged or if you receive the wrong item, so that we can evaluate the issue and make it right...
-                            <b>Note: For all claims related to receiving a damaged or wrong product, we advise you to share a video evidence of unboxing and the issue. We may not be able to entertain claims of a damaged product being received without a video proof at the time of unboxing.</b></p>
+                            <b>Please Note: For all claims related to receiving a damaged or wrong product, we advise you to share a video evidence of unboxing and the issue. We may not be able to entertain claims of a damaged product being received without a video proof at the time of unboxing.</b>
+                            </p>
                              <h4 class="text-xl font-semibold text-white pt-4">Refunds</h4>
                             <p>We will notify you once we’ve received and inspected your return, and let you know if the refund was approved or not. If approved, you’ll be automatically refunded on your original payment method. Please remember it can take some time for your bank or credit card company to process and post the refund too.</p>
                         </div>
@@ -298,22 +305,42 @@
 
         <footer class="bg-gray-800 border-t border-gray-700">
             <div class="container mx-auto px-6 py-8">
-                <div class="flex flex-col md:flex-row items-center justify-between">
-                    <div class="text-center md:text-left mb-4 md:mb-0">
+                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                    <div class="lg:col-span-1">
                         <a href="#home" class="text-xl font-bold text-cyan-400">Ajay's Nutrition</a>
-                        <p class="text-gray-400 mt-2">© 2024 Ajay's Nutrition. All Rights Reserved.</p>
-                        <div class="mt-4 text-sm space-x-4">
-                            <a href="#" class="text-gray-400 hover:text-cyan-400">Terms of Service</a>
-                            <a href="#" class="text-gray-400 hover:text-cyan-400">Privacy Policy</a>
-                            <a href="#authenticity" class="text-gray-400 hover:text-cyan-400">Authenticity</a>
-                            <a href="#return-policy" class="text-gray-400 hover:text-cyan-400">Return Policy</a>
-                            <a href="#faq" class="text-gray-400 hover:text-cyan-400">FAQ</a>
+                        <p class="text-gray-400 mt-4">© 2024 Ajay's Nutrition. All Rights Reserved.</p>
+                         <div class="flex items-center space-x-4 mt-4">
+                            <a href="https://www.instagram.com/ajaysnutrition?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" target="_blank" class="text-gray-400 hover:text-cyan-400 transition duration-300"><i data-lucide="instagram"></i></a>
+                            <a href="https://www.facebook.com/share/1XHcCQH1ye/" target="_blank" class="text-gray-400 hover:text-cyan-400 transition duration-300"><i data-lucide="facebook"></i></a>
                         </div>
                     </div>
-                    <div class="flex items-center space-x-6">
-                        <a href="#" id="admin-login-link" class="text-gray-400 hover:text-cyan-400 transition duration-300">Admin</a>
-                        <a href="https://www.instagram.com/ajaysnutrition?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" target="_blank" class="text-gray-400 hover:text-cyan-400 transition duration-300"><i data-lucide="instagram"></i></a>
-                        <a href="https://www.facebook.com/share/1XHcCQH1ye/" target="_blank" class="text-gray-400 hover:text-cyan-400 transition duration-300"><i data-lucide="facebook"></i></a>
+                    <div>
+                        <h3 class="text-white font-semibold tracking-wider">Quick Links</h3>
+                        <div class="mt-4 flex flex-col space-y-2">
+                             <a href="#about" class="text-gray-400 hover:text-cyan-400">About Us</a>
+                             <a href="#contact" class="text-gray-400 hover:text-cyan-400">Contact Us</a>
+                             <a href="#faq" class="text-gray-400 hover:text-cyan-400">FAQ</a>
+                             <a href="#" id="admin-login-link" class="text-gray-400 hover:text-cyan-400">Admin Login</a>
+                        </div>
+                    </div>
+                     <div>
+                        <h3 class="text-white font-semibold tracking-wider">Policies</h3>
+                        <div class="mt-4 flex flex-col space-y-2">
+                             <a href="#authenticity" class="text-gray-400 hover:text-cyan-400">Authenticity</a>
+                             <a href="#return-policy" class="text-gray-400 hover:text-cyan-400">Return Policy</a>
+                             <a href="#" class="text-gray-400 hover:text-cyan-400">Terms of Service</a>
+                             <a href="#" class="text-gray-400 hover:text-cyan-400">Privacy Policy</a>
+                        </div>
+                    </div>
+                    <div class="w-full">
+                        <h3 class="text-white font-semibold tracking-wider">Subscribe</h3>
+                        <p class="text-gray-400 mt-4">Get the latest on sales, new releases and more.</p>
+                        <form id="newsletter-form" class="flex mt-4">
+                            <input type="email" id="newsletter-email" placeholder="Enter your email" class="w-full bg-gray-700 border-gray-600 rounded-l-lg px-3 py-2 text-white focus:outline-none focus:ring-2 focus:ring-cyan-500" required>
+                            <button type="submit" class="bg-cyan-500 hover:bg-cyan-600 text-white font-bold py-2 px-4 rounded-r-lg">
+                                <i data-lucide="arrow-right"></i>
+                            </button>
+                        </form>
                     </div>
                 </div>
             </div>
@@ -330,7 +357,6 @@
              <div id="reviews-section" class="mt-16">
                  <!-- Reviews will be injected here -->
             </div>
-            <!-- NEW: Related Products Section -->
             <div id="related-products-section" class="mt-16">
                  <!-- Related products will be injected here -->
             </div>
@@ -371,7 +397,6 @@
         </div>
     </div>
     
-    <!-- NEW: Wishlist View -->
     <div id="wishlist-view" class="hidden min-h-screen bg-gray-900 text-white p-4 sm:p-6 lg:p-8">
         <div class="container mx-auto">
             <div class="flex flex-col sm:flex-row justify-between items-center gap-4 mb-8">
@@ -384,7 +409,6 @@
         </div>
     </div>
     
-    <!-- NEW: Account View -->
     <div id="account-view" class="hidden min-h-screen bg-gray-900 text-white p-4 sm:p-6 lg:p-8">
         <div class="container mx-auto">
              <div class="flex flex-col sm:flex-row justify-between items-center gap-4 mb-8">
@@ -422,15 +446,16 @@
             </div>
             <!-- Admin Tabs -->
             <div class="mb-8 border-b border-gray-700">
-                <nav class="flex space-x-4" aria-label="Tabs">
+                <nav class="flex flex-wrap space-x-4" aria-label="Tabs">
                     <button id="tab-dashboard" class="tab-btn text-cyan-400 border-b-2 border-cyan-400 px-3 py-2 font-medium">Dashboard</button>
                     <button id="tab-products" class="tab-btn text-gray-400 hover:text-white px-3 py-2 font-medium">Products</button>
                     <button id="tab-orders" class="tab-btn text-gray-400 hover:text-white px-3 py-2 font-medium">Orders</button>
                     <button id="tab-coupons" class="tab-btn text-gray-400 hover:text-white px-3 py-2 font-medium">Coupons</button>
+                    <button id="tab-subscribers" class="tab-btn text-gray-400 hover:text-white px-3 py-2 font-medium">Subscribers</button>
+                    <button id="tab-settings" class="tab-btn text-gray-400 hover:text-white px-3 py-2 font-medium">Settings</button>
                 </nav>
             </div>
             
-            <!-- NEW: Dashboard Content -->
             <div id="content-dashboard">
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
                     <div class="bg-gray-800 p-6 rounded-lg"><h3 class="text-gray-400 text-sm font-medium">Total Revenue</h3><p id="stats-total-revenue" class="text-3xl font-bold text-cyan-400 mt-2">₹0</p></div>
@@ -445,7 +470,6 @@
                 </div>
             </div>
 
-            <!-- Products Tab Content -->
             <div id="content-products" class="hidden">
                  <div class="bg-gray-800 p-6 rounded-lg shadow-lg">
                     <div class="flex flex-col sm:flex-row justify-between items-center gap-4 mb-4">
@@ -456,7 +480,6 @@
                 </div>
             </div>
 
-            <!-- Orders Tab Content -->
             <div id="content-orders" class="hidden">
                  <div class="bg-gray-800 p-6 rounded-lg shadow-lg">
                     <h2 class="text-xl font-semibold mb-4">Recent Orders</h2>
@@ -479,6 +502,35 @@
                         <h2 class="text-xl font-semibold mb-4">Manage Coupons</h2>
                         <div id="admin-coupon-list" class="space-y-4 max-h-[60vh] overflow-y-auto no-scrollbar"><p class="text-gray-400">Loading coupons...</p></div>
                     </div>
+                </div>
+            </div>
+
+            <div id="content-subscribers" class="hidden">
+                 <div class="bg-gray-800 p-6 rounded-lg shadow-lg">
+                    <h2 class="text-xl font-semibold mb-4">Newsletter Subscribers</h2>
+                    <div id="admin-subscriber-list" class="space-y-2 max-h-[70vh] overflow-y-auto no-scrollbar"><p class="text-gray-400">Loading subscribers...</p></div>
+                </div>
+            </div>
+            
+            <div id="content-settings" class="hidden">
+                <div class="max-w-xl mx-auto bg-gray-800 p-8 rounded-lg shadow-lg">
+                    <h2 class="text-xl font-semibold mb-6">Site Settings</h2>
+                    <form id="settings-form" class="space-y-6">
+                        <div>
+                            <h3 class="text-lg font-medium text-white mb-2">Promotional Banner</h3>
+                             <div class="flex items-center mb-4">
+                                <input type="checkbox" id="bannerEnabled" class="h-4 w-4 rounded text-cyan-500 bg-gray-700 border-gray-600">
+                                <label for="bannerEnabled" class="ml-3 block text-sm font-medium text-gray-300">Enable Promotional Banner</label>
+                            </div>
+                            <div>
+                                <label for="bannerMessage" class="block text-sm font-medium text-gray-300">Banner Message</label>
+                                <input type="text" id="bannerMessage" placeholder="e.g., FREE SHIPPING ON ORDERS OVER ₹2000" class="mt-1 block w-full bg-gray-700 border-gray-600 rounded-md shadow-sm text-white px-3 py-2">
+                            </div>
+                        </div>
+                        <div class="pt-4">
+                             <button type="submit" class="w-full bg-cyan-500 hover:bg-cyan-600 text-white font-bold py-3 px-4 rounded-lg transition duration-300">Save Settings</button>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
@@ -555,13 +607,13 @@
         const adminProductList = document.getElementById('admin-product-list');
         const adminOrderList = document.getElementById('admin-order-list');
         const adminCouponList = document.getElementById('admin-coupon-list');
+        const adminSubscriberList = document.getElementById('admin-subscriber-list');
         const cartItemsContainer = document.getElementById('cart-items');
         const cartCount = document.getElementById('cart-count');
         const cartSubtotal = document.getElementById('cart-subtotal');
         const cartDiscount = document.getElementById('cart-discount');
         const cartTotal = document.getElementById('cart-total');
         const checkoutButton = document.getElementById('checkout-button');
-        const checkoutTotal = document.getElementById('checkout-total');
         const mobileMenu = document.getElementById('mobile-menu');
         const categoryFilters = document.getElementById('category-filters');
         const searchBar = document.getElementById('search-bar');
@@ -573,16 +625,20 @@
         const reviewsSection = document.getElementById('reviews-section');
         const wishlistGrid = document.getElementById('wishlist-grid');
         const addressList = document.getElementById('address-list');
+        const paginationControls = document.getElementById('pagination-controls');
 
         // --- APP STATE ---
-        let productsCollection, usersCollection, ordersCollection, couponsCollection, wishlistsCollection;
+        let productsCollection, usersCollection, ordersCollection, couponsCollection, wishlistsCollection, settingsCollection, subscribersCollection;
         let cart = [];
         let appliedCoupon = null;
         let allProducts = [];
+        let allOrders = [];
         let savedAddresses = [];
         let currentCategory = 'All';
         let currentSearchTerm = '';
         let currentSort = 'default';
+        let currentPage = 1;
+        const productsPerPage = 8;
         let currentUser = null;
         let userWishlist = [];
         let currentProductVariants = [];
@@ -920,10 +976,12 @@
                 card.className = "bg-gray-800 rounded-lg overflow-hidden shadow-lg flex flex-col";
                 const priceString = product.minPrice ? `From ₹${product.minPrice.toLocaleString('en-IN')}` : 'View Options';
                 const isWishlisted = userWishlist.includes(product.id);
+                const saleBadge = product.hasSale ? '<span class="absolute top-3 left-3 bg-red-500 text-white text-xs font-semibold px-2 py-1 rounded-full">SALE</span>' : '';
                 
                 card.innerHTML = `
                     <div class="relative">
                         <img data-id="${product.id}" src="${product.imageUrl}" alt="${product.name}" class="w-full h-56 object-cover cursor-pointer" onerror="this.onerror=null;this.src='https://placehold.co/400x400/1f2937/FFFFFF?text=Image+Error';">
+                         ${saleBadge}
                         <button class="wishlist-btn absolute top-3 right-3 bg-gray-900/50 p-2 rounded-full text-white hover:text-red-500" data-id="${product.id}">
                             <i data-lucide="heart" class="${isWishlisted ? 'fill-red-500 text-red-500' : ''}"></i>
                         </button>
@@ -1074,6 +1132,44 @@
             renderProductGrid(wishlistProducts, wishlistGrid);
         };
         
+        const renderPaginationControls = (totalProducts) => {
+            paginationControls.innerHTML = '';
+            const totalPages = Math.ceil(totalProducts / productsPerPage);
+            if (totalPages <= 1) return;
+
+            // Previous Button
+            const prevButton = document.createElement('button');
+            prevButton.textContent = 'Previous';
+            prevButton.className = 'bg-gray-800 hover:bg-cyan-600 text-white font-semibold py-2 px-4 rounded-lg transition duration-300 disabled:opacity-50 disabled:cursor-not-allowed';
+            prevButton.disabled = currentPage === 1;
+            prevButton.addEventListener('click', () => {
+                if (currentPage > 1) {
+                    currentPage--;
+                    filterAndRenderProducts();
+                }
+            });
+            paginationControls.appendChild(prevButton);
+
+            // Page Indicator
+            const pageIndicator = document.createElement('span');
+            pageIndicator.textContent = `Page ${currentPage} of ${totalPages}`;
+            pageIndicator.className = 'text-gray-400 font-semibold px-4';
+            paginationControls.appendChild(pageIndicator);
+
+            // Next Button
+            const nextButton = document.createElement('button');
+            nextButton.textContent = 'Next';
+            nextButton.className = 'bg-gray-800 hover:bg-cyan-600 text-white font-semibold py-2 px-4 rounded-lg transition duration-300 disabled:opacity-50 disabled:cursor-not-allowed';
+            nextButton.disabled = currentPage === totalPages;
+            nextButton.addEventListener('click', () => {
+                if (currentPage < totalPages) {
+                    currentPage++;
+                    filterAndRenderProducts();
+                }
+            });
+            paginationControls.appendChild(nextButton);
+        };
+
         const filterAndRenderProducts = () => {
             const featuredProducts = allProducts.filter(p => p.isFeatured);
             renderProductGrid(featuredProducts, featuredProductGrid);
@@ -1091,7 +1187,13 @@
             if (currentCategory !== 'All') filteredProducts = filteredProducts.filter(p => p.category === currentCategory);
             if (currentSearchTerm) filteredProducts = filteredProducts.filter(p => p.name.toLowerCase().includes(currentSearchTerm));
             
-            renderProductGrid(filteredProducts, productGrid);
+            // Pagination
+            const startIndex = (currentPage - 1) * productsPerPage;
+            const endIndex = startIndex + productsPerPage;
+            const paginatedProducts = filteredProducts.slice(startIndex, endIndex);
+
+            renderProductGrid(paginatedProducts, productGrid);
+            renderPaginationControls(filteredProducts.length);
         };
 
         const renderCategoryFilters = () => {
@@ -1133,6 +1235,20 @@
             lucide.createIcons();
         }
 
+        const renderAdminSubscribers = (subscribers) => {
+            adminSubscriberList.innerHTML = '';
+            if (subscribers.length === 0) {
+                adminSubscriberList.innerHTML = `<p class="text-gray-400 text-center">No subscribers yet.</p>`;
+                return;
+            }
+            subscribers.forEach(sub => {
+                const item = document.createElement('div');
+                item.className = 'bg-gray-700 p-3 rounded-lg flex justify-between items-center';
+                item.innerHTML = `<p class="text-white">${sub.email}</p><span class="text-xs text-gray-400">${sub.subscribedAt?.toDate().toLocaleDateString() || ''}</span>`;
+                adminSubscriberList.appendChild(item);
+            });
+        };
+
         const renderSkeletons = () => { 
             productGrid.innerHTML = Array(4).fill('').map(() => `<div class="bg-gray-800 rounded-lg p-6 animate-pulse"><div class="h-48 bg-gray-700 rounded"></div><div class="h-6 bg-gray-700 rounded mt-4 w-3/4"></div><div class="h-4 bg-gray-700 rounded mt-2 w-1/2"></div><div class="h-8 bg-gray-700 rounded mt-4 w-1/4"></div></div>`).join(''); 
             featuredProductGrid.innerHTML = Array(4).fill('').map(() => `<div class="bg-gray-700 rounded-lg p-6 animate-pulse"><div class="h-48 bg-gray-600 rounded"></div><div class="h-6 bg-gray-600 rounded mt-4 w-3/4"></div><div class="h-4 bg-gray-600 rounded mt-2 w-1/2"></div><div class="h-8 bg-gray-600 rounded mt-4 w-1/4"></div></div>`).join(''); 
@@ -1164,13 +1280,12 @@
         // --- DATABASE INTERACTIONS ---
         const setupAdminOrdersListener = () => {
             if (ordersListener) return; // Prevent attaching multiple listeners
-            const ordersQuery = query(ordersCollection); // No orderBy here to avoid complex queries needing specific indexes/rules
+            const ordersQuery = query(ordersCollection); 
             ordersListener = onSnapshot(ordersQuery, (snapshot) => {
-                let orders = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
-                // Sort client-side
-                orders.sort((a, b) => (b.timestamp?.toMillis() || 0) - (a.timestamp?.toMillis() || 0));
-                renderAdminOrders(orders);
-                calculateDashboardStats(orders, allProducts);
+                allOrders = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+                allOrders.sort((a, b) => (b.timestamp?.toMillis() || 0) - (a.timestamp?.toMillis() || 0));
+                renderAdminOrders(allOrders);
+                calculateDashboardStats(allOrders, allProducts);
             }, (error) => {
                 console.error("Error listening to orders collection. Ensure Firestore rules are correct for admin access.", error);
                 adminOrderList.innerHTML = `<p class="text-red-400 p-4 text-center">Error: Could not load orders due to a permission error. Please ensure your Firestore security rules allow admin access.</p>`;
@@ -1179,11 +1294,12 @@
 
         const detachAdminOrdersListener = () => {
             if (ordersListener) {
-                ordersListener(); // This unsubscribes the listener
+                ordersListener(); 
                 ordersListener = null;
             }
         };
-
+        
+        const saveBannerSettings = async (settings) => { try { await setDoc(doc(db, 'site_settings', 'banner'), settings); showToast('Banner settings saved!'); } catch (e) { console.error(e); showToast('Failed to save settings.', true); } };
         const saveProduct = async (productData, id) => { try { const docRef = id ? doc(db, 'products', id) : doc(collection(db, 'products')); await setDoc(docRef, productData); showToast(`Product ${id ? 'updated' : 'added'} successfully!`); closeAdminProductModal(); } catch(e) { console.error(e); showToast('Failed to save product.', true); } };
         const deleteProduct = async (productId) => { try { const variantsRef = collection(db, `products/${productId}/variants`); const variantSnapshot = await getDocs(variantsRef); const batch = writeBatch(db); variantSnapshot.docs.forEach(doc => batch.delete(doc.ref)); await batch.commit(); await deleteDoc(doc(db, 'products', productId)); showToast('Product and its variants deleted successfully!'); } catch (e) { console.error(e); showToast('Failed to delete product.', true); } };
         const saveVariant = async (productId, variantData) => { try { const docRef = doc(collection(db, `products/${productId}/variants`)); await setDoc(docRef, { ...variantData, price: Number(variantData.price), salePrice: Number(variantData.salePrice) || null, quantity: Number(variantData.quantity) }); showToast(`Variant added successfully!`); openAdminVariantModal(productId); } catch(e) { console.error(e); showToast('Failed to save variant.', true); } };
@@ -1191,7 +1307,7 @@
         const addReview = async (productId, reviewData) => { try { const reviewRef = collection(db, `products/${productId}/reviews`); await addDoc(reviewRef, reviewData); showToast('Thank you for your review!'); } catch(e) { console.error(e); showToast('Could not submit review.', true); } };
         const saveCoupon = async (couponData) => { try { const docRef = doc(db, 'coupons', couponData.code.toUpperCase()); await setDoc(docRef, { discountType: couponData.discountType, value: Number(couponData.value) }); showToast('Coupon added successfully!'); } catch (e) { console.error(e); showToast('Failed to add coupon.', true); } };
         const deleteCoupon = async (couponId) => { try { await deleteDoc(doc(db, 'coupons', couponId)); showToast('Coupon deleted successfully!'); } catch (e) { console.error(e); showToast('Failed to delete coupon.', true); } };
-        const updateOrderStatus = async (id, status) => { try { const orderRef = doc(db, ordersCollection.path, id); await updateDoc(orderRef, { status }); showToast('Order status updated!'); } catch (e) { console.error(e); showToast('Failed to update status.', true); }};
+        const updateOrderStatusAndTracking = async (id, data) => { try { const orderRef = doc(db, ordersCollection.path, id); await updateDoc(orderRef, data); showToast('Order updated successfully!'); } catch (e) { console.error(e); showToast('Failed to update order.', true); }};
         const toggleWishlist = async (productId) => {
             if (!currentUser) { openAuthModal(); return; }
             const wishlistRef = doc(db, 'wishlists', currentUser.uid);
@@ -1205,6 +1321,7 @@
         };
         const saveAddress = async (addressData, id) => { if (!currentUser) return; try { const docRef = id ? doc(db, `users/${currentUser.uid}/addresses`, id) : doc(collection(db, `users/${currentUser.uid}/addresses`)); await setDoc(docRef, addressData); showToast(`Address ${id ? 'updated' : 'saved'} successfully!`); closeAddressModal(); } catch(e) { console.error(e); showToast('Failed to save address.', true); } };
         const deleteAddress = async (id) => { if (!currentUser) return; try { await deleteDoc(doc(db, `users/${currentUser.uid}/addresses`, id)); showToast('Address deleted.'); } catch(e) { console.error(e); showToast('Failed to delete address.', true); } };
+        const subscribeToNewsletter = async (email) => { try { await setDoc(doc(db, 'subscribers', email), { email, subscribedAt: serverTimestamp() }); showToast('Thank you for subscribing!'); } catch (e) { console.error(e); showToast('Could not subscribe. Please try again.', true); }};
 
         // --- ADMIN MODALS ---
         const openAdminProductModal = (product = null) => {
@@ -1314,8 +1431,98 @@
 
 
         // --- ORDER MANAGEMENT ---
-        const renderAdminOrders = (orders) => { adminOrderList.innerHTML = ''; if(orders.length === 0) { adminOrderList.innerHTML = `<p class="text-gray-400 text-center">No orders yet.</p>`; return; } orders.forEach(order => { const item = document.createElement('div'); item.className = "bg-gray-700 p-4 rounded-lg"; const orderDate = order.timestamp?.toDate().toLocaleString() || 'N/A'; const itemsHtml = order.items.map(p => `<li>${p.name} (${p.size}, ${p.flavour}) x${p.quantity}</li>`).join(''); item.innerHTML = `<div class="flex justify-between items-start"><div><p class="font-bold text-white">Order ID: ${order.id.substring(0, 8)}</p><p class="text-sm text-gray-400">${orderDate}</p><p class="mt-2">${order.customer.name} - ${order.customer.email}</p></div><div class="text-right"><p class="text-xl font-bold text-cyan-400">₹${order.total.toLocaleString('en-IN')}</p><p class="text-sm text-gray-300">${order.couponUsed ? `Coupon: ${order.couponUsed}` : ''}</p><select class="order-status-select bg-gray-800 border-gray-600 rounded-md shadow-sm text-white px-3 py-1 mt-2" data-id="${order.id}"><option ${order.status === 'Pending' ? 'selected' : ''}>Pending</option><option ${order.status === 'Shipped' ? 'selected' : ''}>Shipped</option><option ${order.status === 'Delivered' ? 'selected' : ''}>Delivered</option><option ${order.status === 'Cancelled' ? 'selected' : ''}>Cancelled</option></select></div></div><div class="mt-4 pt-4 border-t border-gray-600"><p class="font-semibold">Items:</p><ul class="list-disc list-inside text-gray-300">${itemsHtml}</ul></div>`; adminOrderList.appendChild(item); }); };
-        const renderCustomerOrders = (orders) => { customerOrderList.innerHTML = ''; if(orders.length === 0) { customerOrderList.innerHTML = `<p class="text-gray-400 text-center">No orders found for this email.</p>`; return; } orders.forEach(order => { const item = document.createElement('div'); item.className = "bg-gray-800 p-6 rounded-lg"; const orderDate = order.timestamp?.toDate().toLocaleString() || 'N/A'; const itemsHtml = order.items.map(p => `<li>${p.name} (${p.size}, ${p.flavour}) x${p.quantity} - ₹${(p.price || 0).toLocaleString('en-IN')}</li>`).join(''); let statusColor = 'text-yellow-400'; if (order.status === 'Delivered') statusColor = 'text-green-400'; if (order.status === 'Shipped') statusColor = 'text-blue-400'; if (order.status === 'Cancelled') statusColor = 'text-red-400'; item.innerHTML = `<div class="flex flex-col sm:flex-row justify-between sm:items-start gap-4"><div><p class="font-bold text-white text-lg">Order ID: <span class="font-normal text-gray-300">${order.id.substring(0, 8)}</span></p><p class="text-sm text-gray-400">${orderDate}</p></div><div class="text-left sm:text-right"><p class="text-xl font-bold text-cyan-400">₹${order.total.toLocaleString('en-IN')}</p><p class="font-semibold mt-1 ${statusColor}">Status: ${order.status}</p></div></div><div class="mt-4 pt-4 border-t border-gray-700"><p class="font-semibold text-white mb-2">Items:</p><ul class="list-disc list-inside text-gray-300 space-y-1">${itemsHtml}</ul></div>`; customerOrderList.appendChild(item); }); };
+        const renderAdminOrders = (orders) => {
+            adminOrderList.innerHTML = '';
+            if (orders.length === 0) {
+                adminOrderList.innerHTML = `<p class="text-gray-400 text-center">No orders yet.</p>`;
+                return;
+            }
+            orders.forEach(order => {
+                const item = document.createElement('div');
+                item.className = "bg-gray-700 p-4 rounded-lg";
+                const orderDate = order.timestamp?.toDate().toLocaleString() || 'N/A';
+                const itemsHtml = order.items.map(p => `<li>${p.name} (${p.size}, ${p.flavour}) x${p.quantity}</li>`).join('');
+                
+                const trackingInfoHTML = order.status === 'Shipped' ? `
+                    <div class="mt-4 pt-4 border-t border-gray-600">
+                        <div class="flex gap-2 items-end">
+                            <div class="flex-grow"><label class="text-xs text-gray-400">Courier</label><input type="text" value="${order.courierName || ''}" class="courier-name-input w-full bg-gray-800 rounded px-2 py-1 text-sm" placeholder="e.g., Delhivery"></div>
+                            <div class="flex-grow"><label class="text-xs text-gray-400">Tracking #</label><input type="text" value="${order.trackingNumber || ''}" class="tracking-number-input w-full bg-gray-800 rounded px-2 py-1 text-sm" placeholder="Tracking ID"></div>
+                            <button class="save-tracking-btn bg-cyan-600 hover:bg-cyan-700 text-white font-semibold py-1 px-3 rounded text-sm" data-id="${order.id}">Save</button>
+                        </div>
+                    </div>` : '';
+
+                item.innerHTML = `
+                    <div class="flex justify-between items-start">
+                        <div>
+                            <p class="font-bold text-white">Order ID: ${order.id.substring(0, 8)}</p>
+                            <p class="text-sm text-gray-400">${orderDate}</p>
+                            <p class="mt-2">${order.customer.name} - ${order.customer.email}</p>
+                            <p class="text-sm text-gray-400">${order.deliveryType === 'pickup' ? 'In-Store Pickup' : 'Home Delivery'}</p>
+                        </div>
+                        <div class="text-right">
+                            <p class="text-xl font-bold text-cyan-400">₹${order.total.toLocaleString('en-IN')}</p>
+                            <p class="text-sm text-gray-300">${order.couponUsed ? `Coupon: ${order.couponUsed}` : ''}</p>
+                            <select class="order-status-select bg-gray-800 border-gray-600 rounded-md shadow-sm text-white px-3 py-1 mt-2" data-id="${order.id}">
+                                <option ${order.status === 'Pending' ? 'selected' : ''}>Pending</option>
+                                <option ${order.status === 'Shipped' ? 'selected' : ''}>Shipped</option>
+                                <option ${order.status === 'Delivered' ? 'selected' : ''}>Delivered</option>
+                                <option ${order.status === 'Cancelled' ? 'selected' : ''}>Cancelled</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="mt-4 pt-4 border-t border-gray-600">
+                        <p class="font-semibold">Items:</p>
+                        <ul class="list-disc list-inside text-gray-300">${itemsHtml}</ul>
+                    </div>
+                    ${trackingInfoHTML}
+                `;
+                adminOrderList.appendChild(item);
+            });
+        };
+
+        const renderCustomerOrders = (orders) => { 
+            customerOrderList.innerHTML = ''; 
+            if(orders.length === 0) { 
+                customerOrderList.innerHTML = `<p class="text-gray-400 text-center">No orders found.</p>`; 
+                return; 
+            } 
+            orders.forEach(order => { 
+                const item = document.createElement('div'); 
+                item.className = "bg-gray-800 p-6 rounded-lg"; 
+                const orderDate = order.timestamp?.toDate().toLocaleString() || 'N/A'; 
+                const itemsHtml = order.items.map(p => `<li>${p.name} (${p.size}, ${p.flavour}) x${p.quantity} - ₹${(p.price || 0).toLocaleString('en-IN')}</li>`).join(''); 
+                let statusColor = 'text-yellow-400'; 
+                if (order.status === 'Delivered') statusColor = 'text-green-400'; 
+                if (order.status === 'Shipped') statusColor = 'text-blue-400'; 
+                if (order.status === 'Cancelled') statusColor = 'text-red-400'; 
+
+                const trackingHtml = order.status === 'Shipped' && order.trackingNumber ? `
+                    <div class="mt-2">
+                        <p class="font-semibold text-white">Tracking: <span class="font-normal text-gray-300">${order.courierName || 'Shipped'} - ${order.trackingNumber}</span></p>
+                    </div>
+                ` : '';
+
+                item.innerHTML = `
+                    <div class="flex flex-col sm:flex-row justify-between sm:items-start gap-4">
+                        <div>
+                            <p class="font-bold text-white text-lg">Order ID: <span class="font-normal text-gray-300">${order.id.substring(0, 8)}</span></p>
+                            <p class="text-sm text-gray-400">${orderDate}</p>
+                            <p class="text-sm text-gray-400">${order.deliveryType === 'pickup' ? 'For In-Store Pickup' : 'For Home Delivery'}</p>
+                        </div>
+                        <div class="text-left sm:text-right">
+                            <p class="text-xl font-bold text-cyan-400">₹${order.total.toLocaleString('en-IN')}</p>
+                            <p class="font-semibold mt-1 ${statusColor}">Status: ${order.status}</p>
+                        </div>
+                    </div>
+                    ${trackingHtml}
+                    <div class="mt-4 pt-4 border-t border-gray-700">
+                        <p class="font-semibold text-white mb-2">Items:</p>
+                        <ul class="list-disc list-inside text-gray-300 space-y-1">${itemsHtml}</ul>
+                    </div>`; 
+                customerOrderList.appendChild(item); 
+            }); 
+        };
         
         // --- PAYMENT LOGIC & CHECKOUT ---
         const openCheckout = () => {
@@ -1327,7 +1534,7 @@
                     <div class="mb-6">
                          <h3 class="text-lg font-semibold mb-3">Select a Shipping Address</h3>
                          <div id="checkout-address-list" class="space-y-3 mb-4">
-                            ${savedAddresses.map((addr, index) => `
+                            ${savedAddresses.map((addr) => `
                                 <label class="block">
                                     <input type="radio" name="selectedAddress" value="${addr.id}" class="sr-only peer">
                                     <div class="address-card p-4 rounded-lg border-2 border-gray-700 peer-checked:border-cyan-400 cursor-pointer">
@@ -1342,18 +1549,34 @@
                 
                 checkoutContent.innerHTML = `
                     <form id="checkout-form" class="space-y-4">
-                        ${addressSelectionHTML}
-                        <div><label class="block text-sm font-medium text-gray-300">Full Name</label><input type="text" id="customerName" value="${address.fullName || ''}" class="mt-1 w-full bg-gray-700 rounded-md p-2" required></div>
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                            <div><label class="block text-sm font-medium text-gray-300">Email</label><input type="email" id="customerEmail" value="${currentUser?.email || ''}" class="mt-1 w-full bg-gray-700 rounded-md p-2" required></div>
-                            <div><label class="block text-sm font-medium text-gray-300">Phone</label><input type="tel" id="customerPhone" value="${address.phone || ''}" class="mt-1 w-full bg-gray-700 rounded-md p-2" required></div>
+                        <div class="mb-6">
+                            <h3 class="text-lg font-semibold mb-3">Delivery Option</h3>
+                            <div class="flex gap-4" id="delivery-options">
+                                <label class="flex items-center gap-2">
+                                    <input type="radio" name="deliveryType" value="delivery" checked class="bg-gray-700 text-cyan-500">
+                                    <span>Home Delivery</span>
+                                </label>
+                                <label class="flex items-center gap-2">
+                                    <input type="radio" name="deliveryType" value="pickup" class="bg-gray-700 text-cyan-500">
+                                    <span>In-Store Pickup</span>
+                                </label>
+                            </div>
                         </div>
-                        <div><label class="block text-sm font-medium text-gray-300">Address Line 1</label><input type="text" id="customerAddress1" value="${address.addressLine1 || ''}" class="mt-1 w-full bg-gray-700 rounded-md p-2" required></div>
-                        <div><label class="block text-sm font-medium text-gray-300">Address Line 2</label><input type="text" id="customerAddress2" value="${address.addressLine2 || ''}" class="mt-1 w-full bg-gray-700 rounded-md p-2"></div>
-                         <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-                            <div><label class="block text-sm font-medium text-gray-300">City</label><input type="text" id="customerCity" value="${address.city || ''}" class="mt-1 w-full bg-gray-700 rounded-md p-2" required></div>
-                            <div><label class="block text-sm font-medium text-gray-300">State</label><input type="text" id="customerState" value="${address.state || ''}" class="mt-1 w-full bg-gray-700 rounded-md p-2" required></div>
-                            <div><label class="block text-sm font-medium text-gray-300">Pincode</label><input type="text" id="customerPincode" value="${address.pincode || ''}" class="mt-1 w-full bg-gray-700 rounded-md p-2" required></div>
+
+                        <div id="shipping-address-form">
+                            ${addressSelectionHTML}
+                            <div><label class="block text-sm font-medium text-gray-300">Full Name</label><input type="text" id="customerName" value="${address.fullName || ''}" class="mt-1 w-full bg-gray-700 rounded-md p-2" required></div>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                <div><label class="block text-sm font-medium text-gray-300">Email</label><input type="email" id="customerEmail" value="${currentUser?.email || ''}" class="mt-1 w-full bg-gray-700 rounded-md p-2" required></div>
+                                <div><label class="block text-sm font-medium text-gray-300">Phone</label><input type="tel" id="customerPhone" value="${address.phone || ''}" class="mt-1 w-full bg-gray-700 rounded-md p-2" required></div>
+                            </div>
+                            <div><label class="block text-sm font-medium text-gray-300">Address Line 1</label><input type="text" id="customerAddress1" value="${address.addressLine1 || ''}" class="mt-1 w-full bg-gray-700 rounded-md p-2" required></div>
+                            <div><label class="block text-sm font-medium text-gray-300">Address Line 2</label><input type="text" id="customerAddress2" value="${address.addressLine2 || ''}" class="mt-1 w-full bg-gray-700 rounded-md p-2"></div>
+                             <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                                <div><label class="block text-sm font-medium text-gray-300">City</label><input type="text" id="customerCity" value="${address.city || ''}" class="mt-1 w-full bg-gray-700 rounded-md p-2" required></div>
+                                <div><label class="block text-sm font-medium text-gray-300">State</label><input type="text" id="customerState" value="${address.state || ''}" class="mt-1 w-full bg-gray-700 rounded-md p-2" required></div>
+                                <div><label class="block text-sm font-medium text-gray-300">Pincode</label><input type="text" id="customerPincode" value="${address.pincode || ''}" class="mt-1 w-full bg-gray-700 rounded-md p-2" required></div>
+                            </div>
                         </div>
                         <div class="pt-4"><div class="flex justify-between items-center text-lg"><span>Total Amount:</span><span id="checkout-total" class="font-bold text-cyan-400 text-xl"></span></div></div>
                         <button type="submit" id="pay-button" class="w-full mt-6 bg-green-500 hover:bg-green-600 text-white font-bold py-3 rounded-lg transition duration-300">Pay Securely</button>
@@ -1361,6 +1584,12 @@
                 `;
                 document.getElementById('checkout-total').textContent = cartTotal.textContent;
                 document.getElementById('checkout-form').addEventListener('submit', handlePayment);
+
+                document.getElementById('delivery-options').addEventListener('change', e => {
+                    const isDelivery = e.target.value === 'delivery';
+                    document.getElementById('shipping-address-form').style.display = isDelivery ? 'block' : 'none';
+                    document.querySelectorAll('#shipping-address-form [required]').forEach(el => el.required = isDelivery);
+                });
 
                 if (currentUser) {
                      const addressRadios = document.querySelectorAll('input[name="selectedAddress"]');
@@ -1388,9 +1617,15 @@
 
         const handlePayment = async (e) => { 
             e.preventDefault(); 
+            const deliveryType = document.querySelector('input[name="deliveryType"]:checked').value;
+            let address = "In-Store Pickup";
+            if (deliveryType === 'delivery') {
+                address = `${document.getElementById('customerAddress1').value}, ${document.getElementById('customerAddress2').value}, ${document.getElementById('customerCity').value}, ${document.getElementById('customerState').value} - ${document.getElementById('customerPincode').value}`;
+            }
+
             const customerDetails = { 
                 name: document.getElementById('customerName').value, email: document.getElementById('customerEmail').value, phone: document.getElementById('customerPhone').value,
-                address: `${document.getElementById('customerAddress1').value}, ${document.getElementById('customerAddress2').value}, ${document.getElementById('customerCity').value}, ${document.getElementById('customerState').value} - ${document.getElementById('customerPincode').value}`,
+                address: address,
                 userId: currentUser ? currentUser.uid : 'guest'
             }; 
             const totalAmount = parseFloat(cartTotal.textContent.replace('₹', '').replace(/,/g, '')); 
@@ -1408,7 +1643,16 @@
                             } 
                             const orderRef = doc(collection(db, 'orders')); 
                             const orderItems = cart.map(item => ({ name: item.name, quantity: item.quantity, price: item.price, salePrice: item.salePrice, size: item.size, flavour: item.flavour })); 
-                            transaction.set(orderRef, { razorpayPaymentId: response.razorpay_payment_id, customer: customerDetails, items: orderItems, total: totalAmount, couponUsed: appliedCoupon ? appliedCoupon.id : null, status: 'Pending', timestamp: serverTimestamp() }); 
+                            transaction.set(orderRef, { 
+                                razorpayPaymentId: response.razorpay_payment_id, 
+                                customer: customerDetails, 
+                                items: orderItems, 
+                                total: totalAmount, 
+                                couponUsed: appliedCoupon ? appliedCoupon.id : null, 
+                                status: 'Pending', 
+                                deliveryType: deliveryType,
+                                timestamp: serverTimestamp() 
+                            }); 
                         }); 
                         showToast(`Payment successful!`); cart = []; appliedCoupon = null; updateCart(); closeCheckout(); 
                     } catch (err) { console.error("Transaction failed: ", err); showToast(`Order failed: ${err.message || err}`, true); } 
@@ -1477,14 +1721,15 @@
         document.getElementById('apply-coupon-btn').addEventListener('click', applyCoupon);
         document.getElementById('mobile-menu-button').addEventListener('click', () => mobileMenu.classList.toggle('hidden'));
         document.querySelectorAll('.mobile-menu-link').forEach(link => link.addEventListener('click', () => mobileMenu.classList.add('hidden')));
-        categoryFilters.addEventListener('click', (e) => { const btn = e.target.closest('.category-btn'); if(btn) { document.querySelectorAll('.category-btn').forEach(b => b.classList.remove('active')); btn.classList.add('active'); currentCategory = btn.dataset.category; filterAndRenderProducts(); } });
-        const handleSearch = (e) => { currentSearchTerm = e.target.value.toLowerCase(); filterAndRenderProducts(); };
+        categoryFilters.addEventListener('click', (e) => { const btn = e.target.closest('.category-btn'); if(btn) { currentPage = 1; document.querySelectorAll('.category-btn').forEach(b => b.classList.remove('active')); btn.classList.add('active'); currentCategory = btn.dataset.category; filterAndRenderProducts(); } });
+        const handleSearch = (e) => { currentPage = 1; currentSearchTerm = e.target.value.toLowerCase(); filterAndRenderProducts(); };
         searchBar.addEventListener('keyup', handleSearch);
         mobileSearchBar.addEventListener('keyup', handleSearch);
-        document.getElementById('sort-by-select').addEventListener('change', e => { currentSort = e.target.value; filterAndRenderProducts(); });
+        document.getElementById('sort-by-select').addEventListener('change', e => { currentPage = 1; currentSort = e.target.value; filterAndRenderProducts(); });
+        document.getElementById('newsletter-form').addEventListener('submit', e => { e.preventDefault(); const email = document.getElementById('newsletter-email').value; subscribeToNewsletter(email); e.target.reset(); });
 
         const switchAdminTab = (tab) => { 
-            ['dashboard', 'products', 'orders', 'coupons'].forEach(t => { 
+            ['dashboard', 'products', 'orders', 'coupons', 'settings', 'subscribers'].forEach(t => { 
                 const tabEl = document.getElementById(`tab-${t}`);
                 tabEl.classList.remove('text-cyan-400', 'border-cyan-400'); 
                 tabEl.classList.add('text-gray-400', 'hover:text-white'); 
@@ -1495,8 +1740,33 @@
             activeTab.classList.remove('text-gray-400', 'hover:text-white');
             document.getElementById(`content-${tab}`).classList.remove('hidden'); 
         };
-        ['dashboard', 'products', 'orders', 'coupons'].forEach(t => document.getElementById(`tab-${t}`).addEventListener('click', () => switchAdminTab(t)));
-        adminOrderList.addEventListener('change', e => { const select = e.target.closest('.order-status-select'); if (select) { updateOrderStatus(select.dataset.id, select.value); } });
+        ['dashboard', 'products', 'orders', 'coupons', 'settings', 'subscribers'].forEach(t => document.getElementById(`tab-${t}`).addEventListener('click', () => switchAdminTab(t)));
+        
+        adminOrderList.addEventListener('change', e => {
+            const select = e.target.closest('.order-status-select');
+            if (select) {
+                const orderId = select.dataset.id;
+                const newStatus = select.value;
+                updateOrderStatusAndTracking(orderId, { status: newStatus });
+                // Re-rendering is now handled by the snapshot listener, so this is not needed:
+                // renderAdminOrders(allOrders); 
+            }
+        });
+
+        adminOrderList.addEventListener('click', e => {
+            const saveBtn = e.target.closest('.save-tracking-btn');
+            if (saveBtn) {
+                const orderId = saveBtn.dataset.id;
+                const container = saveBtn.closest('.bg-gray-700');
+                const trackingData = {
+                    courierName: container.querySelector('.courier-name-input').value,
+                    trackingNumber: container.querySelector('.tracking-number-input').value
+                };
+                updateOrderStatusAndTracking(orderId, trackingData);
+            }
+        });
+
+        document.getElementById('settings-form').addEventListener('submit', e => { e.preventDefault(); const settings = { enabled: document.getElementById('bannerEnabled').checked, message: document.getElementById('bannerMessage').value }; saveBannerSettings(settings); });
         
         document.getElementById('faq-accordion').addEventListener('click', (e) => {
             const question = e.target.closest('.faq-question');
@@ -1527,6 +1797,7 @@
 
         // --- INITIALIZATION LOGIC ---
         document.addEventListener('DOMContentLoaded', async () => {
+             // Main app initialization starts here.
              try {
                 lucide.createIcons();
                 renderSkeletons();
@@ -1542,6 +1813,27 @@
                 ordersCollection = collection(db, "orders");
                 couponsCollection = collection(db, "coupons");
                 wishlistsCollection = collection(db, "wishlists");
+                settingsCollection = collection(db, "site_settings");
+                subscribersCollection = collection(db, "subscribers");
+
+                onSnapshot(doc(db, 'site_settings', 'banner'), (docSnap) => {
+                    const banner = document.getElementById('promotional-banner');
+                    const bannerText = document.getElementById('banner-text');
+                    const settingsForm = document.getElementById('settings-form');
+                    if (docSnap.exists()) {
+                        const data = docSnap.data();
+                        if (data.enabled && data.message) {
+                            bannerText.textContent = data.message;
+                            banner.classList.remove('hidden');
+                        } else {
+                            banner.classList.add('hidden');
+                        }
+                        if (settingsForm) {
+                            document.getElementById('bannerEnabled').checked = data.enabled || false;
+                            document.getElementById('bannerMessage').value = data.message || '';
+                        }
+                    }
+                });
 
                 onAuthStateChanged(auth, user => {
                     currentUser = user;
@@ -1553,7 +1845,7 @@
                         });
                         onSnapshot(collection(db, `users/${user.uid}/addresses`), (snapshot) => {
                             savedAddresses = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
-                            renderAccountView(); // Re-render if the user is on the account page
+                            renderAccountView(); 
                         });
                     } else { 
                         userWishlist = []; 
@@ -1565,8 +1857,9 @@
                     const productPromises = snapshot.docs.map(async (pDoc) => {
                         const productData = { id: pDoc.id, ...pDoc.data() };
                         const variantsRef = collection(db, `products/${pDoc.id}/variants`);
-                        const vSnap = await getDocs(query(variantsRef, orderBy("price", "asc")));
-                        productData.minPrice = vSnap.empty ? null : vSnap.docs[0].data().price;
+                        const vSnap = await getDocs(query(variantsRef));
+                        productData.minPrice = vSnap.empty ? null : Math.min(...vSnap.docs.map(d => d.data().salePrice || d.data().price));
+                        productData.hasSale = vSnap.docs.some(d => d.data().salePrice);
                         
                         const reviewsRef = collection(db, `products/${pDoc.id}/reviews`);
                         const rSnap = await getDocs(reviewsRef);
@@ -1580,9 +1873,14 @@
                 });
 
                 onSnapshot(query(couponsCollection), (snapshot) => renderAdminCoupons(snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }))));
+                
+                onSnapshot(query(subscribersCollection, orderBy("subscribedAt", "desc")), (snapshot) => {
+                    const subscribers = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+                    renderAdminSubscribers(subscribers);
+                });
 
                 if (sessionStorage.getItem('isAdminLoggedIn') === 'true') { 
-                    showDashboard(); 
+                    showDashboarAd(); 
                     setupAdminOrdersListener();
                 } else { 
                     showLoginScreen(); 
