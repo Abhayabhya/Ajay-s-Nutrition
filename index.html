@@ -25,7 +25,7 @@
             scroll-behavior: smooth;
         }
         .hero-bg {
-            background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?q=80&w=2070&auto=format&fit=crop');
+            background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?q=80&w=2070&auto=format&fit=crop');
             background-size: cover;
             background-position: center;
         }
@@ -37,6 +37,10 @@
         #cart-sidebar {
             transition: transform 0.3s ease-in-out;
         }
+        .category-btn.active {
+            background-color: #06b6d4;
+            color: white;
+        }
     </style>
 </head>
 <body class="bg-gray-900 text-white">
@@ -46,40 +50,77 @@
         <!-- Header -->
         <header id="home" class="bg-gray-900/80 backdrop-blur-sm sticky top-0 z-50">
             <div class="container mx-auto px-6 py-4">
-                <div class="flex items-center justify-between">
-                    <a href="#home" class="text-2xl font-bold text-cyan-400 flex items-center">
-                        <i data-lucide="dumbbell" class="mr-2"></i>
-                        Ajay's Nutrition
-                    </a>
+                <div class="flex items-center justify-between gap-4">
+<a href="#home" class="flex-shrink-0">
+  
+  <svg width="200" height="95" viewBox="0 0 423 200" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <defs>
+      <style>
+        .ajays-text { font-family: 'Brush Script MT', cursive; font-size: 130px; fill: url(#ajaysGradient); filter: url(#dropShadow); }
+        .nutrition-text { font-family: 'Arial', sans-serif; font-size: 40px; fill: #E0E0E0; letter-spacing: 12px; font-weight: bold; }
+        .nutrition-bg { fill: #2E7D32; }
+        .swoosh { fill: #4CAF50; stroke: #388E3C; stroke-width: 2; }
+      </style>
+      <linearGradient id="ajaysGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+        <stop offset="0%" style="stop-color:#F44336;"/>
+        <stop offset="100%" style="stop-color:#B71C1C;"/>
+      </linearGradient>
+      <filter id="dropShadow" x="-10%" y="-10%" width="120%" height="120%">
+        <feGaussianBlur in="SourceAlpha" stdDeviation="2"/>
+        <feOffset dx="2" dy="3" result="offsetblur"/>
+        <feFlood flood-color="rgba(0,0,0,0.5)"/>
+        <feComposite in2="offsetblur" operator="in"/>
+        <feMerge>
+          <feMergeNode/>
+          <feMergeNode in="SourceGraphic"/>
+        </feMerge>
+      </filter>
+    </defs>
+    <text x="10" y="110" class="ajays-text">Ajay's</text>
+    <path d="M 230 55 C 280 50, 330 60, 380 65" class="swoosh" fill="none" stroke-width="8"/>
+    <path d="M 240 100 C 290 95, 340 105, 390 110" class="swoosh" fill="none" stroke-width="8"/>
+    <rect x="0" y="140" width="423" height="50" class="nutrition-bg" rx="5"/>
+    <text x="211.5" y="175" text-anchor="middle" class="nutrition-text">NUTRITION</text>
+  </svg>
+
+</a>
+                    <div class="relative w-full max-w-xs hidden md:block">
+                        <input type="text" id="search-bar" placeholder="Search products..." class="w-full bg-gray-800 border border-gray-700 rounded-lg px-4 py-2 text-white focus:outline-none focus:ring-2 focus:ring-cyan-500">
+                        <i data-lucide="search" class="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 w-5 h-5"></i>
+                    </div>
                     <div class="flex items-center">
-                        <nav class="hidden md:flex items-center space-x-8 mr-8">
+                        <nav class="hidden lg:flex items-center space-x-6 mr-6">
                             <a href="#products" class="text-gray-300 hover:text-cyan-400 transition duration-300">Products</a>
                             <a href="#about" class="text-gray-300 hover:text-cyan-400 transition duration-300">About Us</a>
                             <a href="#contact" class="text-gray-300 hover:text-cyan-400 transition duration-300">Contact</a>
-                            <a href="#" class="text-gray-300 hover:text-cyan-400 transition duration-300">My Orders</a>
+                            <a href="#return-policy" class="text-gray-300 hover:text-cyan-400 transition duration-300">Return Policy</a>
                         </nav>
                         <button id="cart-button" class="relative text-gray-300 hover:text-cyan-400 transition duration-300">
                             <i data-lucide="shopping-cart"></i>
                             <span id="cart-count" class="absolute -top-2 -right-2 bg-cyan-500 text-white text-xs font-bold rounded-full h-5 w-5 flex items-center justify-center">0</span>
                         </button>
-                        <button id="mobile-menu-button" class="md:hidden text-gray-300 hover:text-cyan-400 ml-4">
+                        <button id="mobile-menu-button" class="lg:hidden text-gray-300 hover:text-cyan-400 ml-4">
                            <i data-lucide="menu"></i>
                         </button>
                     </div>
                 </div>
                  <!-- Mobile Menu -->
-                <div id="mobile-menu" class="hidden md:hidden mt-4">
+                <div id="mobile-menu" class="hidden lg:hidden mt-4">
+                    <div class="relative w-full my-4 md:hidden">
+                        <input type="text" id="mobile-search-bar" placeholder="Search products..." class="w-full bg-gray-800 border border-gray-700 rounded-lg px-4 py-2 text-white focus:outline-none focus:ring-2 focus:ring-cyan-500">
+                        <i data-lucide="search" class="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 w-5 h-5"></i>
+                    </div>
                     <a href="#products" class="mobile-menu-link block py-2 px-4 text-sm text-gray-300 hover:bg-gray-800 rounded">Products</a>
                     <a href="#about" class="mobile-menu-link block py-2 px-4 text-sm text-gray-300 hover:bg-gray-800 rounded">About Us</a>
                     <a href="#contact" class="mobile-menu-link block py-2 px-4 text-sm text-gray-300 hover:bg-gray-800 rounded">Contact</a>
-                    <a href="#" class="mobile-menu-link block py-2 px-4 text-sm text-gray-300 hover:bg-gray-800 rounded">My Orders</a>
+                    <a href="#return-policy" class="mobile-menu-link block py-2 px-4 text-sm text-gray-300 hover:bg-gray-800 rounded">Return Policy</a>
                 </div>
             </div>
         </header>
 
         <!-- Main Content -->
         <main>
-            <section class="hero-bg h-[calc(100vh-72px)] flex items-center justify-center">
+            <section class="hero-bg h-[calc(100vh-80px)] flex items-center justify-center">
                 <div class="text-center px-6">
                     <h1 class="text-4xl md:text-6xl lg:text-7xl font-extrabold text-white leading-tight mb-4">
                         <span class="text-cyan-400">Fuel</span> Your Ambition
@@ -95,10 +136,13 @@
 
             <section id="products" class="py-20 bg-gray-900">
                 <div class="container mx-auto px-6">
-                    <div class="text-center mb-12">
+                    <div class="text-center mb-8">
                         <h2 class="text-3xl md:text-4xl font-bold text-white">Featured Products</h2>
                         <p class="text-gray-400 mt-2">Top picks from our curated selection.</p>
                         <div class="w-24 h-1 bg-cyan-500 mx-auto mt-4 rounded"></div>
+                    </div>
+                    <div id="category-filters" class="flex flex-wrap justify-center gap-2 md:gap-4 mb-12">
+                         <!-- Category buttons will be inserted here -->
                     </div>
                     <div id="product-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
                         <!-- Skeletons will be shown while products load -->
@@ -128,7 +172,25 @@
                                 <div class="flex items-start space-x-4"><i data-lucide="mail" class="text-cyan-400 mt-1 flex-shrink-0"></i><div><h4 class="font-semibold text-white">Email Us</h4><p class="text-gray-400">contact@ajaysnutrition.com</p></div></div>
                             </div>
                         </div>
-                        <div class="lg:w-1/2 h-96 lg:h-auto rounded-lg overflow-hidden"><<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3368.835768876093!2d81.01828997471591!3d21.085251485836864!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a294591ded720ef%3A0xdd8ec695a1c18c5c!2sAjay&#39;s%20Nutrition!5e1!3m2!1sen!2sin!4v1756532635873!5m2!1sen!2sin" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe></div>
+                        <div class="lg:w-1/2 h-96 lg:h-auto rounded-lg overflow-hidden"><iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3368.835768876093!2d81.01828997471591!3d21.085251485836864!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a294591ded720ef%3A0xdd8ec695a1c18c5c!2sAjay&#39;s%20Nutrition!5e1!3m2!1sen!2sin!4v1756532635873!5m2!1sen!2sin" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe></div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="return-policy" class="py-20 bg-gray-800">
+                <div class="container mx-auto px-6">
+                    <div class="max-w-3xl mx-auto">
+                        <h2 class="text-3xl md:text-4xl font-bold text-white mb-4 text-center">Return Policy</h2>
+                        <div class="w-24 h-1 bg-cyan-500 mx-auto mb-8 rounded"></div>
+                        <div class="text-gray-300 space-y-4 leading-relaxed">
+                            <p>We have a 7-day return policy, which means you have 7 days after receiving your item to request a return.</p>
+                            <p>To be eligible for a return, your item must be in the same condition that you received it, unopened, with the seal intact, and in its original packaging. You’ll also need the receipt or proof of purchase.</p>
+                            <p>To start a return, you can contact us at contact@ajaysnutrition.com. If your return is accepted, we’ll send you instructions on how and where to send your package. Items sent back to us without first requesting a return will not be accepted.</p>
+                            <h4 class="text-xl font-semibold text-white pt-4">Damages and issues</h4>
+                            <p>Please inspect your order upon reception and contact us immediately if the item is defective, damaged or if you receive the wrong item, so that we can evaluate the issue and make it right.</p>
+                             <h4 class="text-xl font-semibold text-white pt-4">Refunds</h4>
+                            <p>We will notify you once we’ve received and inspected your return, and let you know if the refund was approved or not. If approved, you’ll be automatically refunded on your original payment method. Please remember it can take some time for your bank or credit card company to process and post the refund too.</p>
+                        </div>
                     </div>
                 </div>
             </section>
@@ -140,9 +202,10 @@
                     <div class="text-center md:text-left mb-4 md:mb-0">
                         <a href="#home" class="text-xl font-bold text-cyan-400">Ajay's Nutrition</a>
                         <p class="text-gray-400 mt-2">© 2024 Ajay's Nutrition. All Rights Reserved.</p>
-                        <div class="mt-4 text-sm">
-                            <a href="#" class="text-gray-400 hover:text-cyan-400 mr-4">Terms of Service</a>
+                        <div class="mt-4 text-sm space-x-4">
+                            <a href="#" class="text-gray-400 hover:text-cyan-400">Terms of Service</a>
                             <a href="#" class="text-gray-400 hover:text-cyan-400">Privacy Policy</a>
+                            <a href="#return-policy" class="text-gray-400 hover:text-cyan-400">Return Policy</a>
                         </div>
                     </div>
                     <div class="flex items-center space-x-6">
@@ -161,8 +224,50 @@
             <div class="bg-gray-800 p-8 rounded-lg shadow-xl"><h2 class="text-2xl font-bold text-center text-cyan-400 mb-6">Admin Login</h2><form id="login-form"><div class="mb-4"><label for="password" class="block text-gray-300 mb-2">Password</label><input type="password" id="password" class="w-full bg-gray-700 border border-gray-600 rounded-lg px-4 py-2 text-white focus:outline-none focus:ring-2 focus:ring-cyan-500" required></div><p id="login-error" class="text-red-500 text-sm mb-4 hidden">Incorrect password.</p><button type="submit" class="w-full bg-cyan-500 hover:bg-cyan-600 text-white font-bold py-2 px-4 rounded-lg transition duration-300">Login</button></form><button id="back-to-shop-1" class="w-full mt-4 bg-gray-600 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded-lg transition duration-300">Back to Shop</button></div>
         </div>
         <div id="admin-dashboard" class="hidden">
-            <div class="flex flex-wrap justify-between items-center gap-4 mb-8"><h1 class="text-3xl font-bold text-cyan-400">Admin Dashboard</h1><div><button id="back-to-shop-2" class="bg-gray-600 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded-lg transition duration-300 mr-2">Back to Shop</button><button id="logout-button" class="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded-lg transition duration-300">Logout</button></div></div>
-            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8"><div class="lg:col-span-1 bg-gray-800 p-6 rounded-lg shadow-lg"><h2 class="text-xl font-semibold mb-4">Add New Product</h2><form id="add-product-form" class="space-y-4"><div><label for="productName" class="block text-sm font-medium text-gray-300">Product Name</label><input type="text" id="productName" class="mt-1 w-full bg-gray-700 border-gray-600 rounded-md shadow-sm text-white px-3 py-2" required></div><div><label for="productDescription" class="block text-sm font-medium text-gray-300">Description</label><input type="text" id="productDescription" class="mt-1 w-full bg-gray-700 border-gray-600 rounded-md shadow-sm text-white px-3 py-2" required></div><div><label for="productPrice" class="block text-sm font-medium text-gray-300">Price (₹)</label><input type="number" id="productPrice" class="mt-1 w-full bg-gray-700 border-gray-600 rounded-md shadow-sm text-white px-3 py-2" required></div><div><label for="productImage" class="block text-sm font-medium text-gray-300">Image URL</label><input type="text" id="productImage" placeholder="https://placehold.co/400x400/..." class="mt-1 w-full bg-gray-700 border-gray-600 rounded-md shadow-sm text-white px-3 py-2" required></div><button type="submit" class="w-full bg-cyan-500 hover:bg-cyan-600 text-white font-bold py-2 px-4 rounded-lg transition duration-300">Add Product</button></form></div><div class="lg:col-span-2 bg-gray-800 p-6 rounded-lg shadow-lg"><h2 class="text-xl font-semibold mb-4">Existing Products</h2><div id="admin-product-list" class="space-y-4 max-h-[60vh] overflow-y-auto no-scrollbar"><p class="text-gray-400">Loading products...</p></div></div></div>
+            <div class="flex flex-wrap justify-between items-center gap-4 mb-8">
+                <h1 class="text-3xl font-bold text-cyan-400">Admin Dashboard</h1>
+                <div>
+                    <button id="back-to-shop-2" class="bg-gray-600 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded-lg transition duration-300 mr-2">Back to Shop</button>
+                    <button id="logout-button" class="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded-lg transition duration-300">Logout</button>
+                </div>
+            </div>
+            <!-- Admin Tabs -->
+            <div class="mb-8 border-b border-gray-700">
+                <nav class="flex space-x-4" aria-label="Tabs">
+                    <button id="tab-products" class="tab-btn text-cyan-400 border-b-2 border-cyan-400 px-3 py-2 font-medium">Products</button>
+                    <button id="tab-orders" class="tab-btn text-gray-400 hover:text-white px-3 py-2 font-medium">Orders</button>
+                </nav>
+            </div>
+
+            <!-- Products Tab Content -->
+            <div id="content-products">
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                    <div class="lg:col-span-1 bg-gray-800 p-6 rounded-lg shadow-lg">
+                        <h2 class="text-xl font-semibold mb-4">Add New Product</h2>
+                        <form id="add-product-form" class="space-y-4">
+                            <div><label for="productName" class="block text-sm font-medium text-gray-300">Product Name</label><input type="text" id="productName" class="mt-1 w-full bg-gray-700 border-gray-600 rounded-md shadow-sm text-white px-3 py-2" required></div>
+                            <div><label for="productDescription" class="block text-sm font-medium text-gray-300">Description</label><input type="text" id="productDescription" class="mt-1 w-full bg-gray-700 border-gray-600 rounded-md shadow-sm text-white px-3 py-2" required></div>
+                            <div><label for="productPrice" class="block text-sm font-medium text-gray-300">Price (₹)</label><input type="number" id="productPrice" class="mt-1 w-full bg-gray-700 border-gray-600 rounded-md shadow-sm text-white px-3 py-2" required></div>
+                            <div><label for="productImage" class="block text-sm font-medium text-gray-300">Image URL</label><input type="text" id="productImage" placeholder="https://placehold.co/400x400/..." class="mt-1 w-full bg-gray-700 border-gray-600 rounded-md shadow-sm text-white px-3 py-2" required></div>
+                            <div><label for="productCategory" class="block text-sm font-medium text-gray-300">Category</label><select id="productCategory" class="mt-1 w-full bg-gray-700 border-gray-600 rounded-md shadow-sm text-white px-3 py-2" required><option>Protein</option><option>Creatine</option><option>Pre-Workout</option><option>Vitamins</option><option>Other</option></select></div>
+                            <div class="flex items-center"><input type="checkbox" id="productInStock" class="h-4 w-4 bg-gray-700 border-gray-600 rounded text-cyan-500" checked><label for="productInStock" class="ml-2 block text-sm text-gray-300">In Stock</label></div>
+                            <button type="submit" class="w-full bg-cyan-500 hover:bg-cyan-600 text-white font-bold py-2 px-4 rounded-lg transition duration-300">Add Product</button>
+                        </form>
+                    </div>
+                    <div class="lg:col-span-2 bg-gray-800 p-6 rounded-lg shadow-lg">
+                        <h2 class="text-xl font-semibold mb-4">Manage Products</h2>
+                        <div id="admin-product-list" class="space-y-4 max-h-[60vh] overflow-y-auto no-scrollbar"><p class="text-gray-400">Loading products...</p></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Orders Tab Content -->
+            <div id="content-orders" class="hidden">
+                 <div class="bg-gray-800 p-6 rounded-lg shadow-lg">
+                    <h2 class="text-xl font-semibold mb-4">Recent Orders</h2>
+                    <div id="admin-order-list" class="space-y-4 max-h-[70vh] overflow-y-auto no-scrollbar"><p class="text-gray-400">Loading orders...</p></div>
+                </div>
+            </div>
         </div>
     </div>
     
@@ -185,16 +290,6 @@
         </div>
     </div>
 
-    <!-- Config Alert Modal -->
-    <div id="config-alert-modal" class="fixed inset-0 bg-black bg-opacity-75 z-50 hidden items-center justify-center p-4">
-        <div class="bg-gray-800 rounded-lg shadow-xl w-full max-w-lg p-8 text-center">
-            <i data-lucide="alert-triangle" class="text-yellow-400 w-16 h-16 mx-auto mb-4"></i>
-            <h3 class="text-2xl font-bold text-white mb-4">Configuration Needed</h3>
-            <p class="text-gray-300 mb-6">This website is not connected to a database. To make the admin panel and products work, you must add your Firebase configuration keys to the HTML file.</p>
-            <button id="config-alert-ok" class="bg-cyan-500 hover:bg-cyan-600 text-white font-bold py-2 px-6 rounded-lg">OK</button>
-        </div>
-    </div>
-
     <!-- Toast Notification -->
     <div id="toast" class="fixed bottom-5 right-5 bg-green-500 text-white py-2 px-5 rounded-lg shadow-lg transform translate-y-20 opacity-0 transition-all duration-300"></div>
 
@@ -202,13 +297,9 @@
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
         import { getAuth, signInAnonymously } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
-        import { getFirestore, collection, addDoc, onSnapshot, doc, deleteDoc } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
+        import { getFirestore, collection, addDoc, onSnapshot, doc, deleteDoc, updateDoc, serverTimestamp, query, orderBy } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
 
         // --- IMPORTANT: FIREBASE CONFIGURATION ---
-        // To run this website on your own computer (VS Code), you need your own Firebase project.
-        // 1. Go to https://console.firebase.google.com/ and create a new project.
-        // 2. In your project, create a Web App and copy the 'firebaseConfig' object they provide.
-        // 3. Paste that entire object here, replacing the placeholder below.
         const firebaseConfig = {
           apiKey: "AIzaSyD6WMcQB-hwRtORwFYkQD1tbQxihLi8_NI",
           authDomain: "ajay-s-nutrition.firebaseapp.com",
@@ -223,26 +314,33 @@
         let app, auth, db;
         
         // --- DOM ELEMENTS ---
-        const shopView = document.getElementById('shop-view');
-        const adminView = document.getElementById('admin-view');
-        // ... (all other DOM elements)
         const productGrid = document.getElementById('product-grid');
         const adminProductList = document.getElementById('admin-product-list');
+        const adminOrderList = document.getElementById('admin-order-list');
         const cartItemsContainer = document.getElementById('cart-items');
         const cartCount = document.getElementById('cart-count');
         const cartSubtotal = document.getElementById('cart-subtotal');
         const checkoutButton = document.getElementById('checkout-button');
         const checkoutTotal = document.getElementById('checkout-total');
         const mobileMenu = document.getElementById('mobile-menu');
+        const categoryFilters = document.getElementById('category-filters');
+        const searchBar = document.getElementById('search-bar');
+        const mobileSearchBar = document.getElementById('mobile-search-bar');
+        const tabProducts = document.getElementById('tab-products');
+        const tabOrders = document.getElementById('tab-orders');
+        const contentProducts = document.getElementById('content-products');
+        const contentOrders = document.getElementById('content-orders');
 
         // --- APP STATE ---
-        let productsCollection;
+        let productsCollection, ordersCollection;
         let cart = [];
         let allProducts = [];
+        let currentCategory = 'All';
+        let currentSearchTerm = '';
 
-        // --- All other functions (UI, Cart, Product Rendering, etc.) remain the same ---
-        const showShopView = () => { shopView.classList.remove('hidden'); adminView.classList.add('hidden'); };
-        const showAdminView = () => { shopView.classList.add('hidden'); adminView.classList.remove('hidden'); };
+        // --- UI FUNCTIONS ---
+        const showShopView = () => { document.getElementById('shop-view').classList.remove('hidden'); document.getElementById('admin-view').classList.add('hidden'); };
+        const showAdminView = () => { document.getElementById('shop-view').classList.add('hidden'); document.getElementById('admin-view').classList.remove('hidden'); };
         const showLoginScreen = () => { document.getElementById('login-screen').classList.remove('hidden'); document.getElementById('admin-dashboard').classList.add('hidden'); };
         const showDashboard = () => { document.getElementById('login-screen').classList.add('hidden'); document.getElementById('admin-dashboard').classList.remove('hidden'); };
         const openCart = () => { document.getElementById('cart-overlay').classList.remove('hidden'); document.getElementById('cart-sidebar').classList.remove('translate-x-full'); };
@@ -263,13 +361,11 @@
                 const modal = document.getElementById('confirm-modal');
                 document.getElementById('confirm-title').textContent = title;
                 document.getElementById('confirm-text').textContent = text;
-                modal.classList.remove('hidden');
-                modal.classList.add('flex');
+                modal.classList.remove('hidden'); modal.classList.add('flex');
                 const okBtn = document.getElementById('confirm-ok');
                 const cancelBtn = document.getElementById('confirm-cancel');
                 const cleanup = () => {
-                    modal.classList.add('hidden');
-                    modal.classList.remove('flex');
+                    modal.classList.add('hidden'); modal.classList.remove('flex');
                     okBtn.replaceWith(okBtn.cloneNode(true));
                     cancelBtn.replaceWith(cancelBtn.cloneNode(true));
                 };
@@ -278,7 +374,12 @@
             });
         };
 
-        const calculateSubtotal = () => cart.reduce((acc, item) => { const product = allProducts.find(p => p.id === item.id); return acc + (product ? product.price * item.quantity : 0); }, 0);
+        // --- CART LOGIC ---
+        const calculateSubtotal = () => cart.reduce((acc, item) => { 
+            const product = allProducts.find(p => p.id === item.id); 
+            const price = (product && typeof product.price === 'number') ? product.price : 0;
+            return acc + (price * item.quantity); 
+        }, 0);
         
         const updateCart = () => {
             cartItemsContainer.innerHTML = '';
@@ -291,7 +392,8 @@
                     totalItems += item.quantity;
                     const el = document.createElement('div');
                     el.className = 'flex items-center justify-between gap-4 py-3 border-b border-gray-700';
-                    el.innerHTML = `<img src="${product.imageUrl}" alt="${product.name}" class="w-20 h-20 object-cover rounded-md"><div class="flex-grow"><p class="font-semibold text-white">${product.name}</p><p class="text-sm text-gray-400">₹${product.price.toLocaleString('en-IN')}</p></div><div class="flex items-center gap-2"><button class="quantity-change text-cyan-400" data-id="${item.id}" data-change="-1">-</button><span>${item.quantity}</span><button class="quantity-change text-cyan-400" data-id="${item.id}" data-change="1">+</button></div><button class="remove-item text-red-400 hover:text-red-500" data-id="${item.id}"><i data-lucide="trash-2" class="w-5 h-5"></i></button>`;
+                    const priceString = (product.price && typeof product.price === 'number') ? `₹${product.price.toLocaleString('en-IN')}` : 'N/A';
+                    el.innerHTML = `<img src="${product.imageUrl}" alt="${product.name}" class="w-20 h-20 object-cover rounded-md"><div class="flex-grow"><p class="font-semibold text-white">${product.name}</p><p class="text-sm text-gray-400">${priceString}</p></div><div class="flex items-center gap-2"><button class="quantity-change text-cyan-400" data-id="${item.id}" data-change="-1">-</button><span>${item.quantity}</span><button class="quantity-change text-cyan-400" data-id="${item.id}" data-change="1">+</button></div><button class="remove-item text-red-400 hover:text-red-500" data-id="${item.id}"><i data-lucide="trash-2" class="w-5 h-5"></i></button>`;
                     cartItemsContainer.appendChild(el);
                 });
             }
@@ -301,28 +403,94 @@
             lucide.createIcons();
         };
 
-        const addToCart = (productId) => { const existingItem = cart.find(item => item.id === productId); if (existingItem) { existingItem.quantity++; } else { cart.push({ id: productId, quantity: 1 }); } showToast('Item added to cart!'); updateCart(); };
+        const addToCart = (productId) => { 
+            const product = allProducts.find(p => p.id === productId);
+            if (!product || !product.inStock) {
+                showToast('This item is out of stock.', true);
+                return;
+            }
+            const existingItem = cart.find(item => item.id === productId); 
+            if (existingItem) { existingItem.quantity++; } else { cart.push({ id: productId, quantity: 1 }); } 
+            showToast('Item added to cart!'); 
+            updateCart(); 
+        };
         const changeQuantity = (productId, change) => { const item = cart.find(i => i.id === productId); if (item) { item.quantity += change; if (item.quantity <= 0) { cart = cart.filter(i => i.id !== productId); } updateCart(); } };
         const removeFromCart = (productId) => { cart = cart.filter(i => i.id !== productId); updateCart(); };
 
+        // --- PRODUCT RENDERING & FILTERING ---
         const renderShopProducts = (products) => {
             productGrid.innerHTML = '';
-            if (products.length === 0) { productGrid.innerHTML = `<p class="text-gray-400 col-span-full text-center">No products have been added yet. Check back soon!</p>`; return; }
+            if (products.length === 0) { productGrid.innerHTML = `<p class="text-gray-400 col-span-full text-center">No products match your search.</p>`; return; }
             products.forEach(product => {
                 const card = document.createElement('div');
-                card.className = "bg-gray-800 rounded-lg overflow-hidden shadow-lg transform hover:-translate-y-2 transition duration-300";
-                card.innerHTML = `<img src="${product.imageUrl}" alt="${product.name}" class="w-full h-56 object-cover" onerror="this.onerror=null;this.src='https://placehold.co/400x400/1f2937/FFFFFF?text=Image+Error';"><div class="p-6"><h3 class="text-xl font-semibold text-white mb-2">${product.name}</h3><p class="text-gray-400 mb-4">${product.description}</p><div class="flex items-center justify-between"><span class="text-2xl font-bold text-cyan-400">₹${product.price.toLocaleString('en-IN')}</span><button data-id="${product.id}" class="add-to-cart-btn bg-cyan-500 text-white px-4 py-2 rounded-lg font-semibold hover:bg-cyan-600 transition duration-300">Add to Cart</button></div></div>`;
+                card.className = "bg-gray-800 rounded-lg overflow-hidden shadow-lg flex flex-col";
+                const priceString = (product.price && typeof product.price === 'number') ? `₹${product.price.toLocaleString('en-IN')}` : 'Price Unavailable';
+                const stockLabel = !product.inStock ? `<span class="absolute top-2 right-2 bg-red-500 text-white text-xs font-semibold px-2 py-1 rounded-full">Out of Stock</span>` : '';
+                const addToCartButton = `<button data-id="${product.id}" class="add-to-cart-btn mt-4 w-full bg-cyan-500 text-white px-4 py-2 rounded-lg font-semibold hover:bg-cyan-600 transition duration-300 disabled:bg-gray-600 disabled:cursor-not-allowed" ${!product.inStock ? 'disabled' : ''}>Add to Cart</button>`;
+                card.innerHTML = `
+                    <div class="relative">
+                        <img src="${product.imageUrl}" alt="${product.name}" class="w-full h-56 object-cover" onerror="this.onerror=null;this.src='https://placehold.co/400x400/1f2937/FFFFFF?text=Image+Error';">
+                        ${stockLabel}
+                    </div>
+                    <div class="p-6 flex flex-col flex-grow">
+                        <h3 class="text-xl font-semibold text-white mb-2">${product.name}</h3>
+                        <p class="text-gray-400 mb-2 text-sm">${product.category}</p>
+                        <p class="text-gray-400 mb-4 flex-grow">${product.description}</p>
+                        <div class="flex items-center text-yellow-400 mb-4">
+                            ${Array(5).fill(0).map((_, i) => `<i data-lucide="star" class="w-5 h-5 fill-current"></i>`).join('')}
+                            <span class="text-gray-400 text-sm ml-2">(No reviews)</span>
+                        </div>
+                        <div class="flex items-center justify-between">
+                            <span class="text-2xl font-bold text-cyan-400">${priceString}</span>
+                        </div>
+                        ${addToCartButton}
+                    </div>`;
                 productGrid.appendChild(card);
             });
+            lucide.createIcons();
+        };
+
+        const filterAndRenderProducts = () => {
+            let filteredProducts = allProducts;
+            if (currentCategory !== 'All') {
+                filteredProducts = filteredProducts.filter(p => p.category === currentCategory);
+            }
+            if (currentSearchTerm) {
+                filteredProducts = filteredProducts.filter(p => p.name.toLowerCase().includes(currentSearchTerm));
+            }
+            renderShopProducts(filteredProducts);
+        };
+
+        const renderCategoryFilters = () => {
+            const categories = ['All', ...new Set(allProducts.map(p => p.category))];
+            categoryFilters.innerHTML = categories.map(cat => 
+                `<button class="category-btn text-gray-300 bg-gray-800 hover:bg-cyan-600 hover:text-white font-semibold py-2 px-4 rounded-lg transition duration-300 ${cat === 'All' ? 'active' : ''}" data-category="${cat}">${cat}</button>`
+            ).join('');
         };
         
         const renderAdminProducts = (products) => {
             adminProductList.innerHTML = '';
-            if (products.length === 0) { adminProductList.innerHTML = `<p class="text-gray-400 text-center">No products found. Add one using the form.</p>`; return; }
+            if (products.length === 0) { adminProductList.innerHTML = `<p class="text-gray-400 text-center">No products found.</p>`; return; }
             products.forEach(product => {
                 const item = document.createElement('div');
-                item.className = "bg-gray-700 p-4 rounded-lg flex items-center justify-between";
-                item.innerHTML = `<div class="flex items-center gap-4"><img src="${product.imageUrl}" alt="${product.name}" class="w-16 h-16 object-cover rounded-md" onerror="this.onerror=null;this.src='https://placehold.co/64x64/1f2937/FFFFFF?text=Img';"><div><p class="font-semibold text-white">${product.name}</p><p class="text-sm text-gray-400">₹${product.price.toLocaleString('en-IN')}</p></div></div><button data-id="${product.id}" class="delete-product-btn text-red-400 hover:text-red-500"><i data-lucide="trash-2"></i></button>`;
+                item.className = "bg-gray-700 p-4 rounded-lg flex items-center justify-between gap-4";
+                const priceString = (product.price && typeof product.price === 'number') ? `₹${product.price.toLocaleString('en-IN')}` : 'N/A';
+                item.innerHTML = `
+                    <div class="flex items-center gap-4 flex-grow">
+                        <img src="${product.imageUrl}" alt="${product.name}" class="w-16 h-16 object-cover rounded-md" onerror="this.onerror=null;this.src='https://placehold.co/64x64/1f2937/FFFFFF?text=Img';">
+                        <div class="flex-grow">
+                            <p class="font-semibold text-white">${product.name}</p>
+                            <p class="text-sm text-gray-400">${priceString} - ${product.category}</p>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-4">
+                         <label class="inline-flex items-center cursor-pointer">
+                            <input type="checkbox" class="sr-only peer stock-toggle" data-id="${product.id}" ${product.inStock ? 'checked' : ''}>
+                            <div class="relative w-11 h-6 bg-gray-600 rounded-full peer peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-cyan-500"></div>
+                            <span class="ms-3 text-sm font-medium text-gray-300">In Stock</span>
+                        </label>
+                        <button data-id="${product.id}" class="delete-product-btn text-red-400 hover:text-red-500"><i data-lucide="trash-2"></i></button>
+                    </div>`;
                 adminProductList.appendChild(item);
             });
             lucide.createIcons();
@@ -330,20 +498,87 @@
 
         const renderSkeletons = () => { productGrid.innerHTML = Array(4).fill('').map(() => `<div class="bg-gray-800 rounded-lg p-6 animate-pulse"><div class="h-48 bg-gray-700 rounded"></div><div class="h-6 bg-gray-700 rounded mt-4 w-3/4"></div><div class="h-4 bg-gray-700 rounded mt-2 w-1/2"></div><div class="h-8 bg-gray-700 rounded mt-4 w-1/4"></div></div>`).join(''); };
 
-        const addProduct = async (name, description, price, imageUrl) => { try { await addDoc(productsCollection, { name, description, price: Number(price), imageUrl }); showToast('Product added successfully!'); } catch (e) { console.error(e); showToast('Failed to add product.', true); } };
+        // --- DATABASE INTERACTIONS ---
+        const addProduct = async (name, description, price, imageUrl, category, inStock) => { try { await addDoc(productsCollection, { name, description, price: Number(price), imageUrl, category, inStock }); showToast('Product added successfully!'); } catch (e) { console.error(e); showToast('Failed to add product.', true); } };
         const deleteProduct = async (id) => { try { await deleteDoc(doc(db, productsCollection.path, id)); showToast('Product deleted successfully!'); } catch (e) { console.error(e); showToast('Failed to delete product.', true); } };
+        const updateStockStatus = async (id, inStock) => { try { const productRef = doc(db, productsCollection.path, id); await updateDoc(productRef, { inStock }); showToast('Stock status updated!'); } catch (e) { console.error(e); showToast('Failed to update stock.', true); }};
+        const updateOrderStatus = async (id, status) => { try { const orderRef = doc(db, ordersCollection.path, id); await updateDoc(orderRef, { status }); showToast('Order status updated!'); } catch (e) { console.error(e); showToast('Failed to update status.', true); }};
+
+        // --- ORDER MANAGEMENT ---
+        const renderAdminOrders = (orders) => {
+            adminOrderList.innerHTML = '';
+            if(orders.length === 0) { adminOrderList.innerHTML = `<p class="text-gray-400 text-center">No orders yet.</p>`; return; }
+            orders.forEach(order => {
+                const item = document.createElement('div');
+                item.className = "bg-gray-700 p-4 rounded-lg";
+                const orderDate = order.timestamp?.toDate().toLocaleString() || 'N/A';
+                const itemsHtml = order.items.map(p => `<li>${p.name} (x${p.quantity})</li>`).join('');
+                item.innerHTML = `
+                    <div class="flex justify-between items-start">
+                        <div>
+                            <p class="font-bold text-white">Order ID: ${order.id.substring(0, 8)}</p>
+                            <p class="text-sm text-gray-400">${orderDate}</p>
+                            <p class="mt-2">${order.customer.name} - ${order.customer.email}</p>
+                        </div>
+                         <div class="text-right">
+                            <p class="text-xl font-bold text-cyan-400">₹${order.total.toLocaleString('en-IN')}</p>
+                            <select class="order-status-select bg-gray-800 border-gray-600 rounded-md shadow-sm text-white px-3 py-1 mt-2" data-id="${order.id}">
+                                <option ${order.status === 'Pending' ? 'selected' : ''}>Pending</option>
+                                <option ${order.status === 'Shipped' ? 'selected' : ''}>Shipped</option>
+                                <option ${order.status === 'Delivered' ? 'selected' : ''}>Delivered</option>
+                                <option ${order.status === 'Cancelled' ? 'selected' : ''}>Cancelled</option>
+                            </select>
+                         </div>
+                    </div>
+                    <div class="mt-4 pt-4 border-t border-gray-600">
+                        <p class="font-semibold">Items:</p>
+                        <ul class="list-disc list-inside text-gray-300">${itemsHtml}</ul>
+                    </div>`;
+                adminOrderList.appendChild(item);
+            });
+        };
         
-        const handlePayment = (e) => {
+        // --- PAYMENT LOGIC ---
+        const handlePayment = async (e) => {
             e.preventDefault();
+            const customerDetails = {
+                name: document.getElementById('customerName').value,
+                email: document.getElementById('customerEmail').value,
+                phone: document.getElementById('customerPhone').value
+            };
+            const totalAmount = calculateSubtotal();
+
             const options = {
                 "key": "YOUR_RAZORPAY_KEY_ID", // <-- IMPORTANT: Replace this with your actual Razorpay Key ID!
-                "amount": calculateSubtotal() * 100,
+                "amount": totalAmount * 100,
                 "currency": "INR",
                 "name": "Ajay's Nutrition",
                 "description": "Order Payment",
                 "image": "https://placehold.co/100x100/111827/FFFFFF?text=AN",
-                "handler": (response) => { showToast(`Payment successful! ID: ${response.razorpay_payment_id}`); cart = []; updateCart(); closeCheckout(); },
-                "prefill": { "name": document.getElementById('customerName').value, "email": document.getElementById('customerEmail').value, "contact": document.getElementById('customerPhone').value },
+                "handler": async (response) => { 
+                    const orderItems = cart.map(item => {
+                        const product = allProducts.find(p => p.id === item.id);
+                        return { name: product.name, quantity: item.quantity, price: product.price };
+                    });
+                    try {
+                        await addDoc(ordersCollection, {
+                            razorpayPaymentId: response.razorpay_payment_id,
+                            customer: customerDetails,
+                            items: orderItems,
+                            total: totalAmount,
+                            status: 'Pending',
+                            timestamp: serverTimestamp()
+                        });
+                        showToast(`Payment successful!`); 
+                        cart = []; 
+                        updateCart(); 
+                        closeCheckout();
+                    } catch (err) {
+                        console.error("Error saving order:", err);
+                        showToast('Payment successful, but failed to save order.', true);
+                    }
+                },
+                "prefill": { "name": customerDetails.name, "email": customerDetails.email, "contact": customerDetails.phone },
                 "theme": { "color": "#22d3ee" }
             };
             const rzp1 = new Razorpay(options);
@@ -355,10 +590,15 @@
         document.getElementById('admin-login-link').addEventListener('click', (e) => { e.preventDefault(); showAdminView(); });
         document.getElementById('back-to-shop-1').addEventListener('click', showShopView);
         document.getElementById('back-to-shop-2').addEventListener('click', showShopView);
-        document.getElementById('login-form').addEventListener('submit', (e) => { e.preventDefault(); if (document.getElementById('password').value === 'admin123') { sessionStorage.setItem('isAdminLoggedIn', 'true'); showDashboard(); document.getElementById('login-error').classList.add('hidden'); } else { document.getElementById('login-error').classList.remove('hidden'); } });
+        document.getElementById('login-form').addEventListener('submit', (e) => { e.preventDefault(); if (document.getElementById('password').value === 'admin123') { sessionStorage.setItem('isAdminLoggedIn', 'true'); showDashboard(); } else { document.getElementById('login-error').classList.remove('hidden'); } });
         document.getElementById('logout-button').addEventListener('click', () => { sessionStorage.removeItem('isAdminLoggedIn'); document.getElementById('password').value = ''; showLoginScreen(); });
-        document.getElementById('add-product-form').addEventListener('submit', (e) => { e.preventDefault(); addProduct(productName.value, productDescription.value, productPrice.value, productImage.value); e.target.reset(); });
-        adminProductList.addEventListener('click', async (e) => { const btn = e.target.closest('.delete-product-btn'); if (btn) { const confirmed = await confirmAction({ title: 'Delete Product?', text: 'Are you sure you want to delete this product permanently?' }); if (confirmed) { deleteProduct(btn.dataset.id); } } });
+        document.getElementById('add-product-form').addEventListener('submit', (e) => { e.preventDefault(); addProduct(productName.value, productDescription.value, productPrice.value, productImage.value, productCategory.value, productInStock.checked); e.target.reset(); });
+        adminProductList.addEventListener('click', async (e) => { 
+            const deleteBtn = e.target.closest('.delete-product-btn'); 
+            const stockToggle = e.target.closest('.stock-toggle');
+            if (deleteBtn) { const confirmed = await confirmAction({ title: 'Delete Product?', text: 'Are you sure you want to delete this product permanently?' }); if (confirmed) { deleteProduct(deleteBtn.dataset.id); } } 
+            if (stockToggle) { updateStockStatus(stockToggle.dataset.id, stockToggle.checked); }
+        });
         document.getElementById('cart-button').addEventListener('click', openCart);
         document.getElementById('close-cart-button').addEventListener('click', closeCart);
         document.getElementById('cart-overlay').addEventListener('click', closeCart);
@@ -369,6 +609,39 @@
         productGrid.addEventListener('click', (e) => { const btn = e.target.closest('.add-to-cart-btn'); if (btn) { addToCart(btn.dataset.id); } });
         document.getElementById('mobile-menu-button').addEventListener('click', () => mobileMenu.classList.toggle('hidden'));
         document.querySelectorAll('.mobile-menu-link').forEach(link => link.addEventListener('click', () => mobileMenu.classList.add('hidden')));
+        categoryFilters.addEventListener('click', (e) => { 
+            const btn = e.target.closest('.category-btn');
+            if(btn) { 
+                document.querySelectorAll('.category-btn').forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                currentCategory = btn.dataset.category;
+                filterAndRenderProducts();
+            }
+        });
+        const handleSearch = (e) => { currentSearchTerm = e.target.value.toLowerCase(); filterAndRenderProducts(); };
+        searchBar.addEventListener('keyup', handleSearch);
+        mobileSearchBar.addEventListener('keyup', handleSearch);
+
+        // Admin Tabs Listener
+        const switchTab = (tab) => {
+            if(tab === 'orders') {
+                tabOrders.classList.add('text-cyan-400', 'border-cyan-400');
+                tabProducts.classList.remove('text-cyan-400', 'border-cyan-400');
+                contentOrders.classList.remove('hidden');
+                contentProducts.classList.add('hidden');
+            } else {
+                tabProducts.classList.add('text-cyan-400', 'border-cyan-400');
+                tabOrders.classList.remove('text-cyan-400', 'border-cyan-400');
+                contentProducts.classList.remove('hidden');
+                contentOrders.classList.add('hidden');
+            }
+        };
+        tabProducts.addEventListener('click', () => switchTab('products'));
+        tabOrders.addEventListener('click', () => switchTab('orders'));
+        adminOrderList.addEventListener('change', e => {
+            const select = e.target.closest('.order-status-select');
+            if (select) { updateOrderStatus(select.dataset.id, select.value); }
+        });
 
         // --- INITIALIZATION LOGIC ---
         document.addEventListener('DOMContentLoaded', async () => {
@@ -381,48 +654,27 @@
                 auth = getAuth(app);
                 db = getFirestore(app);
                 await signInAnonymously(auth);
-                console.log("Authenticated:", auth.currentUser?.uid);
                 
-                // In your Firestore database, you must create a collection named "products".
-                const collectionPath = "products";
-                productsCollection = collection(db, collectionPath);
+                productsCollection = collection(db, "products");
+                ordersCollection = collection(db, "orders");
 
                 onSnapshot(productsCollection, (snapshot) => {
                     allProducts = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
-                    renderShopProducts(allProducts);
+                    filterAndRenderProducts();
                     renderAdminProducts(allProducts);
+                    renderCategoryFilters();
                     updateCart();
-                }, (error) => {
-                    console.error("Error fetching products:", error);
-                    let errorMessage = 'Error loading products.';
-                    if (error.code === 'permission-denied') {
-                        errorMessage = `<strong>Firestore Permissions Error:</strong> The database rules are blocking access.
-                        <br><br> <strong>How to Fix:</strong>
-                        <ol class="list-decimal list-inside text-left mx-auto max-w-md mt-2">
-                            <li>Go to your Firebase project's Firestore Database section.</li>
-                            <li>Click on the "Rules" tab.</li>
-                            <li>Replace the existing rules with the following and click "Publish":</li>
-                        </ol>
-                        <pre class="bg-gray-900 text-left p-2 rounded-md mt-2 text-sm"><code>rules_version = '2';
-service cloud.firestore {
-  match /databases/{database}/documents {
-    match /{document=**} {
-      allow read: if true;
-      allow write: if request.auth != null;
-    }
-  }
-}</code></pre>`;
-                    }
-                    productGrid.innerHTML = `<div class="col-span-full text-center p-6 bg-red-900/20 border border-red-500 rounded-lg"><p class="text-red-400">${errorMessage}</p></div>`;
+                });
+
+                const ordersQuery = query(ordersCollection, orderBy("timestamp", "desc"));
+                onSnapshot(ordersQuery, (snapshot) => {
+                    const orders = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+                    renderAdminOrders(orders);
                 });
 
             } catch (error) {
-                console.error("Authentication failed:", error);
-                let errorMessage = 'Could not connect to the database. Check your Firebase config and Firestore rules.';
-                if (error.code === 'auth/configuration-not-found') {
-                    errorMessage = '<strong>Authentication Error:</strong> Please go to your Firebase project, click on "Authentication" > "Sign-in method", and make sure to <strong>enable Anonymous sign-in</strong>.';
-                }
-                productGrid.innerHTML = `<div class="col-span-full text-center p-6 bg-red-900/20 border border-red-500 rounded-lg"><p class="text-red-400">${errorMessage}</p></div>`;
+                console.error("Initialization failed:", error);
+                productGrid.innerHTML = `<div class="col-span-full text-center p-6 bg-red-900/20 border border-red-500 rounded-lg"><p class="text-red-400">Could not connect to the database. Please check your Firebase configuration and security rules.</p></div>`;
             }
 
             if (sessionStorage.getItem('isAdminLoggedIn') === 'true') { showDashboard(); } else { showLoginScreen(); }
