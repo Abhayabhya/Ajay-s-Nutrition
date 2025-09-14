@@ -239,7 +239,7 @@
                             <a href="#contact" class="text-slate-300 hover:text-white transition duration-300">Contact</a>
                             <a href="#faq" class="text-slate-300 hover:text-white transition duration-300">FAQ</a>
                              <div id="auth-links-desktop">
-                                <a href="#" id="my-orders-link" class="text-slate-300 hover:text-white transition duration-300">My Orders</a>
+                                <a href="#" id="my-orders-link" class="text-slate-300 hover:text-white transition duration-300">Track Order</a>
                             </div>
                         </nav>
                         <div id="user-account-area" class="flex items-center gap-4">
@@ -264,7 +264,7 @@
                     <a href="#contact" class="mobile-menu-link block py-2 px-4 text-sm text-slate-300 hover:bg-slate-800 rounded">Contact</a>
                     <a href="#faq" class="mobile-menu-link block py-2 px-4 text-sm text-slate-300 hover:bg-slate-800 rounded">FAQ</a>
                     <div id="auth-links-mobile">
-                         <a href="#" id="mobile-my-orders-link" class="mobile-menu-link block py-2 px-4 text-sm text-slate-300 hover:bg-slate-800 rounded">My Orders</a>
+                         <a href="#" id="mobile-my-orders-link" class="mobile-menu-link block py-2 px-4 text-sm text-slate-300 hover:bg-slate-800 rounded">Track Order</a>
                     </div>
                 </div>
             </div>
@@ -374,7 +374,7 @@
                                      <div class="flex items-start space-x-4"><i data-lucide="mail" class="text-cyan-400 mt-1 flex-shrink-0"></i><div><h4 class="font-semibold text-white">Email Us</h4><p class="text-slate-400">contact@ajaysnutrition.com</p></div></div>
                                 </div>
                             </div>
-                            <div class="lg:w-1/2 h-96 lg:h-auto rounded-lg overflow-hidden border border-slate-700 animate-on-scroll fade-in-up" style="animation-delay: 0.2s;"><iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3725.753331185524!2d81.0163983153926!3d20.96225499547849!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a2e4726e8284699%3A0x6336e3992b8f8861!2sAjay's%20Nutrition!5e0!3m2!1sen!2sin!4v1699446861214!5m2!1sen!2sin" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe></div>
+                            <div class="lg:w-1/2 h-96 lg:h-auto rounded-lg overflow-hidden border border-slate-700 animate-on-scroll fade-in-up" style="animation-delay: 0.2s;"><iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d59562.953442522245!2d81.0209375!3d21.0852561!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a294591ded720ef%3A0xdd8ec695a1c18c5c!2sAjay&#39;s%20Nutrition!5e0!3m2!1sen!2sin!4v1757868878980!5m2!1sen!2sin" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe></div>
                        </div>
                   </div>
              </section>
@@ -437,7 +437,7 @@
                                     <i data-lucide="plus" class="faq-icon text-cyan-400 transition-transform duration-300"></i>
                                 </button>
                                 <div class="faq-answer px-6 pb-6 text-slate-300">
-                                    <p>You can use the "My Orders" link in the header or footer to look up your order status. Simply enter the email address you used during checkout to see your complete order history.</p>
+                                    <p>You can use the "Track Order" link in the header or footer to look up your order status. You will need your Order ID (from your confirmation email) and the email address you used during checkout.</p>
                                 </div>
                             </div>
                              <div class="bg-slate-700/60 backdrop-blur-sm border border-slate-600 rounded-lg animate-on-scroll fade-in-up" style="animation-delay: 0.4s;">
@@ -538,14 +538,18 @@
             <div id="customer-lookup-screen">
                 <div class="max-w-md mx-auto mt-20">
                     <div class="bg-slate-800/60 backdrop-blur-xl border border-slate-700 p-8 rounded-lg shadow-xl">
-                        <h2 class="text-2xl font-bold text-center text-cyan-400 mb-6">Track Your Orders</h2>
-                        <form id="customer-lookup-form">
+                        <h2 class="text-2xl font-bold text-center text-cyan-400 mb-6">Track Your Order</h2>
+                        <form id="order-tracking-form">
                             <div class="mb-4">
-                                <label for="customerLookupEmail" class="block text-slate-300 mb-2">Enter your email to find your orders</label>
-                                <input type="email" id="customerLookupEmail" class="w-full bg-slate-700 border border-slate-600 rounded-lg px-4 py-2 text-white focus:outline-none" required>
+                                <label for="trackingOrderId" class="block text-slate-300 mb-2">Order ID</label>
+                                <input type="text" id="trackingOrderId" class="w-full bg-slate-700 border border-slate-600 rounded-lg px-4 py-2 text-white focus:outline-none" required placeholder="Enter your full Order ID">
                             </div>
-                            <p id="customer-lookup-error" class="text-red-500 text-sm mb-4 hidden">No orders found for this email.</p>
-                            <button type="submit" class="w-full bg-cyan-500 hover:bg-cyan-600 text-white font-bold py-2 px-4 rounded-lg transition duration-300">Find Orders</button>
+                            <div class="mb-4">
+                                <label for="customerLookupEmail" class="block text-slate-300 mb-2">Email Address</label>
+                                <input type="email" id="customerLookupEmail" class="w-full bg-slate-700 border border-slate-600 rounded-lg px-4 py-2 text-white focus:outline-none" required placeholder="Email used for the order">
+                            </div>
+                            <p id="tracking-error" class="text-red-500 text-sm mb-4 hidden">No order found with that ID and email.</p>
+                            <button type="submit" class="w-full bg-cyan-500 hover:bg-cyan-600 text-white font-bold py-2 px-4 rounded-lg transition duration-300">Track Order</button>
                         </form>
                         <button id="back-to-shop-3" class="w-full mt-4 bg-slate-600 hover:bg-slate-700 text-white font-bold py-2 px-4 rounded-lg transition duration-300">Back to Shop</button>
                     </div>
@@ -553,13 +557,13 @@
             </div>
             <div id="customer-orders-screen" class="hidden">
                  <div class="flex flex-col sm:flex-row justify-between items-center gap-4 mb-8">
-                    <h1 class="text-3xl font-bold text-cyan-400">Your Orders</h1>
+                    <h1 class="text-3xl font-bold text-cyan-400">Order Status</h1>
                     <div>
-                        <button id="lookup-another-email-btn" class="bg-cyan-600 hover:bg-cyan-700 text-white font-bold py-2 px-4 rounded-lg transition duration-300 mr-2">Check Another Email</button>
+                        <button id="track-another-order-btn" class="bg-cyan-600 hover:bg-cyan-700 text-white font-bold py-2 px-4 rounded-lg transition duration-300 mr-2">Track Another Order</button>
                         <button id="back-to-shop-4" class="bg-slate-600 hover:bg-slate-700 text-white font-bold py-2 px-4 rounded-lg transition duration-300">Back to Shop</button>
                     </div>
                 </div>
-                 <div id="customer-order-list" class="space-y-4 max-h-[70vh] overflow-y-auto no-scrollbar">
+                 <div id="customer-order-list" class="space-y-4">
                      </div>
             </div>
         </div>
@@ -1464,7 +1468,7 @@
             const listEl = DOMElements.customerOrderList;
             listEl.innerHTML = '';
             if (!orders || orders.length === 0) {
-                listEl.innerHTML = '<p class="text-slate-400 text-center">No orders found.</p>';
+                listEl.innerHTML = '<p class="text-slate-400 text-center">No order found.</p>';
                 return;
             }
 
@@ -1487,7 +1491,7 @@
                 item.innerHTML = `
                     <div class="flex flex-wrap justify-between items-start gap-4">
                         <div>
-                            <p class="font-bold text-white">Order ID: ${order.id.substring(0, 8)}</p>
+                            <p class="font-bold text-white">Order ID: ${order.id}</p>
                             <p class="text-sm text-slate-400">${orderDate}</p>
                         </div>
                          <div class="text-right">
@@ -1666,7 +1670,7 @@
                             <p class="text-sm text-slate-300">${order.customer.email}</p>
                             <p class="text-sm text-slate-300">${order.customer.phone}</p>
                             <p class="text-sm mt-2"><span class="font-semibold text-slate-400">Address:</span> <span class="text-slate-300">${order.deliveryType === 'pickup' ? 'In-Store Pickup' : order.customer.address}</span></p>
-                            ${order.customer.liveLocation ? `<p class="text-sm mt-2"><span class="font-semibold text-slate-400">Live Location:</span> <a href="https://www.google.com/maps?q=...{order.customer.liveLocation.lat},${order.customer.liveLocation.lon}" target="_blank" class="text-cyan-400 underline hover:text-cyan-300">Open in Google Maps</a></p>` : ''}
+                            ${order.customer.liveLocation ? `<p class="text-sm mt-2"><span class="font-semibold text-slate-400">Live Location:</span> <a href="https://www.google.com/maps?q=......{order.customer.liveLocation.lat},${order.customer.liveLocation.lon}" target="_blank" class="text-cyan-400 underline hover:text-cyan-300">Open in Google Maps</a></p>` : ''}
                         </div>
                         <div>
                             <p class="font-semibold text-cyan-400 mb-2">Items</p>
@@ -2170,7 +2174,7 @@
                             ...paymentDetails, customer: customerDetails, items: orderItems, total: totalAmount, couponUsed: appliedCoupon ? appliedCoupon.id : null, status: 'Pending', deliveryType: deliveryType, timestamp: serverTimestamp() 
                         }); 
                     }); 
-                    showToast(`Order placed successfully!`); cart = []; appliedCoupon = null; liveLocationData = null; updateCart(); closeCheckout(); 
+                    showToast(`Order placed successfully! Your Order ID is: ${orderRef.id}`); cart = []; appliedCoupon = null; liveLocationData = null; updateCart(); closeCheckout(); 
                 } catch (err) { console.error("Transaction failed: ", err); showToast(`Order failed: ${err.message || err}`, true); } 
                 finally { showLoading(false); }
             };
@@ -2201,7 +2205,37 @@
                 rzp1.open(); 
             }
         };
-        const handleCustomerLookup = async () => { const lookupError = document.getElementById('customer-lookup-error'); lookupError.classList.add('hidden'); const email = document.getElementById('customerLookupEmail').value.trim().toLowerCase(); if (!email) return; try { const q = query(ordersCollection, where("customer.email", "==", email)); const querySnapshot = await getDocs(q); let orders = querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() })); orders.sort((a, b) => (b.timestamp?.toMillis() || 0) - (a.timestamp?.toMillis() || 0)); if (orders.length > 0) { renderCustomerOrders(orders); DOMElements.customerLookupScreen.classList.add('hidden'); DOMElements.customerOrdersScreen.classList.remove('hidden'); } else { lookupError.classList.remove('hidden'); } } catch (error) { console.error("Error looking up orders:", error); showToast('Could not fetch orders.', true); } };
+        const handleOrderTracking = async () => {
+            const errorEl = document.getElementById('tracking-error');
+            errorEl.classList.add('hidden');
+            const orderId = document.getElementById('trackingOrderId').value.trim();
+            const email = document.getElementById('customerLookupEmail').value.trim().toLowerCase();
+
+            if (!orderId || !email) {
+                errorEl.textContent = 'Please enter both Order ID and Email.';
+                errorEl.classList.remove('hidden');
+                return;
+            }
+
+            try {
+                const orderRef = doc(db, 'orders', orderId);
+                const orderSnap = await getDoc(orderRef);
+
+                if (orderSnap.exists() && orderSnap.data().customer.email === email) {
+                    const order = { id: orderSnap.id, ...orderSnap.data() };
+                    renderCustomerOrders([order]); // Pass it as an array to reuse the function
+                    DOMElements.customerLookupScreen.classList.add('hidden');
+                    DOMElements.customerOrdersScreen.classList.remove('hidden');
+                } else {
+                    errorEl.textContent = 'No order found with that ID and email.';
+                    errorEl.classList.remove('hidden');
+                }
+            } catch (error) {
+                console.error("Error tracking order:", error);
+                showToast('Could not track order. Please try again.', true);
+            }
+        };
+
 
         // --- EVENT LISTENERS (Using Delegation for dynamic content) ---
         const setupEventListeners = () => {
@@ -2210,9 +2244,9 @@
             document.getElementById('mobile-my-orders-link').addEventListener('click', e => { e.preventDefault(); switchView('customer-view'); DOMElements.mobileMenu.classList.add('hidden'); });
             
             [...document.querySelectorAll('[id^="back-to-shop-"]')].forEach(btn => btn.addEventListener('click', () => switchView('shop-view')));
-            document.getElementById('customer-lookup-form').addEventListener('submit', (e) => { e.preventDefault(); handleCustomerLookup(); });
+            document.getElementById('order-tracking-form').addEventListener('submit', (e) => { e.preventDefault(); handleOrderTracking(); });
             document.getElementById('back-to-products-grid').addEventListener('click', () => switchView('shop-view'));
-            document.getElementById('lookup-another-email-btn').addEventListener('click', () => { DOMElements.customerOrdersScreen.classList.add('hidden'); DOMElements.customerLookupScreen.classList.remove('hidden'); document.getElementById('customerLookupEmail').value = ''; document.getElementById('customer-lookup-error').classList.add('hidden'); });
+            document.getElementById('track-another-order-btn').addEventListener('click', () => { DOMElements.customerOrdersScreen.classList.add('hidden'); DOMElements.customerLookupScreen.classList.remove('hidden'); document.getElementById('customerLookupEmail').value = ''; document.getElementById('trackingOrderId').value = ''; document.getElementById('tracking-error').classList.add('hidden'); });
             
             document.getElementById('login-form').addEventListener('submit', (e) => { 
                 e.preventDefault(); 
