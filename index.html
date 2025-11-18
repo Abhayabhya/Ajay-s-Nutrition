@@ -374,7 +374,7 @@
                                      <div class="flex items-start space-x-4"><i data-lucide="mail" class="text-cyan-400 mt-1 flex-shrink-0"></i><div><h4 class="font-semibold text-white">Email Us</h4><p class="text-slate-400">contact@ajaysnutrition.com</p></div></div>
                                 </div>
                             </div>
-                            <div class="lg:w-1/2 h-96 lg:h-auto rounded-lg overflow-hidden border border-slate-700 animate-on-scroll fade-in-up" style="animation-delay: 0.2s;"><iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d59562.953442522245!2d81.0209375!3d21.0852561!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a294591ded720ef%3A0xdd8ec695a1c18c5c!2sAjay&#39;s%20Nutrition!5e0!3m2!1sen!2sin!4v1757868878980!5m2!1sen!2sin" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe></div>
+                            <div class="lg:w-1/2 h-96 lg:h-auto rounded-lg overflow-hidden border border-slate-700 animate-on-scroll fade-in-up" style="animation-delay: 0.2s;"><iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3722.684831141676!2d81.01828997525816!3d21.085246480578267!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a294591ded720ef%3A0xdd8ec695a1c18c5c!2sAjay&#39;s%20Nutrition!5e0!3m2!1sen!2sin!4v1758204597511!5m2!1sen!2sin"width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe></div>
                        </div>
                   </div>
              </section>
@@ -1670,7 +1670,7 @@
                             <p class="text-sm text-slate-300">${order.customer.email}</p>
                             <p class="text-sm text-slate-300">${order.customer.phone}</p>
                             <p class="text-sm mt-2"><span class="font-semibold text-slate-400">Address:</span> <span class="text-slate-300">${order.deliveryType === 'pickup' ? 'In-Store Pickup' : order.customer.address}</span></p>
-                            ${order.customer.liveLocation ? `<p class="text-sm mt-2"><span class="font-semibold text-slate-400">Live Location:</span> <a href="https://www.google.com/maps?q=......{order.customer.liveLocation.lat},${order.customer.liveLocation.lon}" target="_blank" class="text-cyan-400 underline hover:text-cyan-300">Open in Google Maps</a></p>` : ''}
+                            ${order.customer.liveLocation ? `<p class="text-sm mt-2"><span class="font-semibold text-slate-400">Live Location:</span> <a href="http://googleusercontent.com/maps.google.com/9{lat},{lon}" target="_blank" ...>Open in Google Maps</a></p>` : ''}
                         </div>
                         <div>
                             <p class="font-semibold text-cyan-400 mb-2">Items</p>
@@ -2369,20 +2369,41 @@
             });
 
             document.body.addEventListener('submit', e => {
-                // Admin Add/Edit Product
-                if (e.target.id === 'add-product-form') {
-                    e.preventDefault();
-                    showLoading(true);
-                    const form = e.target;
-                    const selectedGoals = Array.from(form.querySelectorAll('.goal-checkbox:checked')).map(cb => cb.value);
-                    
-                    const existingImageUrls = Array.from(document.querySelectorAll('#image-preview-container [data-url]'))
-                        .map(el => el.dataset.url)
-                        .filter(url => !url.startsWith('blob:'));
+              if (e.target.id === 'add-product-form') {
+    e.preventDefault();
+    showLoading(true);
+    const form = e.target;
+    const selectedGoals = Array.from(form.querySelectorAll('.goal-checkbox:checked')).map(cb => cb.value);
 
-                    const productData = { name: form.querySelector('#productName').value, brand: form.querySelector('#productBrand').value, description: form.querySelector('#productDescription').value, imageUrls: existingImageUrls, imageUrl: existingImageUrls[0] || '', category: form.querySelector('#productCategory').value, isFeatured: form.querySelector('#productIsFeatured').checked, goals: selectedGoals, pricePerServing: form.querySelector('#productPricePerServing').value, form: form.querySelector('#productForm').value, packaging: form.querySelector('#productPackaging').value, benefits: form.querySelector('#productBenefits').value.split(',').map(b=>b.trim()).filter(Boolean), usageInfo: form.querySelector('#productUsageInfo').value, ingredients: form.querySelector('#productIngredients').value, manufacturerInfo: form.querySelector('#productManufacturerInfo').value, additionalInfo: form.querySelector('#productAdditionalInfo').value, disclaimer: form.querySelector('#productDisclaimer').value };
-                    saveProduct(productData, form.querySelector('#productId').value);
-                }
+    // --- THIS IS THE FIX ---
+    // 1. Get the final, correct list of image URLs from the previews that are still visible.
+    const finalImageUrls = Array.from(form.querySelectorAll('#image-preview-container [data-url]'))
+        .map(el => el.dataset.url)
+        .filter(url => !url.startsWith('blob:')); 
+
+    // 2. Build the productData object using this new, correct list.
+    const productData = {
+        name: form.querySelector('#productName').value,
+        brand: form.querySelector('#productBrand').value,
+        description: form.querySelector('#productDescription').value,
+        imageUrls: finalImageUrls, // <-- Use the correct variable
+        imageUrl: finalImageUrls[0] || '', // <-- Use the correct variable for the main image
+        category: form.querySelector('#productCategory').value,
+        isFeatured: form.querySelector('#productIsFeatured').checked,
+        goals: selectedGoals,
+        pricePerServing: form.querySelector('#productPricePerServing').value,
+        form: form.querySelector('#productForm').value,
+        packaging: form.querySelector('#productPackaging').value,
+        benefits: form.querySelector('#productBenefits').value.split(',').map(b => b.trim()).filter(Boolean),
+        usageInfo: form.querySelector('#productUsageInfo').value,
+        ingredients: form.querySelector('#productIngredients').value,
+        manufacturerInfo: form.querySelector('#productManufacturerInfo').value,
+        additionalInfo: form.querySelector('#productAdditionalInfo').value,
+        disclaimer: form.querySelector('#productDisclaimer').value
+    };
+
+    saveProduct(productData, form.querySelector('#productId').value);
+}
                 // Admin Add Variant
                 if (e.target.id === 'add-variant-form') {
                     e.preventDefault();
@@ -2429,94 +2450,135 @@
         });
         DOMElements.scrollToTopBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
 
-        document.addEventListener('DOMContentLoaded', async () => {
-             try {
-                lucide.createIcons();
-                renderSkeletons();
-                updateCart();
-                switchView('shop-view');
-                setupEventListeners();
-                
-                app = initializeApp(firebaseConfig);
-                auth = getAuth(app);
-                db = getFirestore(app);
-                storage = getStorage(app);
-                
-                productsCollection = collection(db, "products");
-                ordersCollection = collection(db, "orders");
-                couponsCollection = collection(db, "coupons");
-                settingsCollection = collection(db, "site_settings");
-                subscribersCollection = collection(db, "subscribers");
-                usersCollection = collection(db, "users");
-                wishlistsCollection = collection(db, "wishlists");
+document.addEventListener('DOMContentLoaded', async () => {
+    try {
+        // --- Initial UI Setup ---
+        lucide.createIcons();
+        renderSkeletons();
+        updateCart();
+        switchView('shop-view');
+        setupEventListeners();
 
+        // --- Firebase Initialization ---
+        app = initializeApp(firebaseConfig);
+        auth = getAuth(app);
+        db = getFirestore(app);
+        storage = getStorage(app);
 
-                onSnapshot(doc(db, 'site_settings', 'banner'), (docSnap) => {
-                    const banner = document.getElementById('promotional-banner');
-                    const bannerText = document.getElementById('banner-text-content');
-                    const bannerTextClone = document.getElementById('banner-text-content-clone');
-                    const settingsForm = document.getElementById('settings-form');
-                    if (docSnap.exists()) {
-                        const data = docSnap.data();
-                        if (data.enabled && data.message) {
-                            bannerText.textContent = data.message;
-                            bannerTextClone.textContent = data.message;
-                            banner.classList.remove('hidden');
-                        } else { banner.classList.add('hidden'); }
-                        if (settingsForm) {
-                            document.getElementById('bannerEnabled').checked = data.enabled || false;
-                            document.getElementById('bannerMessage').value = data.message || '';
-                        }
-                    }
-                });
-                
-                await signInAnonymously(auth);
-                onAuthStateChanged(auth, user => { if (user) currentUser = user; });
+        productsCollection = collection(db, "products");
+        ordersCollection = collection(db, "orders");
+        couponsCollection = collection(db, "coupons");
+        settingsCollection = collection(db, "site_settings");
+        subscribersCollection = collection(db, "subscribers");
+        usersCollection = collection(db, "users");
+        wishlistsCollection = collection(db, "wishlists");
 
-                onSnapshot(query(productsCollection, orderBy("name")), async (snapshot) => {
-                    const productPromises = snapshot.docs.map(async (pDoc) => {
-                        const productData = { id: pDoc.id, ...pDoc.data() };
-                        const variantsRef = collection(db, `products/${pDoc.id}/variants`);
-                        const vSnap = await getDocs(query(variantsRef));
-                        productData.minPrice = vSnap.empty ? null : Math.min(...vSnap.docs.map(d => d.data().salePrice || d.data().price));
-                        productData.hasSale = vSnap.docs.some(d => d.data().salePrice);
-                        productData.totalStock = vSnap.docs.reduce((acc, doc) => acc + (doc.data().quantity || 0), 0);
-                        productData.variantCount = vSnap.size;
-                        const reviewsRef = collection(db, `products/${pDoc.id}/reviews`);
-                        const rSnap = await getDocs(reviewsRef);
-                        productData.avgRating = rSnap.empty ? 0 : rSnap.docs.reduce((acc, r) => acc + r.data().rating, 0) / rSnap.size;
-                        return productData;
-                    });
-                    allProducts = await Promise.all(productPromises);
-                    filterAndRenderProducts();
-                    renderAdminProducts(allProducts);
-                    renderCategoryCards();
-                    renderCategoryFilters();
-                    renderAdvancedFilters();
-                    calculateDashboardStats(allOrders, allProducts);
-                    setTimeout(setupScrollAnimations, 100); // Allow products to render first
-                });
-
-                onSnapshot(query(couponsCollection), (snapshot) => renderAdminCoupons(snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }))));
-                onSnapshot(query(subscribersCollection, orderBy("subscribedAt", "desc")), (snapshot) => renderAdminSubscribers(snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }))));
-                onSnapshot(query(usersCollection), (snapshot) => {
-                    allUsers = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
-                });
-
-
-                if (sessionStorage.getItem('isAdminLoggedIn') === 'true') { 
-                    showDashboard(); 
-                    setupAdminOrdersListener();
-                    setupAdminDailyOrdersListener();
-                } else { 
-                    showLoginScreen(); 
-                }
-
-            } catch (error) {
-                console.error("A critical error occurred during initialization:", error);
-                document.body.innerHTML = `<div class="bg-slate-900 text-white min-h-screen flex items-center justify-center p-4"><div class="text-center"><h1 class="text-2xl font-bold text-red-500 mb-4">Oops! Something went wrong.</h1><p class="text-slate-300">The application failed to load. Please try refreshing the page.</p><p class="mt-4 text-xs text-slate-500">Error details: ${error.message}</p></div></div>`;
+        // --- Authentication Listener ---
+        onAuthStateChanged(auth, (user) => {
+            if (user) {
+                currentUser = user;
+                // You can add logic here later if you want to show user's name, etc.
             }
         });
+
+        // --- Routing Logic ---
+        const handleRouting = () => {
+            const hash = window.location.hash;
+            // Wait for products to load before trying to show a product page
+            if (allProducts.length === 0 && hash.startsWith('#product/')) {
+                return; 
+            }
+
+            if (hash.startsWith('#product/')) {
+                const productId = hash.split('/')[1];
+                if (productId) {
+                    switchView('product-detail-view', { productId });
+                }
+            } else if (hash === '#track-order') {
+                switchView('customer-view');
+            } else if (hash === '#admin') {
+                switchView('admin-view');
+            }
+        };
+        window.addEventListener('hashchange', handleRouting);
+        
+
+        // --- Site Settings Listener ---
+        onSnapshot(doc(db, 'site_settings', 'banner'), (docSnap) => {
+            const banner = document.getElementById('promotional-banner');
+            const bannerText = document.getElementById('banner-text-content');
+            const bannerTextClone = document.getElementById('banner-text-content-clone');
+            const settingsForm = document.getElementById('settings-form');
+            if (docSnap.exists()) {
+                const data = docSnap.data();
+                if (data.enabled && data.message) {
+                    bannerText.textContent = data.message;
+                    bannerTextClone.textContent = data.message;
+                    banner.classList.remove('hidden');
+                } else { banner.classList.add('hidden'); }
+                if (settingsForm) {
+                    document.getElementById('bannerEnabled').checked = data.enabled || false;
+                    document.getElementById('bannerMessage').value = data.message || '';
+                }
+            }
+        });
+
+        // --- Products Data Listener ---
+        let isInitialProductLoad = true;
+        onSnapshot(query(productsCollection, orderBy("name")), async (snapshot) => {
+            const productPromises = snapshot.docs.map(async (pDoc) => {
+                const productData = { id: pDoc.id, ...pDoc.data() };
+                const variantsRef = collection(db, `products/${pDoc.id}/variants`);
+                const vSnap = await getDocs(query(variantsRef));
+                productData.minPrice = vSnap.empty ? null : Math.min(...vSnap.docs.map(d => d.data().salePrice || d.data().price));
+                productData.hasSale = vSnap.docs.some(d => d.data().salePrice);
+                productData.totalStock = vSnap.docs.reduce((acc, doc) => acc + (doc.data().quantity || 0), 0);
+                productData.variantCount = vSnap.size;
+                const reviewsRef = collection(db, `products/${pDoc.id}/reviews`);
+                const rSnap = await getDocs(reviewsRef);
+                productData.avgRating = rSnap.empty ? 0 : rSnap.docs.reduce((acc, r) => acc + r.data().rating, 0) / rSnap.size;
+                return productData;
+            });
+            allProducts = await Promise.all(productPromises);
+            
+            const featuredProducts = allProducts.filter(p => p.isFeatured).slice(0, 4);
+            renderProductGrid(featuredProducts, document.getElementById('featured-product-grid'));
+
+            filterAndRenderProducts();
+            renderAdminProducts(allProducts);
+            renderCategoryCards();
+            renderCategoryFilters();
+            renderAdvancedFilters();
+            calculateDashboardStats(allOrders, allProducts);
+            setTimeout(setupScrollAnimations, 100);
+
+            if (isInitialProductLoad) {
+                handleRouting(); 
+                isInitialProductLoad = false;
+            }
+        });
+
+        // --- Other Listeners ---
+        onSnapshot(query(couponsCollection), (snapshot) => renderAdminCoupons(snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }))));
+        onSnapshot(query(subscribersCollection, orderBy("subscribedAt", "desc")), (snapshot) => renderAdminSubscribers(snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }))));
+        onSnapshot(query(usersCollection), (snapshot) => {
+            allUsers = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+        });
+
+        // --- Admin Login Check ---
+        if (sessionStorage.getItem('isAdminLoggedIn') === 'true') {
+            showDashboard();
+            setupAdminOrdersListener();
+            setupAdminDailyOrdersListener();
+        } else {
+            showLoginScreen();
+        }
+
+    } catch (error) {
+        console.error("A critical error occurred during initialization:", error);
+        document.body.innerHTML = `<div class="bg-slate-900 text-white min-h-screen flex items-center justify-center p-4"><div class="text-center"><h1 class="text-2xl font-bold text-red-500 mb-4">Oops! Something went wrong.</h1><p class="text-slate-300">The application failed to load. Please try refreshing the page.</p><p class="mt-4 text-xs text-slate-500">Error details: ${error.message}</p></div></div>`;
+    }
+});
     </script>
 </body>
 </html>
